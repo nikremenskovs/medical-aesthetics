@@ -69,7 +69,7 @@ onUnmounted(() => {
     <TheFooter />
     <transition enter-active-class="transition ease-out duration-500 transform"
       leave-active-class="transition ease-out duration-1000 transform" enter-from-class="opacity-0"
-      leave-to-class="opacity-0" enter-to-class="translate-x-0">
+      leave-to-class="opacity-0" enter-to-class="opacity-1">
       <TheScrollToTopButton v-show="showScrollToTopButton" @click="toTop" />
     </transition>
   </div>
