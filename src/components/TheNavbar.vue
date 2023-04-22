@@ -26,7 +26,7 @@ const mobileNav = ref(null)
                 </a>
                 <a href="" class="md:hover:text-[#457B9D] md:hover:scale-110 transition duration-[1000ms] ease-out">
                     <i class="fa-brands fa-whatsapp"><span class="hidden text-xs ml-1 align-middle sm:inline-block">+371
-                            26891400</span></i>
+                            123456788</span></i>
                 </a>
                 <button @click="mobileNav = !mobileNav">
                     <i class="fas fa-bars transition duration-[1000ms] ease-out md:hidden"
