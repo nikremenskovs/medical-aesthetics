@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import BannerSection from "@/components/homepage/banner/BannerSection.vue";
+import HomepageBannerSection from "@/components/homepage/HomepageBannerSection.vue";
+import HomepageCardsSection from "@/components/homepage/HomepageCardsSection.vue";
+import HomepageAboutUs from "@/components/homepage/HomepageAboutUs.vue";
 </script>
 
 <template>
-  <BannerSection />
+  <HomepageBannerSection />
+  <HomepageCardsSection />
+  <HomepageAboutUs />
 </template>
