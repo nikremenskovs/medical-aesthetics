@@ -40,7 +40,7 @@ const mobileNav = ref(null)
                         <router-link
                             class="border-b-2 border-transparent text-[#1D3557] uppercase whitespace-nowrap md:hover:text-[#457B9D] md:hover:border-[#457B9D] transition duration-[1000ms] ease-out"
                             :to="{ name: 'about' }" @click="mobileNav = !mobileNav"
-                            :exact-active-class="'text-[#457B9D] border-[#457B9D]'">
+                            :exact-active-class="'text-[#457B9D] border-b-[#457B9D]'">
                             par mums
                         </router-link>
                     </li>
@@ -48,7 +48,7 @@ const mobileNav = ref(null)
                         <router-link
                             class="border-b-2 border-transparent text-[#1D3557] uppercase whitespace-nowrap md:hover:text-[#457B9D] md:hover:border-[#457B9D] transition duration-[1000ms] ease-out"
                             :to="{ name: 'dummy' }" @click="mobileNav = !mobileNav"
-                            :exact-active-class="'text-[#457B9D] border-[#457B9D]'">
+                            :exact-active-class="'text-[#457B9D] border-b-[#457B9D]'">
                             proceduras
                         </router-link>
                     </li>
@@ -56,7 +56,7 @@ const mobileNav = ref(null)
                         <router-link
                             class="border-b-2 border-transparent text-[#1D3557] uppercase whitespace-nowrap md:hover:text-[#457B9D] md:hover:border-[#457B9D] transition duration-[1000ms] ease-out"
                             :to="{ name: 'dummy' }" @click="mobileNav = !mobileNav"
-                            :exact-active-class="'text-[#457B9D] border-[#457B9D]'">
+                            :exact-active-class="'text-[#457B9D] border-b-[#457B9D]'">
                             cenas
                         </router-link>
                     </li>
@@ -64,7 +64,7 @@ const mobileNav = ref(null)
                         <router-link
                             class="border-b-2 border-transparent text-[#1D3557] uppercase whitespace-nowrap md:hover:text-[#457B9D] md:hover:border-[#457B9D] transition duration-[1000ms] ease-out"
                             :to="{ name: 'dummy' }" @click="mobileNav = !mobileNav"
-                            :exact-active-class="'text-[#457B9D] border-[#457B9D]'">
+                            :exact-active-class="'text-[#457B9D] border-b-[#457B9D]'">
                             akcijas
                         </router-link>
                     </li>
@@ -72,7 +72,7 @@ const mobileNav = ref(null)
                         <router-link
                             class="border-b-2 border-transparent text-[#1D3557] uppercase whitespace-nowrap md:hover:text-[#457B9D] md:hover:border-[#457B9D] transition duration-[1000ms] ease-out"
                             :to="{ name: 'dummy' }" @click="mobileNav = !mobileNav"
-                            :exact-active-class="'text-[#457B9D] border-[#457B9D]'">
+                            :exact-active-class="'text-[#457B9D] border-b-[#457B9D]'">
                             kontakti
                         </router-link>
                     </li>
