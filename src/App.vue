@@ -35,7 +35,7 @@ onUnmounted(() => {
   <transition enter-active-class="transition ease-out duration-500 transform"
     leave-active-class="transition ease-out duration-500 transform" enter-from-class="-translate-y-full"
     leave-to-class="-translate-y-full" enter-to-class="translate-y-0">
-    <TheNavbar v-if="showNavbar" />
+    <TheNavbar v-show="showNavbar" />
   </transition>
   <RouterView />
 </template>
