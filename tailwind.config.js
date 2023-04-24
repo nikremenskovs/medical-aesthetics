@@ -27,6 +27,10 @@ module.exports = {
           "main-blue": '#1D3557',
           "hover-blue": '#457B9D'
         },
+        fontFamily: {
+          'marmelad': ['Marmelad'],
+          'yeseva-one': ['YesevaOne']
+        },
     }
     },
     plugins: [],

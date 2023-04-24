@@ -24,7 +24,8 @@ const mobileNav = ref(null)
                     <i class="fa-brands fa-instagram" />
                 </a>
                 <a href="" class="md:hover:text-hover-blue md:hover:scale-110 transition duration-[1000ms] ease-out">
-                    <i class="fa-brands fa-whatsapp"><span class="hidden text-xs ml-1 align-middle sm:inline-block">+371
+                    <i class="fa-brands fa-whatsapp"><span
+                            class="hidden font-marmelad font-bold text-sm ml-1 align-middle sm:inline-block">+371
                             123456788</span></i>
                 </a>
                 <button @click="mobileNav = !mobileNav">
@@ -33,11 +34,11 @@ const mobileNav = ref(null)
                 </button>
             </div>
             <div class="w-full items-center md:flex md:order-1 md:justify-end md:w-5/12">
-                <ul class="flex-col mt-4 font-medium rounded-lg text-center md:text-xs md:flex md:p-0 md:flex-row md:space-x-2 md:mt-0 lg:space-x-6 xl:text-base xl:space-x-8"
+                <ul class="flex-col mt-4 font-marmelad font-bold rounded-lg text-center uppercase text-main-blue whitespace-nowrap md:text-xs md:flex md:p-0 md:flex-row md:space-x-2 md:mt-0 lg:space-x-6 xl:text-base xl:space-x-8"
                     :class="mobileNav ? 'flex' : 'hidden'">
                     <li class="py-2 md:p-0">
                         <router-link
-                            class="border-b-2 border-transparent text-main-blue uppercase whitespace-nowrap md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
+                            class="border-b-2 border-transparent md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
                             :to="{ name: 'about' }" @click="mobileNav = !mobileNav"
                             :exact-active-class="'text-hover-blue border-b-hover-blue'">
                             par mums
@@ -45,7 +46,7 @@ const mobileNav = ref(null)
                     </li>
                     <li class="py-2 md:p-0">
                         <router-link
-                            class="border-b-2 border-transparent text-main-blue uppercase whitespace-nowrap md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
+                            class="border-b-2 border-transparent md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
                             :to="{ name: 'dummy' }" @click="mobileNav = !mobileNav"
                             :exact-active-class="'text-hover-blue border-b-hover-blue'">
                             proceduras
@@ -53,7 +54,7 @@ const mobileNav = ref(null)
                     </li>
                     <li class="py-2 md:p-0">
                         <router-link
-                            class="border-b-2 border-transparent text-main-blue uppercase whitespace-nowrap md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
+                            class="border-b-2 border-transparent md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
                             :to="{ name: 'dummy' }" @click="mobileNav = !mobileNav"
                             :exact-active-class="'text-hover-blue border-b-hover-blue'">
                             cenas
@@ -61,7 +62,7 @@ const mobileNav = ref(null)
                     </li>
                     <li class="py-2 md:p-0">
                         <router-link
-                            class="border-b-2 border-transparent text-main-blue uppercase whitespace-nowrap md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
+                            class="border-b-2 border-transparent md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
                             :to="{ name: 'dummy' }" @click="mobileNav = !mobileNav"
                             :exact-active-class="'text-hover-blue border-b-hover-blue'">
                             akcijas
@@ -69,7 +70,7 @@ const mobileNav = ref(null)
                     </li>
                     <li class="py-2 md:p-0">
                         <router-link
-                            class="border-b-2 border-transparent text-main-blue uppercase whitespace-nowrap md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
+                            class="border-b-2 border-transparent md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
                             :to="{ name: 'dummy' }" @click="mobileNav = !mobileNav"
                             :exact-active-class="'text-hover-blue border-b-hover-blue'">
                             kontakti
