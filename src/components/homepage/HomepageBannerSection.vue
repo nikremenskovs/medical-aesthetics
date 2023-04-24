@@ -37,12 +37,12 @@ onUnmounted(() => {
                 class="banner__text absolute right-4 bottom-4 flex flex-col md:w-1/2 md:static md:justify-center md:items-center md:my-8">
                 <img class="hidden md:block max-h-[500px] mb-8 px-8" src="@/assets/images/logoCrop.png">
                 <button
-                    class="h-10 w-auto px-4 bg-transparent border-2 border-main-blue text-main-blue font-bold rounded-full hover:bg-main-blue hover:text-main-white">
+                    class="h-12 w-auto px-4 bg-transparent border-2 border-main-blue rounded-full text-main-blue font-yeseva-one uppercase text-sm font-bold tracking-wider md:text-lg md:tracking-widest hover:bg-main-blue hover:text-main-white ">
                     Enquire Now
                 </button>
             </div>
         </div>
-        <p class="banner__description bg-main-blue/75 text-main-white text-center px-8 py-4">
+        <p class="banner__description bg-main-blue/75 font-marmelad tracking-wide text-main-white text-center px-8 py-4">
             Деньги вперед, — заявил монтер, — утром — деньги, вечером — стулья или вечером — деньги, а на другой день утром
             — стулья
         </p>
