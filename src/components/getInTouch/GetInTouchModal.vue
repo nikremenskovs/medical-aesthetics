@@ -41,12 +41,11 @@ const handleCloseGetInTouchModal = (event) => {
                         <a href="" class="md:hover:text-hover-blue transition duration-[1000ms] ease-out">
                             <i class="fa-solid fa-location-dot"><span
                                     class="font-marmelad font-bold text-sm tracking-wider ml-2 align-middle sm:inline-block">Maskavas
-                                    243,
-                                    Riga</span></i>
+                                    243, Riga</span></i>
                         </a>
                     </div>
                 </div>
-                <div class="opening-hours mb-6">
+                <div class="opening-hours mb-6 lg:flex-grow">
                     <h2 class="font-yeseva-one tracking-wide capitalize text-2xl mb-3">darba laiks</h2>
                     <p class="font-marmelad tracking-wide text-base mb-2">Pirmdiena - Sestdiena: 10:00 - 20:00 </p>
                     <p class="font-marmelad tracking-wide text-base mb-2">Svetdiena - pec vienosanas </p>
