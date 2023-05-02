@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-auto bg-hover-blue px-4 py-8 text-main-white">
+    <div class="w-full h-auto bg-hover-blue border-t-[1px] border-main-blue px-4 py-8 text-main-white">
         <div class="mb-4">
             <h1 class="font-yeseva-one text-2xl uppercase mb-4 tracking-wide md:text-center md:mb-12">Ka mus atrast</h1>
             <div class="mb-4 md:flex md:space-x-6">
