@@ -55,7 +55,7 @@ const mobileNav = ref(null)
                     <li class="py-2 md:p-0">
                         <router-link
                             class="border-b-2 border-transparent md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
-                            :to="{ name: 'dummy' }" @click="mobileNav = !mobileNav"
+                            :to="{ name: 'prices' }" @click="mobileNav = !mobileNav"
                             :exact-active-class="'text-hover-blue border-b-hover-blue'">
                             cenas
                         </router-link>

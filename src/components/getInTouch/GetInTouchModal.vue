@@ -12,8 +12,8 @@ const handleCloseGetInTouchModal = (event) => {
             <button @click="handleCloseGetInTouchModal">
                 <i class="fa-solid fa-xmark absolute top-4 right-4  text-2xl leading-none" />
             </button>
-            <div class="w-full mx-auto text-center sm:h-5/6 sm:overflow-y-auto md:w-3/4 md:flex md:flex-wrap">
-                <div class="sazinasimies mb-6 md:w-1/2">
+            <div class="w-full mx-auto text-center sm:h-5/6 sm:overflow-y-auto sm:w-3/4 sm:flex sm:flex-wrap">
+                <div class="sazinasimies mb-6 sm:w-1/2">
                     <h2 class="font-yeseva-one tracking-wide capitalize text-2xl mb-3">Sazinasimies!</h2>
                     <p class="font-marmelad tracking-wide text-base px-4 mb-2">izvēlēties jebkuru no šīm
                         platformām, mēs
@@ -46,13 +46,13 @@ const handleCloseGetInTouchModal = (event) => {
                         </a>
                     </div>
                 </div>
-                <div class="opening-hours mb-6 md:w-1/2">
+                <div class="opening-hours mb-6 sm:w-1/2">
                     <h2 class="font-yeseva-one tracking-wide capitalize text-2xl mb-3">darba laiks</h2>
                     <p class="font-marmelad tracking-wide text-base px-4 mb-2">Pirmdiena - Sestdiena: 10:00 - 20:00 </p>
                     <p class="font-marmelad tracking-wide text-base px-4 mb-2">Svetdiena - pec vienosanas </p>
                 </div>
                 <button
-                    class="h-auto w-auto px-4 py-2 bg-main-bule text-main-white border-2 border-main-white rounded-full font-yeseva-one uppercase text-sm font-bold tracking-wider md:text-lg md:tracking-widest hover:bg-main-white hover:text-main-blue md:w-full">
+                    class="h-auto w-auto px-4 py-2 bg-main-bule text-main-white border-2 border-main-white rounded-full font-yeseva-one uppercase text-sm font-bold tracking-wider md:text-lg md:tracking-widest hover:bg-main-white hover:text-main-blue sm:w-full">
                     kā mūs atrast
                 </button>
             </div>
