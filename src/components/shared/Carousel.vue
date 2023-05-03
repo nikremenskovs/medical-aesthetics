@@ -16,8 +16,6 @@ const previousSlide = () => currentSlide.value === 1 ? currentSlide.value = prop
 const goToSlide = (index) => currentSlide.value = index + 1
 
 
-
-
 const autoPlay = () => {
     setInterval(() => {
         nextSlide()
