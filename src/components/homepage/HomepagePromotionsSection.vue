@@ -15,7 +15,7 @@ const homepageCarouselSlides = ['Slide1', 'Slide2', 'Slide3']
             <CarouselSlide v-for="(slide, index) in homepageCarouselSlides" :key="index">
                 <div v-show="currentSlide === index + 1" class="slide-info absolute top-0 left-0 w-full max-h-full h-full">
                     <div class="overlay absolute w-full h-full bg-main-white/50"></div>
-                    <img :src="`./src/assets/images/${slide}.jpg`" class="min-w-full h-full object-cover">
+                    <img src="@/assets/images/Slide1.jpg" class="min-w-full h-full object-cover">
                     <div
                         class="text absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-main-blue z-10">
                         <h1 class="font-yeseva-one text-4xl text-bold uppercase tracking-widest mb-4">
