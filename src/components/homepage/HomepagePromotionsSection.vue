@@ -22,10 +22,7 @@ const homepageCarouselSlides = ['Slide1', 'Slide2', 'Slide3']
                             pavasara brinums</h1>
                         <p class="font-marmelad text-xl tracking-wide font-bold mb-8">Naciet kopa ar savu sievu un iedzeriet
                             alinu kamer gaidat</p>
-                        <button
-                            class="h-12 w-auto px-4 bg-transparent border-2 border-main-blue rounded-full text-main-blue font-yeseva-one uppercase text-sm font-bold tracking-wider md:text-lg md:tracking-widest md:hover:bg-main-blue md:hover:text-main-white ">
-                            snabiti ari piedavajam
-                        </button>
+                        <CallToActionButton :to="'/dummy'">snabiti ari piedavajam</CallToActionButton>
                     </div>
                 </div>
             </CarouselSlide>

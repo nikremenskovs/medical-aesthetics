@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted } from 'vue';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import CallToActionButton from '../shared/CallToActionButton.vue';
 gsap.registerPlugin(ScrollTrigger);
 
 const bannerScrollAnimation = () => {
@@ -36,10 +37,7 @@ onUnmounted(() => {
             <div
                 class="banner__text absolute right-4 bottom-4 flex flex-col md:w-1/2 md:static md:justify-center md:items-center md:my-8">
                 <img class="hidden md:block max-h-[500px] mb-8 px-8" src="@/assets/images/logoCrop.png">
-                <button
-                    class="h-12 w-auto px-4 bg-transparent border-2 border-main-blue rounded-full text-main-blue font-yeseva-one uppercase text-sm font-bold tracking-wider md:text-lg md:tracking-widest md:hover:bg-main-blue md:hover:text-main-white ">
-                    Enquire Now
-                </button>
+                <CallToActionButton :to="'/dummy'">Enquire Now</CallToActionButton>
             </div>
         </div>
         <p class="banner__description bg-hover-blue font-marmelad tracking-wide text-main-white text-center px-8 py-4">
