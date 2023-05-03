@@ -52,7 +52,7 @@ const handleCloseGetInTouchModal = (event) => {
                     <p class="font-marmelad tracking-wide text-base px-4 mb-2">Svetdiena - pec vienosanas </p>
                 </div>
                 <button
-                    class="h-auto w-auto px-4 py-2 bg-main-bule text-main-white border-2 border-main-white rounded-full font-yeseva-one uppercase text-sm font-bold tracking-wider md:text-lg md:tracking-widest hover:bg-main-white hover:text-main-blue sm:w-full">
+                    class="h-auto w-auto px-4 py-2 bg-main-bule text-main-white border-2 border-main-white rounded-full font-yeseva-one uppercase text-sm font-bold tracking-wider md:text-lg md:tracking-widest md:hover:bg-main-white md:hover:text-main-blue sm:w-full">
                     kā mūs atrast
                 </button>
             </div>
