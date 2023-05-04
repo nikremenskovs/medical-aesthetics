@@ -5,7 +5,7 @@ const mobileNav = ref(null)
 </script>
 
 <template>
-    <nav class="fixed w-full z-10"
+    <nav class="fixed w-full z-50"
         :class="mobileNav ? 'h-screen bg-gradient-to-b from-main-white/75 to-transparent' : 'bg-main-white/75 border-b-[1px] border-main-blue'">
         <div class="flex flex-wrap p-4 justify-between md:justify-center">
             <router-link :to="{ name: 'home' }"

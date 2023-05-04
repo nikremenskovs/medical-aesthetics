@@ -27,6 +27,7 @@ try {
     :bannerDataRU="homepageData.bannerData.ru" />
   <HomepagePromotionsSection :promotionsDataLV="homepageData.promotionsData.lv"
     :promotionsDataEN="homepageData.promotionsData.en" :promotionsDataRU="homepageData.promotionsData.ru" />
-  <HomepageCardsSection />
+  <HomepageCardsSection :treatmentsDataLV="homepageData.treatmentsData.lv"
+    :treatmentsDataEN="homepageData.treatmentsData.en" :treatmentsDataRU="homepageData.treatmentsData.ru" />
   <HomepageAboutSection />
 </template>

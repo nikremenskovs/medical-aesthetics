@@ -8,7 +8,7 @@ const props = defineProps({
     promotionsDataRU: { type: Object, required: true },
 });
 
-const homepageCarouselSlides = ['Slide1', 'Slide2', 'Slide3']
+
 </script>
 
 <template>
