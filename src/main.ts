@@ -3,12 +3,14 @@ import { createPinia } from 'pinia'
 import { createSquidexService } from "@/services/squidexService.js";
 
 
-import CallToActionButton from './components/shared/CallToActionButton.vue'
-import ResponsiveImage from './components/shared/ResponsiveImage.vue'
+
 
 import App from './App.vue'
 import router from './router'
 import './assets/tailwind.css'
+
+import CallToActionButton from './components/shared/CallToActionButton.vue'
+import ResponsiveImage from './components/shared/ResponsiveImage.vue'
 
 (async () => {
     await createSquidexService();

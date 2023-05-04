@@ -13,7 +13,7 @@ async function getToken() {
       "https://cloud.squidex.io/identity-server/connect/token",
       {
         scope: "squidex-api",
-        client_secret: "7hwjtb0yzpg6tyjdlgyxi0qgwvyutg1cydmxgrmpztox",
+        client_secret: "zosadlioc7dpmj5hmtsx3we38boki80ebzwpexa3ctcx",
         client_id: "medical-aesthetics:default",
         grant_type: "client_credentials",
       },
