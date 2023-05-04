@@ -6,8 +6,6 @@ const props = defineProps({
     aboutDataRU: { type: Object, required: true },
 });
 
-console.log(props.aboutDataLV)
-
 </script>
 
 <template>
