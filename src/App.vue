@@ -76,8 +76,10 @@ onUnmounted(() => {
       leave-to-class="-translate-y-full" enter-to-class="translate-y-0">
       <TheNavbar v-show="showNavbar" />
     </transition>
+    <Suspense>
 
-    <RouterView />
+      <RouterView />
+    </Suspense>
 
     <TheFooter />
 
