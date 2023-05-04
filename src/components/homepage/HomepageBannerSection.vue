@@ -23,7 +23,7 @@ const bannerScrollAnimation = () => {
         }
     });
     bannerScrollAnimationTimeline
-        .fromTo(".banner__image", { x: 0 }, { x: "-50%" })
+        .fromTo(".banner__image", { x: 0 }, { x: "-100%" })
         .to(".banner__text", { opacity: 0 }, 0)
         .to(".banner__description", { opacity: 0 }, 0);
 }
