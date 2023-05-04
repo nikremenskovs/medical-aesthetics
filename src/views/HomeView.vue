@@ -29,5 +29,6 @@ try {
     :promotionsDataEN="homepageData.promotionsData.en" :promotionsDataRU="homepageData.promotionsData.ru" />
   <HomepageCardsSection :treatmentsDataLV="homepageData.treatmentsData.lv"
     :treatmentsDataEN="homepageData.treatmentsData.en" :treatmentsDataRU="homepageData.treatmentsData.ru" />
-  <HomepageAboutSection />
+  <HomepageAboutSection :aboutDataLV="homepageData.aboutData.lv" :aboutDataEN="homepageData.aboutData.en"
+    :aboutDataRU="homepageData.aboutData.ru" />
 </template>
