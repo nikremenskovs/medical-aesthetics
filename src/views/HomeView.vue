@@ -15,7 +15,7 @@ let homepageData = null;
 try {
   homepageData = await homepageStore.getHomepageData(route.query.preview);
 } catch {
-  // router.push("/dummy");
+  router.push("/dummy");
 }
 
 
@@ -25,7 +25,8 @@ try {
 <template>
   <HomepageBannerSection :bannerDataLV="homepageData.bannerData.lv" :bannerDataEN="homepageData.bannerData.en"
     :bannerDataRU="homepageData.bannerData.ru" />
-  <HomepagePromotionsSection />
+  <HomepagePromotionsSection :promotionsDataLV="homepageData.promotionsData.lv"
+    :promotionsDataEN="homepageData.promotionsData.en" :promotionsDataRU="homepageData.promotionsData.ru" />
   <HomepageCardsSection />
   <HomepageAboutSection />
 </template>

@@ -3,6 +3,7 @@ import { onMounted, onUnmounted } from 'vue';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CallToActionButton from '../shared/CallToActionButton.vue';
+import ResponsiveImage from '../shared/ResponsiveImage.vue';
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -11,8 +12,6 @@ const props = defineProps({
     bannerDataEN: { type: Object, required: true },
     bannerDataRU: { type: Object, required: true },
 });
-
-console.log(props.bannerDataLV)
 
 const bannerScrollAnimation = () => {
     const bannerScrollAnimationTimeline = gsap.timeline({
@@ -41,12 +40,27 @@ onUnmounted(() => {
 <template>
     <section id="homepageBannerSection" class="mb-12">
         <div class="banner relative flex overflow-hidden max-h-screen">
-            <img class="banner__image scale-[1.01] min-h-[400px] object-cover md:w-1/2"
-                :src="props.bannerDataLV.leftImage.image" :alt="props.bannerDataLV.leftImage['image-alt']">
+            <ResponsiveImage class="banner__image scale-[1.01] min-h-[400px] object-cover md:w-1/2"
+                :imgSrc="props.bannerDataLV.leftImage.image[0]" :imgAlt="props.bannerDataLV.leftImage['image-alt']"
+                :sourcesMap="[
+                    { assetWidth: 'max', media: '1440px' },
+                    { assetWidth: '1440', media: '1024px' },
+                    { assetWidth: '1024', media: '768px' },
+                    { assetWidth: '768', media: '425px' },
+                    { assetWidth: '425', media: '320px' },
+                ]" />
+
             <div
                 class="banner__text absolute right-4 bottom-4 flex flex-col md:w-1/2 md:static md:justify-center md:items-center md:my-8">
-                <img class="hidden md:block max-h-[500px] mb-8 px-8" :src="props.bannerDataLV.rightImage.image"
-                    :alt="props.bannerDataLV.rightImage['image-alt']">
+                <ResponsiveImage class="hidden md:block max-h-[500px] mb-8 px-8"
+                    :imgSrc="props.bannerDataLV.rightImage.image[0]" :imgAlt="props.bannerDataLV.rightImage['image-alt']"
+                    :sourcesMap="[
+                        { assetWidth: 'max', media: '1440px' },
+                        { assetWidth: '1440', media: '1024px' },
+                        { assetWidth: '1024', media: '768px' },
+                        { assetWidth: '768', media: '425px' },
+                        { assetWidth: '425', media: '320px' },
+                    ]" />
                 <CallToActionButton :to="props.bannerDataLV.button.buttonRoute">{{ props.bannerDataLV.button.buttonText }}
                 </CallToActionButton>
             </div>
