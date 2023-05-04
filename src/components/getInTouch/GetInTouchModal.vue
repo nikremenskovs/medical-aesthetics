@@ -51,48 +51,9 @@ const handleCloseGetInTouchModal = (event) => {
                     <p class="font-marmelad tracking-wide text-base px-4 mb-2">Svetdiena - pec vienosanas </p>
                 </div>
                 <button
-                    class="h-auto w-auto px-4 py-2 bg-main-bule text-main-white border-2 border-main-white rounded-full font-yeseva-one uppercase text-sm font-bold tracking-wider md:text-lg md:tracking-widest md:hover:bg-main-white md:hover:text-main-blue xl:hidden">
+                    class="h-auto w-auto px-4 py-2 bg-main-bule text-main-white border-2 border-main-white rounded-full font-yeseva-one uppercase text-sm font-bold tracking-wider xl:mx-auto xl:mt-20 md:text-lg md:tracking-widest md:hover:bg-main-white md:hover:text-main-blue">
                     kā mūs atrast
                 </button>
-                <div class="mb-4 hidden xl:block">
-                    <h1 class="font-yeseva-one text-2xl uppercase mb-4 tracking-wide md:text-center md:my-12">Ka mus atrast
-                    </h1>
-                    <div class="mb-4 md:flex md:space-x-6">
-                        <div class="mb-8 pr-6 md:border-r-2 md:border-main-white/50">
-                            <h2 class="font-marmelad text-xl mb-2 tracking-wider capitalize">Ar sabiedrisko transportu</h2>
-                            <p class="font-marmelad ">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor maxime
-                                dolores
-                                atque,
-                                sint eum assumenda
-                                delectus quo asperiores, corporis voluptate aperiam ipsam libero amet explicabo. Sunt qui
-                                culpa
-                                consectetur
-                                eos?</p>
-                        </div>
-                        <div class="mb-8 pr-6 md:border-r-2 md:border-main-white/50">
-                            <h2 class="font-marmelad text-xl mb-2 tracking-wider capitalize">Ar masinu</h2>
-                            <p class="font-marmelad">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit iste
-                                adipisci a
-                                non,
-                                sint, cum vero modi
-                                reprehenderit mollitia corrupti in obcaecati harum. Neque omnis perferendis necessitatibus
-                                voluptatum
-                                facilis sunt?</p>
-                        </div>
-                        <div class="mb-8 pr-6">
-                            <h2 class="font-marmelad text-xl mb-2 tracking-wider capitalize">informacija parkingam</h2>
-                            <p class="font-marmelad">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-                                saepe
-                                iure,
-                                facilis
-                                ratione dignissimos
-                                fuga consequuntur consequatur pariatur minus odit natus itaque molestias ipsam accusantium.
-                                Quisquam
-                                maiores
-                                odit molestiae distinctio?</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
