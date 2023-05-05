@@ -1,4 +1,5 @@
 <script setup>
+import SelectLanguageDropdown from '@/components/shared/SelectLanguageDropdown.vue'
 import { ref } from 'vue'
 
 const mobileNav = ref(null)
@@ -14,7 +15,8 @@ const mobileNav = ref(null)
                 <img src="@/assets/images/logoCrop.png" class="h-16 mx-auto lg:h-20 xl:h-24" alt="">
             </router-link>
             <div
-                class="flex justify-end my-auto space-x-8 text-2xl text-main-blue md:justify-start md:order-3 md:w-5/12 md:space-x-10 lg:text-2xl">
+                class="flex justify-end my-auto space-x-4 text-2xl text-main-blue sm:space-x-8 md:justify-start md:order-3 md:w-5/12 md:space-x-10 lg:text-2xl">
+                <SelectLanguageDropdown />
                 <a href="https://www.facebook.com/" target="_blank"
                     class="md:hover:text-hover-blue md:hover:scale-125 transition duration-[1000ms] ease-out">
                     <i class="fa-brands fa-facebook" />
@@ -25,7 +27,7 @@ const mobileNav = ref(null)
                 </a>
                 <a href="" class="md:hover:text-hover-blue md:hover:scale-110 transition duration-[1000ms] ease-out">
                     <i class="fa-brands fa-whatsapp"><span
-                            class="hidden font-marmelad font-bold text-sm ml-1 align-middle sm:inline-block">+371
+                            class="hidden font-marmelad font-bold text-sm ml-1 align-middle lg:inline-block">+371
                             123456788</span></i>
                 </a>
                 <button @click="mobileNav = !mobileNav">

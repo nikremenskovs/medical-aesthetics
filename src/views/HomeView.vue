@@ -6,6 +6,9 @@ import HomepagePromotionsSection from "@/components/homepage/HomepagePromotionsS
 
 import { useRoute, useRouter } from "vue-router";
 import { useHomepageStore } from "@/stores/HomepageStore.js";
+import { useTitle } from '@vueuse/core'
+
+const title = useTitle('AKBeauty - Mājaslapa')
 
 const homepageStore = useHomepageStore();
 const route = useRoute();
@@ -14,6 +17,7 @@ const router = useRouter();
 let homepageData = null;
 try {
   homepageData = await homepageStore.getHomepageData(route.query.preview);
+  title.value = homepageData.tabTitleData.lv
 } catch {
   router.push("/dummy");
 }

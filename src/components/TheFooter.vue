@@ -1,3 +1,7 @@
+<script setup>
+import SelectLanguageDropdown from '@/components/shared/SelectLanguageDropdown.vue'
+</script>
+
 <template>
     <div class="w-full h-auto bg-hover-blue border-t-[1px] border-main-blue px-4 py-8 text-main-white">
         <div class="mb-4">
