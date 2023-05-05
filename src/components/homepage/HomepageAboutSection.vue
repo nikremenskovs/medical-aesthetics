@@ -18,9 +18,9 @@ const props = defineProps({
             <CallToActionButton :to="props.aboutDataLV.button.buttonRoute">{{ props.aboutDataLV.button.buttonText }}
             </CallToActionButton>
         </div>
-        <div class="md:w-5/12 rounded-full overflow-hidden">
-            <ResponsiveImage class="rounded-full" :imgSrc="props.aboutDataLV.image.image[0]"
-                :imgAlt="props.aboutDataLV.image['image-alt']" :sourcesMap="[
+        <div class="rounded-full overflow-hidden md:w-5/12">
+            <ResponsiveImage :imgSrc="props.aboutDataLV.image.image[0]" :imgAlt="props.aboutDataLV.image['image-alt']"
+                :sourcesMap="[
                     { assetWidth: 'max', media: '1440px' },
                     { assetWidth: '1440', media: '1024px' },
                     { assetWidth: '1024', media: '768px' },
