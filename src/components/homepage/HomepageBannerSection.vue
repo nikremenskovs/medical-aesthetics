@@ -1,9 +1,14 @@
 <script setup>
-import { onMounted, onUnmounted } from 'vue';
+import { onMounted, onUnmounted, computed, ref } from 'vue';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CallToActionButton from '../shared/CallToActionButton.vue';
 import ResponsiveImage from '../shared/ResponsiveImage.vue';
+import { useTopLevelStore } from "@/stores/TopLevelStore.js";
+
+const topLevelStore = useTopLevelStore();
+const selectedLanguage = computed(() => topLevelStore.selectedLanguage)
+
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -53,21 +58,22 @@ onUnmounted(() => {
             <div
                 class="banner__text absolute right-4 bottom-4 flex flex-col md:w-1/2 md:static md:justify-center md:items-center md:my-8">
                 <ResponsiveImage class="hidden md:block max-h-[500px] mb-8 px-8"
-                    :imgSrc="props.bannerDataLV.rightImage.image[0]" :imgAlt="props.bannerDataLV.rightImage['image-alt']"
-                    :sourcesMap="[
+                    :imgSrc="props[`bannerData${selectedLanguage}`].rightImage.image[0]"
+                    :imgAlt="props[`bannerData${selectedLanguage}`].rightImage['image-alt']" :sourcesMap="[
                         { assetWidth: 'max', media: '1440px' },
                         { assetWidth: '1440', media: '1024px' },
                         { assetWidth: '1024', media: '768px' },
                         { assetWidth: '768', media: '425px' },
                         { assetWidth: '425', media: '320px' },
                     ]" />
-                <CallToActionButton :to="props.bannerDataLV.button.buttonRoute">{{ props.bannerDataLV.button.buttonText }}
+                <CallToActionButton :to="props.bannerDataLV.button.buttonRoute">
+                    {{ props[`bannerData${selectedLanguage}`].button.buttonText }}
                 </CallToActionButton>
             </div>
         </div>
         <p
             class="banner__description bg-hover-blue font-marmelad tracking-wider text-main-white text-xl text-center px-8 py-4">
-            {{ props.bannerDataLV.bannerText }}
+            {{ props[`bannerData${selectedLanguage}`].bannerText }}
         </p>
     </section>
 </template>
