@@ -1,10 +1,17 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { onClickOutside } from '@vueuse/core'
+import { useTopLevelStore } from "@/stores/TopLevelStore.js";
+const topLevelStore = useTopLevelStore();
+
+
+
 
 const dropdownElement = ref();
 const dropdownOpen = ref();
-const selected = ref('LV');
+const selectedLanguage = computed(() => topLevelStore.selectedLanguage)
+
+
 
 const options = [
     { value: 'LV', text: 'Latviešu' },
@@ -12,8 +19,8 @@ const options = [
     { value: 'RU', text: 'Русский' },
 ];
 
-function selectOption(optionValue) {
-    selected.value = optionValue;
+function selectOption(language) {
+    topLevelStore.selectLanguageOption(language)
     dropdownOpen.value = false;
 }
 
@@ -41,7 +48,7 @@ onClickOutside(
 <template>
     <div ref="dropdownElement">
         <div class="flex items-center cursor-pointer" @click="dropdownOpen = !dropdownOpen">
-            <img :src="getImageSrc(selected)" :alt="selected" class="w-8 h-8 inline-block mr-2">
+            <img :src="getImageSrc(selectedLanguage)" :alt="selectedLanguage" class="w-8 h-8 inline-block mr-2">
             <i class="fa-solid fa-caret-down text-main-blue" />
         </div>
         <ul v-if="dropdownOpen" class="absolute mt-1 bg-main-white/50 rounded-lg shadow-lg">

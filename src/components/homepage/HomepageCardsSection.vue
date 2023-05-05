@@ -1,5 +1,10 @@
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, computed } from 'vue';
+import { useTopLevelStore } from "@/stores/TopLevelStore.js";
+
+const topLevelStore = useTopLevelStore();
+const selectedLanguage = computed(() => topLevelStore.selectedLanguage)
+
 const props = defineProps({
     treatmentsDataLV: { type: Object, required: true },
     treatmentsDataEN: { type: Object, required: true },
@@ -11,12 +16,12 @@ const props = defineProps({
 <template>
     <section id="homepageCardsSection" class="mb-12">
         <h1 class="text-4xl text-center text-main-blue font-yeseva-one uppercase tracking-wider mb-4">
-            {{ props.treatmentsDataLV.sectionHeading }}
+            {{ props[`treatmentsData${selectedLanguage}`].sectionHeading }}
         </h1>
         <div
             class="homepageCards-container font-marmelad tracking-wider sm:flex sm:flex-wrap sm:justify-center lg:flex-nowrap">
-            <router-link v-for="(card, index) in props.treatmentsDataLV.treatmentsCards" :key="index" to="/about"
-                class="card sm:w-1/3 m-8">
+            <router-link v-for="(card, index) in props[`treatmentsData${selectedLanguage}`].treatmentsCards" :key="index"
+                to="/about" class="card sm:w-1/3 m-8">
                 <div class="relative bg-main-white">
                     <ResponsiveImage :imgSrc="card.cardImage.image[0]" :imgAlt="card.cardImage['image-alt']" :sourcesMap="[
                         { assetWidth: 'max', media: '1440px' },
