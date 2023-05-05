@@ -20,11 +20,11 @@ function selectOption(optionValue) {
 function getImageSrc(optionValue) {
     switch (optionValue) {
         case 'LV':
-            return '/src/assets/images/LV.png';
+            return "@/assets/images/LV.png";
         case 'RU':
-            return '/src/assets/images/RU.png';
+            return "@/assets/images/RU.png";
         case 'EN':
-            return '/src/assets/images/UK.png';
+            return "@/assets/images/EN.png";
         default:
             return '';
     }
