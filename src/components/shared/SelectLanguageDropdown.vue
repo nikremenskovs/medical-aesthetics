@@ -27,11 +27,11 @@ function selectOption(language) {
 function getImageSrc(optionValue) {
     switch (optionValue) {
         case 'LV':
-            return "@/assets/images/LV.png";
+            return "./src/assets/images/LV.png";
         case 'RU':
-            return "@/assets/images/RU.png";
+            return "./src/assets/images/RU.png";
         case 'EN':
-            return "@/assets/images/EN.png";
+            return "./src/assets/images/EN.png";
         default:
             return '';
     }

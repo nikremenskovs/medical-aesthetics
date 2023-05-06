@@ -57,11 +57,11 @@ export async function getHomepage(urlPreview) {
   return api.get("homepage/c86cd1b1-cc43-4979-bfe6-b26c27d1fe4c");
 }
 
-// export async function getTab(urlPreview) {
-//   if (urlPreview) {
-//     return api.get("tab-data/6ebbb438-ff73-41e5-bffd-a7398a995613", {
-//       headers: { "X-Unpublished": 1 },
-//     });
-//   }
-//   return api.get("tab-data/6ebbb438-ff73-41e5-bffd-a7398a995613");
-// }
+export async function getTopLevel(urlPreview) {
+  if (urlPreview) {
+    return api.get("top-level/a4496a34-488e-4239-9c2c-a4df0e9670ac", {
+      headers: { "X-Unpublished": 1 },
+    });
+  }
+  return api.get("top-level/a4496a34-488e-4239-9c2c-a4df0e9670ac");
+}
