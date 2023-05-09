@@ -3,12 +3,12 @@ import axios from "axios";
 let api;
 
 async function getToken() {
-  let token = localStorage.getItem("token");
+  let tokenMedicalAesthetics = localStorage.getItem("tokenMedicalAesthetics");
 
   let expirationDate = localStorage.getItem("expirationDate");
   const isTokenExpired = new Date().getTime() > Number(expirationDate);
 
-  if (!token || !expirationDate || isTokenExpired) {
+  if (!tokenMedicalAesthetics || !expirationDate || isTokenExpired) {
     const response = await axios.post(
       "https://cloud.squidex.io/identity-server/connect/token",
       {
@@ -24,24 +24,24 @@ async function getToken() {
       }
     );
 
-    token = response.data.access_token;
+    tokenMedicalAesthetics = response.data.access_token;
     expirationDate = new Date().getTime() + 2591999 * 1000;
 
-    localStorage.setItem("token", token);
+    localStorage.setItem("tokenMedicalAesthetics", tokenMedicalAesthetics);
     localStorage.setItem("expirationDate", expirationDate);
   }
-  return token;
+  return tokenMedicalAesthetics;
 }
 
 export async function createSquidexService() {
   if (api) {
     return api;
   }
-  const token = await getToken();
+  const tokenMedicalAesthetics = await getToken();
   api = axios.create({
     baseURL: `https://cloud.squidex.io/api/content/medical-aesthetics/`,
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${tokenMedicalAesthetics}`,
       ["X-Resolve-Urls"]: "*",
     },
   });
