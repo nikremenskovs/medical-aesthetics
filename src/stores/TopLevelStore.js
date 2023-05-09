@@ -8,6 +8,9 @@ export const useTopLevelStore = defineStore("TopLevelStore", {
     floatingButton: {},
     navbar: ""
   }),
+  getters: {
+    getNavbar: (state) => state.navbar
+  },
   actions: {
     selectLanguageOption(language) {
       this.selectedLanguage = language

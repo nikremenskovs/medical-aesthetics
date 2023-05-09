@@ -86,12 +86,14 @@ onUnmounted(() => {
         @closeGetInTouchModal="showGetInTouchModal = false" />
     </transition>
 
-    <transition enter-active-class="transition ease-out duration-500 transform"
-      leave-active-class="transition ease-out duration-500 transform" enter-from-class="-translate-y-full"
-      leave-to-class="-translate-y-full" enter-to-class="translate-y-0">
-      <TheNavbar v-show="showNavbar" />
-    </transition>
+    <Suspense>
 
+      <transition enter-active-class="transition ease-out duration-500 transform"
+        leave-active-class="transition ease-out duration-500 transform" enter-from-class="-translate-y-full"
+        leave-to-class="-translate-y-full" enter-to-class="translate-y-0">
+        <TheNavbar v-show="showNavbar" />
+      </transition>
+    </Suspense>
 
     <Suspense>
       <RouterView />

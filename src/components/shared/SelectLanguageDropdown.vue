@@ -1,11 +1,14 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, defineProps } from 'vue';
 import { onClickOutside } from '@vueuse/core'
 import { useTopLevelStore } from "@/stores/TopLevelStore.js";
 const topLevelStore = useTopLevelStore();
 
+const props = defineProps({
+    languageFlags: { type: Object, required: true }
+});
 
-
+console.log(props.languageFlags)
 
 const dropdownElement = ref();
 const dropdownOpen = ref();
@@ -27,11 +30,11 @@ function selectOption(language) {
 function getImageSrc(optionValue) {
     switch (optionValue) {
         case 'LV':
-            return "./src/assets/images/LV.png";
-        case 'RU':
-            return "./src/assets/images/RU.png";
+            return props.languageFlags[0].image[0];
         case 'EN':
-            return "./src/assets/images/EN.png";
+            return props.languageFlags[1].image[0];
+        case 'RU':
+            return props.languageFlags[2].image[0];
         default:
             return '';
     }

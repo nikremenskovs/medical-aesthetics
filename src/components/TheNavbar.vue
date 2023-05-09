@@ -1,6 +1,21 @@
 <script setup>
 import SelectLanguageDropdown from '@/components/shared/SelectLanguageDropdown.vue'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useRoute, useRouter } from "vue-router";
+import { useTopLevelStore } from "@/stores/TopLevelStore.js";
+
+const topLevelStore = useTopLevelStore();
+const route = useRoute();
+const router = useRouter();
+
+const selectedLanguage = computed(() => topLevelStore.selectedLanguage.toLowerCase());
+
+let topLevelData = null;
+try {
+    topLevelData = await topLevelStore.getTopLevelData(route.query.preview);
+} catch {
+    router.push("/dummy");
+}
 
 const mobileNav = ref(null)
 </script>
@@ -12,11 +27,13 @@ const mobileNav = ref(null)
             <router-link :to="{ name: 'home' }"
                 class="md:order-2 md:w-1/12 md:mx-4 lg:w-2/12 lg:m-0 md:hover:scale-110 transition duration-[1000ms] ease-out"
                 @click="mobileNav = false">
-                <img src="@/assets/images/logoCrop.png" class="h-16 mx-auto lg:h-20 xl:h-24" alt="">
+                <img class="h-16 mx-auto lg:h-20 xl:h-24"
+                    :src="topLevelData.navbarData[`${selectedLanguage}`].navbarLogo.image[0]"
+                    :alt="topLevelData.navbarData[`${selectedLanguage}`].navbarLogo['image-alt']">
             </router-link>
             <div
                 class="flex justify-end my-auto space-x-4 text-2xl text-main-blue sm:space-x-8 md:justify-start md:order-3 md:w-5/12 md:space-x-10 lg:text-2xl">
-                <SelectLanguageDropdown />
+                <SelectLanguageDropdown :languageFlags="topLevelData.navbarData[`${selectedLanguage}`].languageFlags" />
                 <a href="https://www.facebook.com/" target="_blank"
                     class="md:hover:text-hover-blue md:hover:scale-125 transition duration-[1000ms] ease-out">
                     <i class="fa-brands fa-facebook" />
@@ -27,8 +44,8 @@ const mobileNav = ref(null)
                 </a>
                 <a href="" class="md:hover:text-hover-blue md:hover:scale-110 transition duration-[1000ms] ease-out">
                     <i class="fa-brands fa-whatsapp"><span
-                            class="hidden font-marmelad font-bold text-sm ml-1 align-middle lg:inline-block">+371
-                            123456788</span></i>
+                            class="hidden font-marmelad font-bold text-sm ml-1 align-middle lg:inline-block">{{
+                                topLevelData.navbarData[`${selectedLanguage}`].contactNumber }}</span></i>
                 </a>
                 <button @click="mobileNav = !mobileNav">
                     <i class="fas fa-bars transition duration-[1000ms] ease-out md:hidden"
@@ -38,44 +55,13 @@ const mobileNav = ref(null)
             <div class="w-full items-center md:flex md:order-1 md:justify-end md:w-5/12">
                 <ul class="flex-col mt-4 font-marmelad font-bold rounded-lg text-center uppercase text-main-blue whitespace-nowrap md:text-xs md:flex md:p-0 md:flex-row md:space-x-2 md:mt-0 lg:space-x-6 xl:text-base xl:space-x-8"
                     :class="mobileNav ? 'flex' : 'hidden'">
-                    <li class="py-2 md:p-0">
+                    <li class="py-2 md:p-0"
+                        v-for="(title, index) in topLevelData.navbarData[`${selectedLanguage}`].navTitles" :key="index">
                         <router-link
                             class="border-b-2 border-transparent md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
-                            :to="{ name: 'about' }" @click="mobileNav = !mobileNav"
+                            :to="title.buttonRoute" @click="mobileNav = !mobileNav"
                             :exact-active-class="'text-hover-blue border-b-hover-blue'">
-                            par mums
-                        </router-link>
-                    </li>
-                    <li class="py-2 md:p-0">
-                        <router-link
-                            class="border-b-2 border-transparent md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
-                            :to="{ name: 'dummy' }" @click="mobileNav = !mobileNav"
-                            :exact-active-class="'text-hover-blue border-b-hover-blue'">
-                            proceduras
-                        </router-link>
-                    </li>
-                    <li class="py-2 md:p-0">
-                        <router-link
-                            class="border-b-2 border-transparent md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
-                            :to="{ name: 'prices' }" @click="mobileNav = !mobileNav"
-                            :exact-active-class="'text-hover-blue border-b-hover-blue'">
-                            cenas
-                        </router-link>
-                    </li>
-                    <li class="py-2 md:p-0">
-                        <router-link
-                            class="border-b-2 border-transparent md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
-                            :to="{ name: 'dummy' }" @click="mobileNav = !mobileNav"
-                            :exact-active-class="'text-hover-blue border-b-hover-blue'">
-                            akcijas
-                        </router-link>
-                    </li>
-                    <li class="py-2 md:p-0">
-                        <router-link
-                            class="border-b-2 border-transparent md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
-                            :to="{ name: 'dummy' }" @click="mobileNav = !mobileNav"
-                            :exact-active-class="'text-hover-blue border-b-hover-blue'">
-                            kontakti
+                            {{ title.buttonText }}
                         </router-link>
                     </li>
                 </ul>
