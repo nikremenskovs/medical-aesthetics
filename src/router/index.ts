@@ -23,6 +23,16 @@ const router = createRouter({
       path: '/dummy',
       name: 'dummy',
       component: () => import('../views/DummyView.vue')
+    },
+    { 
+      path: '/:notFound(.*)',
+      name: 'notFound',
+      component: () => import('../views/NotFound.vue')
+    },
+    { 
+      path: '/bad-call',
+      name: 'badCall',
+      component: () => import('../views/NotFound.vue')
     }
   ]
 })

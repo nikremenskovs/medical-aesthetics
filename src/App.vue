@@ -60,7 +60,7 @@ onMounted(async () => {
     topLevelData = await topLevelStore.getTopLevelData(route.query.preview);
     useFavicon(topLevelData.faviconUrl, { rel: 'icon' })
   } catch {
-    router.push("/dummy");
+    router.push("/badCall");
   }
   window.addEventListener('scroll', updateScroll)
 })
@@ -87,7 +87,6 @@ onUnmounted(() => {
     </transition>
 
     <Suspense>
-
       <transition enter-active-class="transition ease-out duration-500 transform"
         leave-active-class="transition ease-out duration-500 transform" enter-from-class="-translate-y-full"
         leave-to-class="-translate-y-full" enter-to-class="translate-y-0">

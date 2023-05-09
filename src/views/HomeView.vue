@@ -19,7 +19,7 @@ try {
   homepageData = await homepageStore.getHomepageData(route.query.preview);
   title.value = homepageData.tabTitleData.lv
 } catch {
-  router.push("/dummy");
+  router.push("/badCall");
 }
 
 

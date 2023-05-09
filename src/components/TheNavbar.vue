@@ -14,7 +14,7 @@ let topLevelData = null;
 try {
     topLevelData = await topLevelStore.getTopLevelData(route.query.preview);
 } catch {
-    router.push("/dummy");
+    router.push("/badCall");
 }
 
 const mobileNav = ref(null)
@@ -53,7 +53,7 @@ const mobileNav = ref(null)
                 </button>
             </div>
             <div class="w-full items-center md:flex md:order-1 md:justify-end md:w-5/12">
-                <ul class="flex-col mt-4 font-marmelad font-bold rounded-lg text-center uppercase text-main-blue whitespace-nowrap md:text-xs md:flex md:p-0 md:flex-row md:space-x-2 md:mt-0 lg:space-x-6 xl:text-base xl:space-x-8"
+                <ul class="flex-col mt-4 font-marmelad font-bold rounded-lg text-center uppercase text-main-blue whitespace-nowrap md:text-xs md:flex md:p-0 md:flex-row md:space-x-2 md:mt-0 lg:space-x-6 xl:text-base"
                     :class="mobileNav ? 'flex' : 'hidden'">
                     <li class="py-2 md:p-0"
                         v-for="(title, index) in topLevelData.navbarData[`${selectedLanguage}`].navTitles" :key="index">

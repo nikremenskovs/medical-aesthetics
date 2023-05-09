@@ -8,14 +8,9 @@ const props = defineProps({
     languageFlags: { type: Object, required: true }
 });
 
-console.log(props.languageFlags)
-
 const dropdownElement = ref();
 const dropdownOpen = ref();
 const selectedLanguage = computed(() => topLevelStore.selectedLanguage)
-
-
-
 const options = [
     { value: 'LV', text: 'Latviešu' },
     { value: 'EN', text: 'English' },
