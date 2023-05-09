@@ -1,9 +1,7 @@
 <script setup>
-import { onMounted, onUnmounted, computed, ref } from 'vue';
+import { onMounted, onUnmounted, computed } from 'vue';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import CallToActionButton from '../shared/CallToActionButton.vue';
-import ResponsiveImage from '../shared/ResponsiveImage.vue';
 import { useTopLevelStore } from "@/stores/TopLevelStore.js";
 
 const topLevelStore = useTopLevelStore();

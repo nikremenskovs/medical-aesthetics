@@ -59,7 +59,7 @@ const mobileNav = ref(null)
                         v-for="(title, index) in topLevelData.navbarData[`${selectedLanguage}`].navTitles" :key="index">
                         <router-link
                             class="border-b-2 border-transparent md:hover:text-hover-blue md:hover:border-hover-blue transition duration-[1000ms] ease-out"
-                            :to="title.buttonRoute" @click="mobileNav = !mobileNav"
+                            :to="title.buttonRoute" @click="mobileNav = false"
                             :exact-active-class="'text-hover-blue border-b-hover-blue'">
                             {{ title.buttonText }}
                         </router-link>
