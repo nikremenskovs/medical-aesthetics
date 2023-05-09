@@ -34,7 +34,15 @@ const router = createRouter({
       name: 'badCall',
       component: () => import('../views/NotFound.vue')
     }
-  ]
+  ],
+  scrollBehavior(to, from) {
+    switch(true) {
+      case (to === from ):
+        window.scrollTo({ top: 0, behavior: "smooth" })
+        break;
+    }
+  }
+
 })
 
 export default router
