@@ -3,6 +3,14 @@ import { onMounted, onUnmounted, computed } from 'vue';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTopLevelStore } from "@/stores/TopLevelStore.js";
+import { useI18n } from 'vue-i18n'
+
+
+
+
+
+
+
 
 const topLevelStore = useTopLevelStore();
 const selectedLanguage = computed(() => topLevelStore.selectedLanguage)
@@ -14,7 +22,17 @@ const props = defineProps({
     bannerDataLV: { type: Object, required: true },
     bannerDataEN: { type: Object, required: true },
     bannerDataRU: { type: Object, required: true },
+    bannerData: { type: Object, required: true },
 });
+
+
+
+const { t } = useI18n()
+
+
+
+
+
 
 const bannerScrollAnimation = () => {
     const bannerScrollAnimationTimeline = gsap.timeline({
@@ -71,7 +89,7 @@ onUnmounted(() => {
         </div>
         <p
             class="banner__description bg-hover-blue font-marmelad tracking-wider text-main-white text-xl text-center px-8 py-4">
-            {{ props[`bannerData${selectedLanguage}`].bannerText }}
+            {{ t('bannerText') }}
         </p>
     </section>
 </template>

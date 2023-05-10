@@ -23,12 +23,11 @@ try {
 }
 
 
-
 </script>
 
 <template>
   <HomepageBannerSection :bannerDataLV="homepageData.bannerData.lv" :bannerDataEN="homepageData.bannerData.en"
-    :bannerDataRU="homepageData.bannerData.ru" />
+    :bannerDataRU="homepageData.bannerData.ru" :bannerData="homepageData.bannerData" />
   <HomepagePromotionsSection :promotionsDataLV="homepageData.promotionsData.lv"
     :promotionsDataEN="homepageData.promotionsData.en" :promotionsDataRU="homepageData.promotionsData.ru" />
   <HomepageCardsSection :treatmentsDataLV="homepageData.treatmentsData.lv"
