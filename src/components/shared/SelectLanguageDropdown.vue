@@ -21,12 +21,12 @@ const options = [
     { value: 'ru', text: 'Русский' },
 ];
 
-function selectOption(language) {
-    locale.value = language
+const selectOption = (language) => {
+    locale.value = language;
     dropdownOpen.value = false;
-}
+};
 
-function getImageSrc(optionValue) {
+const getImageSrc = (optionValue) => {
     switch (optionValue) {
         case 'lv':
             return props.languageFlags[0].image[0];
@@ -37,7 +37,8 @@ function getImageSrc(optionValue) {
         default:
             return '';
     }
-}
+};
+
 
 onClickOutside(
     dropdownElement,
