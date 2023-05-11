@@ -2,7 +2,9 @@
 import { ref, computed, defineProps } from 'vue';
 import { onClickOutside } from '@vueuse/core'
 import { useTopLevelStore } from "@/stores/TopLevelStore.js";
+import { useHomepageStore } from "@/stores/HomepageStore.js";
 const topLevelStore = useTopLevelStore();
+const homepageStore = useHomepageStore();
 
 const props = defineProps({
     languageFlags: { type: Object, required: true }
@@ -12,23 +14,24 @@ const dropdownElement = ref();
 const dropdownOpen = ref();
 const selectedLanguage = computed(() => topLevelStore.selectedLanguage)
 const options = [
-    { value: 'LV', text: 'Latviešu' },
-    { value: 'EN', text: 'English' },
-    { value: 'RU', text: 'Русский' },
+    { value: 'lv', text: 'Latviešu' },
+    { value: 'en', text: 'English' },
+    { value: 'ru', text: 'Русский' },
 ];
 
 function selectOption(language) {
     topLevelStore.selectLanguageOption(language)
+    homepageStore.getHomepageData(false, selectedLanguage.value)
     dropdownOpen.value = false;
 }
 
 function getImageSrc(optionValue) {
     switch (optionValue) {
-        case 'LV':
+        case 'lv':
             return props.languageFlags[0].image[0];
-        case 'EN':
+        case 'en':
             return props.languageFlags[1].image[0];
-        case 'RU':
+        case 'ru':
             return props.languageFlags[2].image[0];
         default:
             return '';

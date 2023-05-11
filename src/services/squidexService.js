@@ -48,13 +48,13 @@ export async function createSquidexService() {
   return api;
 }
 
-export async function getHomepage(urlPreview) {
+export async function getHomepage(urlPreview, selectedLanguage) {
   if (urlPreview) {
     return api.get("homepage/c86cd1b1-cc43-4979-bfe6-b26c27d1fe4c", {
       headers: { "X-Unpublished": 1 },
     });
   }
-  return api.get("homepage/c86cd1b1-cc43-4979-bfe6-b26c27d1fe4c");
+  return api.get("homepage/c86cd1b1-cc43-4979-bfe6-b26c27d1fe4c", {headers: {"X-Languages": `${selectedLanguage}`}});
 }
 
 export async function getTopLevel(urlPreview) {
