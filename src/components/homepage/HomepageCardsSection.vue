@@ -2,6 +2,8 @@
 import { defineProps, computed } from 'vue';
 import { useTopLevelStore } from "@/stores/TopLevelStore.js";
 
+import HomepageCardsSectionCard from '@/components/homepage/HomepageCardsSectionCard.vue'
+
 const topLevelStore = useTopLevelStore();
 const selectedLanguage = computed(() => topLevelStore.selectedLanguage)
 
@@ -20,21 +22,10 @@ const props = defineProps({
         </h1>
         <div
             class="homepageCards-container font-marmelad tracking-wider sm:flex sm:flex-wrap sm:justify-center lg:flex-nowrap">
-            <router-link v-for="(card, index) in props[`treatmentsData${selectedLanguage}`].treatmentsCards" :key="index"
-                to="/about" class="card sm:w-1/3 m-8">
-                <div class="relative bg-main-white">
-                    <ResponsiveImage :imgSrc="card.cardImage.image[0]" :imgAlt="card.cardImage['image-alt']" :sourcesMap="[
-                        { assetWidth: 'max', media: '1440px' },
-                        { assetWidth: '1440', media: '1024px' },
-                        { assetWidth: '1024', media: '768px' },
-                        { assetWidth: '768', media: '425px' },
-                        { assetWidth: '425', media: '320px' },
-                    ]" />
-                    <div class="absolute bg-main-blue/75 left-0 bottom-0 h-1/5 w-full flex justify-center items-center">
-                        <p class="text-main-white  text-2xl">{{ card.heading }}</p>
-                    </div>
-                </div>
-            </router-link>
+            <HomepageCardsSectionCard to="/about"
+                v-for="(card, index) in props[`treatmentsData${selectedLanguage}`].treatmentsCards" :key="index"
+                :imgSrc="card.cardImage.image[0]" :imgAlt="card.cardImage['image-alt']" :heading="card.heading"
+                :index="index" />
         </div>
     </section>
 </template>

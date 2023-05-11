@@ -26,18 +26,21 @@ const bannerScrollAnimation = () => {
         }
     });
     bannerScrollAnimationTimeline
-        .fromTo(".banner__image", { x: 0 }, { x: "-100%" })
+        .fromTo(".banner__image", { x: 0 }, { x: "-100%" }, 0)
         .to(".banner__text", { opacity: 0 }, 0)
         .to(".banner__description", { opacity: 0 }, 0);
 }
 
 
 onMounted(() => {
+    gsap.fromTo(".banner__image", { x: "-100%" }, { x: 0, duration: 1 },)
+    gsap.fromTo(".banner__text", { opacity: 0, y: "20%" }, { opacity: 1, y: 0, duration: 1 })
     bannerScrollAnimation();
 });
 onUnmounted(() => {
     ScrollTrigger.killAll();
 });
+
 </script>
 
 <template>

@@ -2,13 +2,16 @@
     <picture>
         <source v-for="(source, index) in props.sourcesMap" :key="index"
             :srcset="`${props.imgSrc}?width=${source.assetWidth}`" :media="`(min-width: ${source.media})`" />
-        <img class="responsive-position w-full h-full object-cover block object-center" :src="props.imgSrc"
-            :alt="props.imgAlt" ref="sectionTwoImage" />
+        <img class="responsive-position w-full h-full object-cover block object-center" :class="props.cardsSectionTriggerIndex !== null
+            ? `homepageCardImage${props.cardsSectionTriggerIndex} h-[60vh] sm:h-[40vh] lg:h-[60vh]`
+            : ''
+        " :src="props.imgSrc" :alt="props.imgAlt" ref="sectionTwoImage" />
     </picture>
 </template>
   
 <script setup>
 const props = defineProps({
+    cardsSectionTriggerIndex: { Number, required: false, default: null },
     imgSrc: { type: String, required: true },
     imgAlt: {
         type: String,
