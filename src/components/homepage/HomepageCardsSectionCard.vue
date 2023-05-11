@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, onMounted } from 'vue';
+import { defineProps, onMounted, onUnmounted } from 'vue';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 let matchMedia = gsap.matchMedia();
@@ -13,21 +13,19 @@ const props = defineProps({
 });
 
 
+
 const cardSectionLoad = (index) => {
-    gsap.fromTo(
-        `.homepageCard${index}`,
-        { y: 50, opacity: 0, },
-        {
-            scrollTrigger: {
-                trigger: `.homepageCard${index}`,
-                start: "top 75%",
-                toggleActions: "play none none none",
-                markers: true
-            },
-            opacity: 1,
-            y: 0,
-            duration: 1
+    const cardSectionLoadTimeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: `.homepageCard${index}`,
+            start: "top 85%",
+            toggleActions: "play none none none"
         }
+    });
+    cardSectionLoadTimeline.fromTo(
+        `.homepageCard${index}`,
+        { y: 50, opacity: 0 },
+        { opacity: 1, y: 0, duration: 1 }
     );
 }
 
@@ -45,14 +43,16 @@ function hoverLeave(index) {
 
 onMounted(() => {
     cardSectionLoad(props.index)
-
 });
+onUnmounted(() => {
+    ScrollTrigger.killAll();
+})
 </script>
 
 <template>
     <router-link class="w-full h-auto relative block my-8 overflow-hidden sm:w-1/3 sm:mx-2"
-        @mouseenter="hoverEnter(props.index)" @mouseleave="hoverLeave(props.index)" :class="`homepageCard${props.index}`">
-        <div class="relative bg-main-white">
+        @mouseenter="hoverEnter(props.index)" @mouseleave="hoverLeave(props.index)">
+        <div class="relative bg-main-white h-[60vh] sm:h-[40vh] lg:h-[60vh]" :class="`homepageCard${props.index}`">
             <ResponsiveImage :imgSrc="props.imgSrc" :imgAlt="props.imgAlt" :cardsSectionTriggerIndex="props.index"
                 :sourcesMap="[
                     { assetWidth: 'max', media: '1440px' },

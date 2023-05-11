@@ -17,7 +17,7 @@ const props = defineProps({
 
 <template>
     <section id="homepageCardsSection" class="mb-12">
-        <h1 class="text-4xl text-center text-main-blue font-yeseva-one uppercase tracking-wider mb-4">
+        <h1 class="homepageCardsTitle text-4xl text-center text-main-blue font-yeseva-one uppercase tracking-wider mb-4">
             {{ props[`treatmentsData${selectedLanguage}`].sectionHeading }}
         </h1>
         <div

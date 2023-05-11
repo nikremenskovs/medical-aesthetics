@@ -28,7 +28,7 @@ const bannerScrollAnimation = () => {
     bannerScrollAnimationTimeline
         .fromTo(".banner__image", { x: 0 }, { x: "-100%" }, 0)
         .to(".banner__text", { opacity: 0 }, 0)
-        .to(".banner__description", { opacity: 0 }, 0);
+        .to(".banner__description", { opacity: 0 }, 0)
 }
 
 
@@ -40,13 +40,12 @@ onMounted(() => {
 onUnmounted(() => {
     ScrollTrigger.killAll();
 });
-
 </script>
 
 <template>
     <section id="homepageBannerSection" class="mb-12">
-        <div class="banner relative flex overflow-hidden max-h-screen">
-            <ResponsiveImage class="banner__image scale-[1.01] min-h-[400px] object-cover md:w-1/2"
+        <div class="banner relative flex overflow-hidden h-[50vh] lg:h-[70vh]">
+            <ResponsiveImage class="banner__image scale-[1.01] object-cover md:w-1/2"
                 :imgSrc="props.bannerDataLV.leftImage.image[0]" :imgAlt="props.bannerDataLV.leftImage['image-alt']"
                 :sourcesMap="[
                     { assetWidth: 'max', media: '1440px' },
@@ -57,8 +56,8 @@ onUnmounted(() => {
                 ]" />
 
             <div
-                class="banner__text absolute right-4 bottom-4 flex flex-col md:w-1/2 md:static md:justify-center md:items-center md:my-8">
-                <ResponsiveImage class="hidden md:block max-h-[500px] mb-8 px-8"
+                class="banner__text absolute right-4 bottom-4 flex flex-col md:w-1/2 md:static md:justify-center md:items-center">
+                <ResponsiveImage class="hidden mb-8 px-8 md:block md:h-[30vh] lg:h-[50vh]"
                     :imgSrc="props[`bannerData${selectedLanguage}`].rightImage.image[0]"
                     :imgAlt="props[`bannerData${selectedLanguage}`].rightImage['image-alt']" :sourcesMap="[
                         { assetWidth: 'max', media: '1440px' },
