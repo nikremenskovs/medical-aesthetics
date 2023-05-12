@@ -1,28 +1,18 @@
 <script setup>
 import Carousel from '@/components/shared/Carousel.vue'
 import CarouselSlide from '@/components/shared/CarouselSlide.vue'
-import { computed } from 'vue'
-import { useTopLevelStore } from "@/stores/TopLevelStore.js";
-
-const topLevelStore = useTopLevelStore();
-const selectedLanguage = computed(() => topLevelStore.selectedLanguage)
-
 
 const props = defineProps({
-    promotionsDataLV: { type: Object, required: true },
-    promotionsDataEN: { type: Object, required: true },
-    promotionsDataRU: { type: Object, required: true },
+    promotionsData: { type: Object, required: true }
 });
-
-
 </script>
 
 <template>
     <section class="mb-12 h-auto">
         <Carousel :navigation="true" :pagination="true" :startAutoPlay="true" :timeout="10000"
-            :slideCount="props[`promotionsData${selectedLanguage}`].slides.length"
-            class="relative h-[70vh] w-full lg:h-[60vh]" v-slot="{ currentSlide }">
-            <CarouselSlide v-for="(slide, index) in props[`promotionsData${selectedLanguage}`].slides" :key="index">
+            :slideCount="props.promotionsData.slides.length" class="relative h-[70vh] w-full lg:h-[60vh]"
+            v-slot="{ currentSlide }">
+            <CarouselSlide v-for="(slide, index) in props.promotionsData.slides" :key="index">
                 <div v-show="currentSlide === index + 1" class="slide-info absolute top-0 left-0 w-full max-h-full h-full">
                     <div class="overlay absolute w-full h-full bg-main-white/50"></div>
                     <ResponsiveImage :imgSrc="slide.image.image[0]" :imgAlt="slide.image['image-alt']" :sourcesMap="[

@@ -1,20 +1,15 @@
 <script setup>
-import { onMounted, onUnmounted, computed } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useTopLevelStore } from "@/stores/TopLevelStore.js";
-
-const topLevelStore = useTopLevelStore();
-const selectedLanguage = computed(() => topLevelStore.selectedLanguage)
 
 gsap.registerPlugin(ScrollTrigger);
 
 
 const props = defineProps({
-    bannerDataLV: { type: Object, required: true },
-    bannerDataEN: { type: Object, required: true },
-    bannerDataRU: { type: Object, required: true },
+    bannerData: { type: Object, required: true }
 });
+
 
 const bannerScrollAnimation = () => {
     const bannerScrollAnimationTimeline = gsap.timeline({
@@ -46,8 +41,7 @@ onUnmounted(() => {
     <section id="homepageBannerSection" class="mb-12">
         <div class="banner relative flex overflow-hidden h-[50vh] lg:h-[70vh]">
             <ResponsiveImage class="banner__image scale-[1.01] object-cover md:w-1/2"
-                :imgSrc="props.bannerDataLV.leftImage.image[0]" :imgAlt="props.bannerDataLV.leftImage['image-alt']"
-                :sourcesMap="[
+                :imgSrc="props.bannerData.leftImage.image[0]" :imgAlt="props.bannerData.leftImage['image-alt']" :sourcesMap="[
                     { assetWidth: 'max', media: '1440px' },
                     { assetWidth: '1440', media: '1024px' },
                     { assetWidth: '1024', media: '768px' },
@@ -58,22 +52,22 @@ onUnmounted(() => {
             <div
                 class="banner__text absolute right-4 bottom-4 flex flex-col md:w-1/2 md:static md:justify-center md:items-center">
                 <ResponsiveImage class="hidden mb-8 px-8 md:block md:h-[30vh] lg:h-[50vh]"
-                    :imgSrc="props[`bannerData${selectedLanguage}`].rightImage.image[0]"
-                    :imgAlt="props[`bannerData${selectedLanguage}`].rightImage['image-alt']" :sourcesMap="[
+                    :imgSrc="props.bannerData.rightImage.image[0]" :imgAlt="props.bannerData.rightImage['image-alt']"
+                    :sourcesMap="[
                         { assetWidth: 'max', media: '1440px' },
                         { assetWidth: '1440', media: '1024px' },
                         { assetWidth: '1024', media: '768px' },
                         { assetWidth: '768', media: '425px' },
                         { assetWidth: '425', media: '320px' },
                     ]" />
-                <CallToActionButton :to="props.bannerDataLV.button.buttonRoute">
-                    {{ props[`bannerData${selectedLanguage}`].button.buttonText }}
+                <CallToActionButton :to="props.bannerData.button.buttonRoute">
+                    {{ props.bannerData.button.buttonText }}
                 </CallToActionButton>
             </div>
         </div>
         <p
             class="banner__description bg-hover-blue font-marmelad tracking-wider text-main-white text-xl text-center px-8 py-4">
-            {{ props[`bannerData${selectedLanguage}`].bannerText }}
+            {{ props.bannerData.bannerText }}
         </p>
     </section>
 </template>

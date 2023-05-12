@@ -12,6 +12,8 @@ import { useTopLevelStore } from "@/stores/TopLevelStore.js";
 import { useFavicon } from '@vueuse/core'
 
 const topLevelStore = useTopLevelStore();
+
+
 const route = useRoute();
 const router = useRouter();
 
@@ -57,7 +59,7 @@ const updateScroll = debounce(() => {
 onMounted(async () => {
   let topLevelData = null;
   try {
-    topLevelData = await topLevelStore.getTopLevelData(route.query.preview);
+    topLevelData = await topLevelStore.getTopLevelData(route.query.preview, topLevelStore.selectedLanguage);
     useFavicon(topLevelData.faviconUrl, { rel: 'icon' })
   } catch {
     router.push("/badCall");
@@ -86,13 +88,13 @@ onUnmounted(() => {
         @closeGetInTouchModal="showGetInTouchModal = false" />
     </transition>
 
-    <Suspense>
-      <transition enter-active-class="transition ease-out duration-500 transform"
-        leave-active-class="transition ease-out duration-500 transform" enter-from-class="-translate-y-full"
-        leave-to-class="-translate-y-full" enter-to-class="translate-y-0">
-        <TheNavbar v-show="showNavbar" />
-      </transition>
-    </Suspense>
+
+    <transition enter-active-class="transition ease-out duration-500 transform"
+      leave-active-class="transition ease-out duration-500 transform" enter-from-class="-translate-y-full"
+      leave-to-class="-translate-y-full" enter-to-class="translate-y-0">
+      <TheNavbar v-show="showNavbar" />
+    </transition>
+
 
     <Suspense>
       <RouterView />

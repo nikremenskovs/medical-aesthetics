@@ -1,39 +1,46 @@
 <script setup>
-import { ref, computed, defineProps } from 'vue';
+import { ref } from 'vue';
 import { onClickOutside } from '@vueuse/core'
 import { useTopLevelStore } from "@/stores/TopLevelStore.js";
+import { useHomepageStore } from "@/stores/HomepageStore.js";
+import { useRoute, useRouter } from "vue-router";
+const route = useRoute();
+const router = useRouter();
 const topLevelStore = useTopLevelStore();
-
-const props = defineProps({
-    languageFlags: { type: Object, required: true }
-});
+const homepageStore = useHomepageStore();
 
 const dropdownElement = ref();
 const dropdownOpen = ref();
-const selectedLanguage = computed(() => topLevelStore.selectedLanguage)
 const options = [
-    { value: 'LV', text: 'Latviešu' },
-    { value: 'EN', text: 'English' },
-    { value: 'RU', text: 'Русский' },
+    { value: 'lv', text: 'Latviešu' },
+    { value: 'en', text: 'English' },
+    { value: 'ru', text: 'Русский' },
 ];
 
-function selectOption(language) {
-    topLevelStore.selectLanguageOption(language)
-    dropdownOpen.value = false;
-}
+const selectOption = (language) => {
+    topLevelStore.selectLanguageOption(language);
+    try {
+        homepageStore.getHomepageData(route.query.preview, language);
+        topLevelStore.getTopLevelData(route.query.preview, language);
+    } catch {
+        router.push("/badCall");
+    }
 
-function getImageSrc(optionValue) {
+    dropdownOpen.value = false;
+};
+
+const getImageSrc = (optionValue) => {
     switch (optionValue) {
-        case 'LV':
-            return props.languageFlags[0].image[0];
-        case 'EN':
-            return props.languageFlags[1].image[0];
-        case 'RU':
-            return props.languageFlags[2].image[0];
+        case 'lv':
+            return topLevelStore.navbar.languageFlags[0].image[0];
+        case 'en':
+            return topLevelStore.navbar.languageFlags[1].image[0];
+        case 'ru':
+            return topLevelStore.navbar.languageFlags[2].image[0];
         default:
             return '';
     }
-}
+};
 
 onClickOutside(
     dropdownElement,
@@ -46,7 +53,8 @@ onClickOutside(
 <template>
     <div ref="dropdownElement">
         <div class="flex items-center cursor-pointer" @click="dropdownOpen = !dropdownOpen">
-            <img :src="getImageSrc(selectedLanguage)" :alt="selectedLanguage" class="w-8 h-8 inline-block mr-2">
+            <img :src="getImageSrc(topLevelStore.selectedLanguage)" :alt="topLevelStore.selectedLanguage"
+                class="w-8 h-8 inline-block mr-2">
             <i class="fa-solid fa-caret-down text-main-blue" />
         </div>
         <ul v-if="dropdownOpen" class="absolute mt-1 bg-main-white/50 rounded-lg shadow-lg">
