@@ -24,13 +24,6 @@ export const useHomepageStore = defineStore("HomepageStore", {
       this.promotions = promotionsData;
       this.treatments = treatmentsData;
       this.about = aboutData;
-      // return {
-      //   tabTitleData: this.tabTitle,
-      //   bannerData: this.banner,
-      //   promotionsData: this.promotions,
-      //   treatmentsData: this.treatments,
-      //   aboutData: this.about,
-      // };
     },
   },
 });

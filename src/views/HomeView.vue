@@ -10,23 +10,20 @@ import { useTopLevelStore } from "@/stores/TopLevelStore.js";
 import { useRoute, useRouter } from "vue-router";
 import { useHomepageStore } from "@/stores/HomepageStore.js";
 import { useTitle } from '@vueuse/core'
-
 const topLevelStore = useTopLevelStore();
 const selectedLanguage = computed(() => topLevelStore.selectedLanguage)
 
-const title = useTitle('AKBeauty - Mājaslapa')
 
 const homepageStore = useHomepageStore();
 const route = useRoute();
 const router = useRouter();
 
-console.log(title.value)
-
+const title = computed(() => homepageStore.tabTitle)
+useTitle(title)
 
 try {
   await homepageStore.getHomepageData(route.query.preview, selectedLanguage.value);
-  title.value = homepageStore.tabTitle
-  // title.value = homepageData.tabTitleData.lv
+
 } catch {
   router.push("/badCall");
 }
