@@ -19,6 +19,7 @@ const options = [
 
 const selectOption = (language) => {
     topLevelStore.selectLanguageOption(language);
+    localStorage.setItem('selectedLanguage', language);
     try {
         homepageStore.getHomepageData(route.query.preview, language);
         topLevelStore.getTopLevelData(route.query.preview, language);
