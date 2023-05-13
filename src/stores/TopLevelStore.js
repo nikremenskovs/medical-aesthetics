@@ -3,7 +3,6 @@ import { getTopLevel } from "@/services/squidexService.js";
 
 export const useTopLevelStore = defineStore("TopLevelStore", {
   state: () => ({
-    // selectedLanguage: localStorage.getItem('selectedLanguage') ? localStorage.getItem('selectedLanguage') : 'lv',
     selectedLanguage: localStorage.getItem('selectedLanguage') ?? 'lv',
     favicon: "",
     floatingButton: {},
