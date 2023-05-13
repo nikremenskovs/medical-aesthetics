@@ -6,6 +6,8 @@ import { useTopLevelStore } from "@/stores/TopLevelStore.js";
 const topLevelStore = useTopLevelStore();
 
 const mobileNav = ref(null)
+
+const isMobile = () => (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? `tel:${topLevelStore.navbar.contactNumber}` : undefined;
 </script>
 
 <template>
@@ -29,7 +31,8 @@ const mobileNav = ref(null)
                     class="md:hover:text-hover-blue md:hover:scale-125 transition duration-[1000ms] ease-out">
                     <i class="fa-brands fa-instagram" />
                 </a>
-                <a href="" class="md:hover:text-hover-blue md:hover:scale-110 transition duration-[1000ms] ease-out">
+                <a :href="isMobile()" target="_blank"
+                    class="md:hover:text-hover-blue md:hover:scale-110 transition duration-[1000ms] ease-out">
                     <i class="fa-brands fa-whatsapp"><span
                             class="hidden font-marmelad font-bold text-sm ml-1 align-middle lg:inline-block">{{
                                 topLevelStore.navbar.contactNumber }}</span></i>
