@@ -5,7 +5,7 @@ const topLevelStore = useTopLevelStore();
 </script>
 
 <template>
-    <section class="bg-main-white text-main-blue h-screen px-8 flex flex-col justify-center items-center lg:flex-row">
+    <section class="bg-main-white text-main-blue h-[125vh] px-8 flex flex-col justify-center items-center lg:flex-row">
         <div class="mb-12 lg:px-12">
             <h1 class="font-yeseva-one text-6xl mb-4">{{ topLevelStore.notFound.heading }}</h1>
             <h2 class="font-marmelad text-2xl mb-4">{{ topLevelStore.notFound.subheading }}</h2>
