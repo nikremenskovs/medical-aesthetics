@@ -64,8 +64,9 @@ const handleCloseGetInTouchModal = (event) => {
                         {{ field.field }} </p>
 
                 </div>
-                <router-link :to="topLevelStore.modal.button.buttonRoute"
-                    class="h-auto mx-auto px-4 py-2 bg-main-bule text-main-white border-2 border-main-white rounded-full font-yeseva-one uppercase text-sm font-bold tracking-wider xl:mx-auto xl:mt-20 md:text-lg md:tracking-widest md:hover:bg-main-white md:hover:text-main-blue">
+                <router-link :to="topLevelStore.modal.button.buttonRoute" @click="handleCloseGetInTouchModal" class=" h-auto mx-auto px-4 py-2 bg-main-bule text-main-white border-2 border-main-white
+                        rounded-full font-yeseva-one uppercase text-sm font-bold tracking-wider xl:mx-auto xl:mt-20 md:text-lg
+                        md:tracking-widest md:hover:bg-main-white md:hover:text-main-blue">
                     {{ topLevelStore.modal.button.buttonText }}
                 </router-link>
             </div>

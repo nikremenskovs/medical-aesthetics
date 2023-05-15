@@ -9,37 +9,13 @@ const isMobile = () => (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Oper
 <template>
     <div class="w-full h-auto bg-hover-blue border-t-[1px] border-main-blue px-4 py-8 text-main-white">
         <div class="mb-4">
-            <h1 class="font-yeseva-one text-2xl uppercase mb-4 tracking-wide md:text-center md:mb-12">Ka mus atrast</h1>
+            <h1 class="font-yeseva-one text-2xl uppercase mb-4 tracking-wide md:text-center md:mb-12">
+                {{ topLevelStore.footer.mainHeading }}</h1>
             <div class="mb-4 md:flex md:space-x-6">
-                <div class="mb-8 pr-6 md:border-r-2 md:border-main-white/50">
-                    <h2 class="font-marmelad text-xl mb-2 tracking-wider capitalize">Ar sabiedrisko transportu</h2>
-                    <p class="font-marmelad ">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor maxime
-                        dolores
-                        atque,
-                        sint eum assumenda
-                        delectus quo asperiores, corporis voluptate aperiam ipsam libero amet explicabo. Sunt qui culpa
-                        consectetur
-                        eos?</p>
-                </div>
-                <div class="mb-8 pr-6 md:border-r-2 md:border-main-white/50">
-                    <h2 class="font-marmelad text-xl mb-2 tracking-wider capitalize">Ar masinu</h2>
-                    <p class="font-marmelad">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit iste
-                        adipisci a
-                        non,
-                        sint, cum vero modi
-                        reprehenderit mollitia corrupti in obcaecati harum. Neque omnis perferendis necessitatibus
-                        voluptatum
-                        facilis sunt?</p>
-                </div>
-                <div class="mb-8 pr-6">
-                    <h2 class="font-marmelad text-xl mb-2 tracking-wider capitalize">informacija parkingam</h2>
-                    <p class="font-marmelad">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo saepe
-                        iure,
-                        facilis
-                        ratione dignissimos
-                        fuga consequuntur consequatur pariatur minus odit natus itaque molestias ipsam accusantium. Quisquam
-                        maiores
-                        odit molestiae distinctio?</p>
+                <div class="mb-8 pr-6 md:border-r-2 md:border-main-white/50"
+                    v-for="(section, index) in topLevelStore.footer.sections" :key="index">
+                    <h2 class="font-marmelad text-xl mb-2 tracking-wider capitalize">{{ section.heading }}</h2>
+                    <p class="font-marmelad ">{{ section.text }}</p>
                 </div>
             </div>
         </div>
@@ -60,7 +36,8 @@ const isMobile = () => (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Oper
                 </a>
                 <a :href="isMobile()" class="md:hover:text-main-white transition duration-[1000ms] ease-out">
                     <i class="fa-solid fa-phone-volume"><span
-                            class="hidden font-marmelad font-bold text-sm ml-1 align-middle sm:inline-block">{{ topLevelStore.navbar.contactNumber }}</span></i>
+                            class="hidden font-marmelad font-bold text-sm ml-1 align-middle sm:inline-block">{{
+                                topLevelStore.navbar.contactNumber }}</span></i>
                 </a>
             </div>
             <p>© 2023 All rights reserved</p>
