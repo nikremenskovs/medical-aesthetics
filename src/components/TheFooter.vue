@@ -1,5 +1,9 @@
 <script setup>
-import SelectLanguageDropdown from '@/components/shared/SelectLanguageDropdown.vue'
+import { useTopLevelStore } from "@/stores/TopLevelStore.js";
+
+const topLevelStore = useTopLevelStore();
+
+const isMobile = () => (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? `tel:${topLevelStore.navbar.contactNumber}` : undefined;
 </script>
 
 <template>
@@ -54,10 +58,9 @@ import SelectLanguageDropdown from '@/components/shared/SelectLanguageDropdown.v
                     class="md:hover:text-main-white transition duration-[1000ms] ease-out">
                     <i class="fa-brands fa-instagram" />
                 </a>
-                <a href="" class="md:hover:text-main-white transition duration-[1000ms] ease-out">
-                    <i class="fa-brands fa-whatsapp"><span
-                            class="hidden font-marmelad font-bold text-sm ml-1 align-middle sm:inline-block">+371
-                            123456788</span></i>
+                <a :href="isMobile()" class="md:hover:text-main-white transition duration-[1000ms] ease-out">
+                    <i class="fa-solid fa-phone-volume"><span
+                            class="hidden font-marmelad font-bold text-sm ml-1 align-middle sm:inline-block">{{ topLevelStore.navbar.contactNumber }}</span></i>
                 </a>
             </div>
             <p>© 2023 All rights reserved</p>

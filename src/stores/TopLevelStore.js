@@ -6,7 +6,8 @@ export const useTopLevelStore = defineStore("TopLevelStore", {
     selectedLanguage: localStorage.getItem('selectedLanguage') ?? 'lv',
     favicon: "",
     floatingButton: {},
-    navbar: ""
+    modal: {},
+    navbar: "" 
   }),
   getters: {
     getNavbar: (state) => state.navbar
@@ -20,10 +21,12 @@ export const useTopLevelStore = defineStore("TopLevelStore", {
       
       const faviconUrl = response.data.data.favicon.iv[0]
       const floatingButtonData = response.data.data.floatingButton[`${selectedLanguage}`]
+      const modalData = response.data.data.contactModal[`${selectedLanguage}`]
       const navbarData = response.data.data.navbar[`${selectedLanguage}`]
 
       this.favicon = faviconUrl
       this.floatingButton = floatingButtonData
+      this.modal = modalData
       this.navbar = navbarData
 
       return {

@@ -33,7 +33,7 @@ const isMobile = () => (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Oper
                 </a>
                 <a :href="isMobile()" target="_blank"
                     class="md:hover:text-hover-blue md:hover:scale-110 transition duration-[1000ms] ease-out">
-                    <i class="fa-brands fa-whatsapp"><span
+                    <i class="fa-solid fa-phone-volume"><span
                             class="hidden font-marmelad font-bold text-sm ml-1 align-middle lg:inline-block">{{
                                 topLevelStore.navbar.contactNumber }}</span></i>
                 </a>
