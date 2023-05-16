@@ -2,6 +2,8 @@
 import Carousel from '@/components/shared/Carousel.vue'
 import CarouselSlide from '@/components/shared/CarouselSlide.vue'
 
+
+
 const props = defineProps({
     promotionsData: { type: Object, required: true }
 });
@@ -14,7 +16,7 @@ const props = defineProps({
             v-slot="{ currentSlide }">
             <CarouselSlide v-for="(slide, index) in props.promotionsData.slides" :key="index">
                 <div v-show="currentSlide === index + 1" class="slide-info absolute top-0 left-0 w-full max-h-full h-full">
-                    <div class="overlay absolute w-full h-full bg-main-white/50"></div>
+                    <div class="overlay absolute w-full h-full bg-main-white/50" />
                     <ResponsiveImage :imgSrc="slide.image.image[0]" :imgAlt="slide.image['image-alt']" :sourcesMap="[
                         { assetWidth: 'max', media: '1440px' },
                         { assetWidth: '1440', media: '1024px' },

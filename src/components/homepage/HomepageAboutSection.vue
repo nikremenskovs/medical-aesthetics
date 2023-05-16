@@ -2,7 +2,7 @@
 import { defineProps, onMounted } from 'vue';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-let matchMedia = gsap.matchMedia();
+
 gsap.registerPlugin(ScrollTrigger);
 
 const props = defineProps({

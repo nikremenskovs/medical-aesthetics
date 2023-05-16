@@ -1,12 +1,13 @@
 <script setup>
 import { ref, defineProps } from 'vue'
+import { useSwipe } from '@vueuse/core'
 
 const props = defineProps({
     startAutoPlay: { type: Boolean, required: true },
     timeout: { type: Number, required: false, default: 5000 },
     navigation: { type: Boolean, required: true },
     pagination: { type: Boolean, required: true },
-    slideCount: { type: Number, required: true },
+    slideCount: { type: Number, required: true }
 });
 
 const currentSlide = ref(1)
@@ -26,10 +27,24 @@ if (props.startAutoPlay) {
     autoPlay()
 }
 
+const swipeTarget = ref()
+
+const { lengthX } = useSwipe(
+    swipeTarget, {
+    passive: true,
+    onSwipeEnd() {
+        if (lengthX.value < 0) {
+            previousSlide()
+        } else if (lengthX.value > 0) {
+            nextSlide()
+        }
+    },
+})
+
 </script>
 
 <template>
-    <div class="carousel">
+    <div class="carousel" ref="swipeTarget">
         <slot :currentSlide="currentSlide" />
 
         <div v-if="props.navigation"
