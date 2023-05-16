@@ -11,17 +11,17 @@ const isMobile = () => (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Oper
 </script>
 
 <template>
-    <nav class="fixed w-full z-50"
+    <nav class="nav fixed w-full z-50"
         :class="mobileNav ? 'h-screen bg-gradient-to-b from-main-white/75 to-transparent' : 'bg-main-white/75 border-b-[1px] border-main-blue'">
-        <div class="flex flex-wrap p-4 justify-between md:justify-center">
+        <div class="nav--container flex flex-wrap p-4 justify-between md:justify-center">
             <router-link :to="{ name: 'home' }"
-                class="md:order-2 md:w-1/12 md:mx-4 lg:w-2/12 lg:m-0 md:hover:scale-110 transition duration-[1000ms] ease-out"
+                class="nav__logo md:order-2 md:w-1/12 md:mx-4 lg:w-2/12 lg:m-0 md:hover:scale-110 transition duration-[1000ms] ease-out"
                 @click="mobileNav = false">
                 <img class="h-16 mx-auto lg:h-20 xl:h-24" :src="topLevelStore.navbar.navbarLogo.image[0]"
                     :alt="topLevelStore.navbar.navbarLogo['image-alt']">
             </router-link>
             <div
-                class="flex justify-end my-auto space-x-4 text-2xl text-main-blue sm:space-x-8 md:justify-start md:order-3 md:w-5/12 md:space-x-10 lg:text-2xl">
+                class="nav__links flex justify-end my-auto space-x-4 text-2xl text-main-blue sm:space-x-8 md:justify-start md:order-3 md:w-5/12 md:space-x-10 lg:text-2xl">
                 <SelectLanguageDropdown />
                 <a href="https://www.facebook.com/" target="_blank"
                     class="md:hover:text-hover-blue md:hover:scale-125 transition duration-[1000ms] ease-out">

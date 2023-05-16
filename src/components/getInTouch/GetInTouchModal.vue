@@ -13,19 +13,23 @@ const handleCloseGetInTouchModal = (event) => {
 </script>
 
 <template>
-    <div class="overlay h-screen w-full fixed top-0 left-0 z-30 flex justify-center items-center bg-main-white/75">
+    <div
+        class="get-in-touch-modal__overlay h-screen w-full fixed top-0 left-0 z-30 flex justify-center items-center bg-main-white/75">
         <div
-            class="w-10/12 h-auto py-8 px-6 relative flex items-center bg-main-blue text-main-white rounded-3xl sm:h-5/6 xl:py-0">
+            class="get-in-touch-modal w-10/12 h-auto py-8 px-6 relative flex items-center bg-main-blue text-main-white rounded-3xl sm:h-5/6 xl:py-0">
             <button @click="handleCloseGetInTouchModal">
-                <i class="fa-solid fa-xmark absolute top-4 right-4  text-2xl leading-none" />
+                <i
+                    class="get-in-touch-modal__close-button fa-solid fa-xmark absolute top-4 right-4  text-2xl leading-none" />
             </button>
             <div
-                class="w-full h-full mx-auto py-12 text-center overflow-y-auto flex flex-col justify-center xl:h-auto xl:w-3/4 xl:flex-row xl:flex-wrap">
-                <div class="sazinasimies mb-6 xl:w-1/2">
-                    <h2 class="font-yeseva-one tracking-wide capitalize text-2xl mb-3">
+                class="get-in-touch-modal--container w-full h-full mx-auto py-12 text-center overflow-y-auto flex flex-col justify-center xl:h-auto xl:w-3/4 xl:flex-row xl:flex-wrap">
+                <div class="section-one mb-6 xl:w-1/2">
+                    <h2 class="section-one__heading font-yeseva-one tracking-wide capitalize text-2xl mb-3">
                         {{ topLevelStore.modal.sectionOne.heading }}</h2>
-                    <p class="font-marmelad tracking-wide text-base px-4 mb-2">{{ topLevelStore.modal.sectionOne.text }}</p>
-                    <div class="w-auto text-2xl space-y-2 flex flex-col items-center">
+                    <p class="section-one__text font-marmelad tracking-wide text-base px-4 mb-2">{{
+                        topLevelStore.modal.sectionOne.text }}
+                    </p>
+                    <div class="section-one__links w-auto text-2xl space-y-2 flex flex-col items-center">
                         <a href="https://www.facebook.com/" target="_blank"
                             class="md:hover:text-hover-blue transition duration-[1000ms] ease-out">
                             <i class="fa-brands fa-square-facebook"><span
@@ -56,17 +60,17 @@ const handleCloseGetInTouchModal = (event) => {
                         </a>
                     </div>
                 </div>
-                <div class="opening-hours mb-6 xl:w-1/2">
-                    <h2 class="font-yeseva-one tracking-wide capitalize text-2xl mb-3">
+                <div class="section-two mb-6 xl:w-1/2">
+                    <h2 class="section-two__heading font-yeseva-one tracking-wide capitalize text-2xl mb-3">
                         {{ topLevelStore.modal.sectionTwo.heading }}</h2>
-                    <p class="font-marmelad tracking-wide text-base px-4 mb-2"
-                        v-for="(field, index) in topLevelStore.modal.sectionTwo.textFields" :key="index">
+                    <p v-for="(field, index) in topLevelStore.modal.sectionTwo.textFields" :key="index"
+                        class="font-marmelad tracking-wide text-base px-4 mb-2" :class="`section-two__text${index}`">
                         {{ field.field }} </p>
 
                 </div>
-                <router-link :to="topLevelStore.modal.button.buttonRoute" @click="handleCloseGetInTouchModal" class=" h-auto mx-auto px-4 py-2 bg-main-bule text-main-white border-2 border-main-white
-                        rounded-full font-yeseva-one uppercase text-sm font-bold tracking-wider xl:mx-auto xl:mt-20 md:text-lg
-                        md:tracking-widest md:hover:bg-main-white md:hover:text-main-blue">
+                <router-link :to="topLevelStore.modal.button.buttonRoute" @click="handleCloseGetInTouchModal" class="get-in-touch-modal__button h-auto mx-auto px-4 py-2 bg-main-bule text-main-white border-2 border-main-white
+                                                        rounded-full font-yeseva-one uppercase text-sm font-bold tracking-wider xl:mx-auto xl:mt-20 md:text-lg
+                                                        md:tracking-widest md:hover:bg-main-white md:hover:text-main-blue">
                     {{ topLevelStore.modal.button.buttonText }}
                 </router-link>
             </div>
