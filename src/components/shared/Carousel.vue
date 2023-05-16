@@ -48,7 +48,7 @@ const { lengthX } = useSwipe(
         <slot :currentSlide="currentSlide" />
 
         <div v-if="props.navigation"
-            class="navigate z-10 px-8 w-full h-full absolute flex justify-center items-center md:px-10 lg:px-12">
+            class="navigate px-8 w-full h-full absolute flex justify-center items-center md:px-10 lg:px-12">
             <button class="toggle-page left flex flex-1" @click="previousSlide">
                 <i
                     class="fas fa-chevron-left cursor-pointer flex items-center justify-center rounded-full w-10 h-10 bg-hover-blue text-main-white md:hover:animate-hoverPulse"></i>
