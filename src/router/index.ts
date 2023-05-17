@@ -20,6 +20,11 @@ const router = createRouter({
       component: () => import('../views/PricesView.vue')
     },
     {
+      path: '/contacts',
+      name: 'contacts',
+      component: () => import('../views/ContactsView.vue')
+    },
+    {
       path: '/dummy',
       name: 'dummy',
       component: () => import('../views/DummyView.vue')
