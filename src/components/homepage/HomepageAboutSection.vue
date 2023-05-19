@@ -48,21 +48,21 @@ onMounted(() => {
 
 <template>
   <section
-    class="homepageAboutSection max-h-screen mb-12 bg-gradient-to-b from-main-blue/75 to-transparent px-6 py-12 text-center flex flex-col items-center justify-center md:text-left md:flex-row"
+    class="homepageAboutSection mb-12 flex max-h-screen flex-col items-center justify-center bg-gradient-to-b from-main-blue/75 to-transparent px-6 py-12 text-center md:flex-row md:text-left"
   >
     <div
-      class="homepageAboutSection__text my-12 font-yeseva-one text-4xl uppercase tracking-wide md:text-5xl md:w-5/12"
+      class="homepageAboutSection__text my-12 font-yeseva-one text-4xl uppercase tracking-wide md:w-5/12 md:text-5xl"
     >
       <h1 class="mb-2 text-main-white">
         {{ props.aboutData.heading }}
       </h1>
-      <h2 class="text-main-blue mb-8">{{ props.aboutData.subheading }}</h2>
+      <h2 class="mb-8 text-main-blue">{{ props.aboutData.subheading }}</h2>
       <CallToActionButton :to="props.aboutData.button.buttonRoute"
         >{{ props.aboutData.button.buttonText }}
       </CallToActionButton>
     </div>
     <div
-      class="homepageAboutSection__image rounded-full overflow-hidden h-[250px] w-[250px] md:h-[300px] md:w-[300px] lg:h-[400px] lg:w-[400px]"
+      class="homepageAboutSection__image h-[250px] w-[250px] overflow-hidden rounded-full md:h-[300px] md:w-[300px] lg:h-[400px] lg:w-[400px]"
     >
       <ResponsiveImage
         :imgSrc="props.aboutData.background.image[0]"

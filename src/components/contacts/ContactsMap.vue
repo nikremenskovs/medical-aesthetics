@@ -86,11 +86,11 @@ onUnmounted(() => {
 
 <template>
   <section id="contactsMap" class="contact-content__map relative h-auto w-auto">
-    <div class="absolute map-overlay z-20">
+    <div class="map-overlay absolute z-20">
       <!-- <p class="">{{ address }}</p> -->
     </div>
     <div
-      class="max-w-[700px] h-96 border-[1px] border-main-blue/25 rounded-lg mx-auto"
+      class="mx-auto h-96 max-w-[700px] rounded-lg border-[1px] border-main-blue/25"
       ref="mapContainer"
     />
   </section>

@@ -33,15 +33,15 @@ onUnmounted(() => {
 <template>
   <section
     id="contactsHours"
-    class="contact-content__hours text-main-blue mb-6 flex flex-col items-center"
+    class="contact-content__hours mb-6 flex flex-col items-center text-main-blue"
   >
-    <h2 class="font-yeseva-one tracking-wide capitalize text-2xl mb-3">
+    <h2 class="mb-3 font-yeseva-one text-2xl capitalize tracking-wide">
       {{ topLevelStore.modal.sectionTwo.heading }}
     </h2>
     <p
       v-for="(field, index) in topLevelStore.modal.sectionTwo.textFields"
       :key="index"
-      class="text-center font-marmelad tracking-wide text-base mb-2"
+      class="mb-2 text-center font-marmelad text-base tracking-wide"
     >
       {{ field.field }}
     </p>

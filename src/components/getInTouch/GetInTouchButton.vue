@@ -6,7 +6,7 @@ const topLevelStore = useTopLevelStore()
 
 <template>
   <button
-    class="get-in-touch-button fixed z-20 top-1/2 right-0 origin-bottom-right -rotate-90 bg-main-blue/75 font-marmelad tracking-widest text-main-white uppercase px-4 py-1 rounded-tl rounded-tr animate-pulse md:hover:animate-hoverPulse md:text-xl lg:text-2xl xl:text-3xl"
+    class="get-in-touch-button fixed right-0 top-1/2 z-20 origin-bottom-right -rotate-90 animate-pulse rounded-tl rounded-tr bg-main-blue/75 px-4 py-1 font-marmelad uppercase tracking-widest text-main-white md:text-xl md:hover:animate-hoverPulse lg:text-2xl xl:text-3xl"
   >
     {{ topLevelStore.floatingButton }}
   </button>

@@ -7,12 +7,12 @@
       :media="`(min-width: ${source.media})`"
     />
     <img
-      class="responsive-position w-full h-full object-cover block object-center"
+      class="responsive-position block h-full w-full object-cover object-center"
       :class="
         props.cardsSectionTriggerIndex !== null
           ? `homepageCardImage${props.cardsSectionTriggerIndex}`
           : props.aboutSectionForegroundClass
-          ? 'absolute top-0 md:hover:scale-105 transition duration-[2000ms]'
+          ? 'absolute top-0 transition duration-[2000ms] md:hover:scale-105'
           : ''
       "
       :src="props.imgSrc"

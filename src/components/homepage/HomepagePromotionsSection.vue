@@ -27,9 +27,9 @@ const isMobile = computed(() =>
       <CarouselSlide v-for="(slide, index) in props.promotionsData.slides" :key="index">
         <div
           v-show="currentSlide === index + 1"
-          class="slide-info absolute top-0 left-0 w-full max-h-full h-full"
+          class="slide-info absolute left-0 top-0 h-full max-h-full w-full"
         >
-          <div class="overlay absolute w-full h-full bg-main-white/50" />
+          <div class="overlay absolute h-full w-full bg-main-white/50" />
           <ResponsiveImage
             :imgSrc="slide.image.image[0]"
             :imgAlt="slide.image['image-alt']"
@@ -42,12 +42,12 @@ const isMobile = computed(() =>
             ]"
           />
           <div
-            class="w-full px-4 text absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-main-blue z-10 sm:w-auto"
+            class="text absolute left-1/2 top-1/2 z-10 w-full -translate-x-1/2 -translate-y-1/2 px-4 text-center text-main-blue sm:w-auto"
           >
-            <h1 class="font-yeseva-one text-4xl text-bold uppercase tracking-widest mb-4">
+            <h1 class="text-bold mb-4 font-yeseva-one text-4xl uppercase tracking-widest">
               {{ slide.heading }}
             </h1>
-            <p class="font-marmelad text-xl tracking-wide font-bold mb-8">{{ slide.subheading }}</p>
+            <p class="mb-8 font-marmelad text-xl font-bold tracking-wide">{{ slide.subheading }}</p>
             <CallToActionButton :to="slide.button.buttonRoute"
               >{{ slide.button.buttonText }}
             </CallToActionButton>

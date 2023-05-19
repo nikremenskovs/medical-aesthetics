@@ -10,7 +10,7 @@ const props = defineProps({
 <template>
   <section id="homepageCardsSection" class="mb-12">
     <h1
-      class="homepageCardsTitle text-4xl text-center text-main-blue font-yeseva-one uppercase tracking-wider mb-4"
+      class="homepageCardsTitle mb-4 text-center font-yeseva-one text-4xl uppercase tracking-wider text-main-blue"
     >
       {{ props.treatmentsData.sectionHeading }}
     </h1>

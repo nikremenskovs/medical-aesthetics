@@ -47,12 +47,12 @@ onUnmounted(() => {
 
 <template>
   <router-link
-    class="w-full h-auto relative block my-8 overflow-hidden sm:w-1/3 sm:mx-2"
+    class="relative my-8 block h-auto w-full overflow-hidden sm:mx-2 sm:w-1/3"
     @mouseenter="hoverEnter(props.index)"
     @mouseleave="hoverLeave(props.index)"
   >
     <div
-      class="relative bg-main-white h-[60vh] sm:h-[40vh] lg:h-[60vh]"
+      class="relative h-[60vh] bg-main-white sm:h-[40vh] lg:h-[60vh]"
       :class="`homepageCard${props.index}`"
     >
       <ResponsiveImage
@@ -68,9 +68,9 @@ onUnmounted(() => {
         ]"
       />
       <div
-        class="absolute bg-main-blue/75 left-0 bottom-0 h-1/5 w-full flex justify-center items-center"
+        class="absolute bottom-0 left-0 flex h-1/5 w-full items-center justify-center bg-main-blue/75"
       >
-        <p class="text-main-white text-2xl">{{ props.heading }}</p>
+        <p class="text-2xl text-main-white">{{ props.heading }}</p>
       </div>
     </div>
   </router-link>

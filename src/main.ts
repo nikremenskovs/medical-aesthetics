@@ -9,7 +9,6 @@ import './assets/tailwind.css'
 
 import CallToActionButton from './components/shared/CallToActionButton.vue'
 import ResponsiveImage from './components/shared/ResponsiveImage.vue'
-
 ;(async () => {
   await createSquidexService()
   const app = createApp(App)

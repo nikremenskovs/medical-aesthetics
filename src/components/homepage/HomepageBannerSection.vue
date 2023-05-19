@@ -44,7 +44,7 @@ onUnmounted(() => {
 
 <template>
   <section id="homepageBannerSection" class="mb-12">
-    <div class="banner relative flex overflow-hidden h-[50vh] lg:h-[70vh]">
+    <div class="banner relative flex h-[50vh] overflow-hidden lg:h-[70vh]">
       <ResponsiveImage
         class="banner__image scale-[1.01] object-cover md:w-1/2"
         :imgSrc="props.bannerData.leftImage.image[0]"
@@ -59,10 +59,10 @@ onUnmounted(() => {
       />
 
       <div
-        class="banner__text absolute right-4 bottom-4 flex flex-col md:w-1/2 md:static md:justify-center md:items-center"
+        class="banner__text absolute bottom-4 right-4 flex flex-col md:static md:w-1/2 md:items-center md:justify-center"
       >
         <ResponsiveImage
-          class="hidden mb-8 px-8 md:block md:h-[30vh] lg:h-[50vh]"
+          class="mb-8 hidden px-8 md:block md:h-[30vh] lg:h-[50vh]"
           :imgSrc="props.bannerData.rightImage.image[0]"
           :imgAlt="props.bannerData.rightImage['image-alt']"
           :sourcesMap="[
@@ -79,7 +79,7 @@ onUnmounted(() => {
       </div>
     </div>
     <p
-      class="banner__description bg-hover-blue font-marmelad tracking-wider text-main-white text-xl text-center px-8 py-4"
+      class="banner__description bg-hover-blue px-8 py-4 text-center font-marmelad text-xl tracking-wider text-main-white"
     >
       {{ props.bannerData.bannerText }}
     </p>

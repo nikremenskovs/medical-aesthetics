@@ -8,7 +8,7 @@ import ContactsHours from '@/components/contacts/ContactsHours.vue'
 <template>
   <section class="contacts">
     <ContactsBanner />
-    <div class="contacts-content--container px-4 mb-12 md:px-24">
+    <div class="contacts-content--container mb-12 px-4 md:px-24">
       <ContactsLinks />
       <ContactsHours />
       <ContactsMap />

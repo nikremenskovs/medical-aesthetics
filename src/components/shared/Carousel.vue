@@ -48,28 +48,28 @@ const { lengthX } = useSwipe(swipeTarget, {
 
     <div
       v-if="props.navigation"
-      class="navigate hidden px-8 w-full h-full absolute sm:flex justify-center items-center md:px-10 lg:px-12"
+      class="navigate absolute hidden h-full w-full items-center justify-center px-8 sm:flex md:px-10 lg:px-12"
     >
       <button class="toggle-page left flex flex-1" @click="previousSlide">
         <i
-          class="fas fa-chevron-left cursor-pointer flex items-center justify-center rounded-full w-10 h-10 bg-hover-blue text-main-white md:hover:animate-hoverPulse"
+          class="fas fa-chevron-left flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-hover-blue text-main-white md:hover:animate-hoverPulse"
         ></i>
       </button>
       <button class="toggle-page right flex flex-1 justify-end" @click="nextSlide">
         <i
-          class="fas fa-chevron-right cursor-pointer flex items-center justify-center rounded-[50%] w-10 h-10 bg-hover-blue text-main-white md:hover:animate-hoverPulse"
+          class="fas fa-chevron-right flex h-10 w-10 cursor-pointer items-center justify-center rounded-[50%] bg-hover-blue text-main-white md:hover:animate-hoverPulse"
         ></i>
       </button>
     </div>
 
     <div
       v-if="props.pagination"
-      class="pagination absolute bottom-6 w-full flex justify-center items-center gap-4"
+      class="pagination absolute bottom-6 flex w-full items-center justify-center gap-4"
     >
       <span
         v-for="(slide, index) in props.slideCount"
         :key="index"
-        class="cursor-pointer w-5 h-5 rounded-full bg-hover-blue md:hover:animate-hoverPulse shadow-xl"
+        class="h-5 w-5 cursor-pointer rounded-full bg-hover-blue shadow-xl md:hover:animate-hoverPulse"
         :class="index + 1 === currentSlide ? 'bg-main-blue' : 'bg-hover-blue'"
         @click="goToSlide(index)"
       />

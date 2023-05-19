@@ -11,10 +11,10 @@ const isMobile = () =>
 
 <template>
   <div
-    class="w-full h-auto bg-hover-blue border-t-[1px] border-main-blue px-4 py-8 text-main-white"
+    class="h-auto w-full border-t-[1px] border-main-blue bg-hover-blue px-4 py-8 text-main-white"
   >
     <div class="mb-4">
-      <h1 class="font-yeseva-one text-2xl uppercase mb-4 tracking-wide md:text-center md:mb-12">
+      <h1 class="mb-4 font-yeseva-one text-2xl uppercase tracking-wide md:mb-12 md:text-center">
         {{ topLevelStore.footer.mainHeading }}
       </h1>
       <div class="mb-4 md:flex md:space-x-6">
@@ -23,7 +23,7 @@ const isMobile = () =>
           v-for="(section, index) in topLevelStore.footer.sections"
           :key="index"
         >
-          <h2 class="font-marmelad text-xl mb-2 tracking-wider capitalize">
+          <h2 class="mb-2 font-marmelad text-xl capitalize tracking-wider">
             {{ section.heading }}
           </h2>
           <p class="font-marmelad">{{ section.text }}</p>
@@ -31,9 +31,9 @@ const isMobile = () =>
       </div>
     </div>
     <div
-      class="text-main-blue flex flex-col items-center justify-center border-t-[1px] border-main-white/50 mt-12 md:flex-row md:justify-between"
+      class="mt-12 flex flex-col items-center justify-center border-t-[1px] border-main-white/50 text-main-blue md:flex-row md:justify-between"
     >
-      <router-link class="flex items-center mb-2 pt-4" :to="{ name: 'home' }">
+      <router-link class="mb-2 flex items-center pt-4" :to="{ name: 'home' }">
         <img src="@/assets/images/logoCrop.png" class="mr-2 h-8 lg:h-10 xl:h-12" alt="" />
         <p class="font-yeseva-one text-xs uppercase">AK Beauty Room</p>
       </router-link>
@@ -41,24 +41,24 @@ const isMobile = () =>
         <a
           href="https://www.facebook.com/"
           target="_blank"
-          class="md:hover:text-main-white transition duration-[1000ms] ease-out"
+          class="transition duration-[1000ms] ease-out md:hover:text-main-white"
         >
           <i class="fa-brands fa-facebook" />
         </a>
         <a
           href="https://www.instagram.com/"
           target="_blank"
-          class="md:hover:text-main-white transition duration-[1000ms] ease-out"
+          class="transition duration-[1000ms] ease-out md:hover:text-main-white"
         >
           <i class="fa-brands fa-instagram" />
         </a>
         <a
           :href="isMobile()"
-          class="md:hover:text-main-white transition duration-[1000ms] ease-out"
+          class="transition duration-[1000ms] ease-out md:hover:text-main-white"
         >
           <i class="fa-solid fa-phone-volume"
             ><span
-              class="hidden font-marmelad font-bold text-sm ml-1 align-middle sm:inline-block"
+              class="ml-1 hidden align-middle font-marmelad text-sm font-bold sm:inline-block"
               >{{ topLevelStore.navbar.contactNumber }}</span
             ></i
           >

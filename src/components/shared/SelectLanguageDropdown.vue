@@ -50,25 +50,25 @@ onClickOutside(dropdownElement, () => {
 
 <template>
   <div ref="dropdownElement">
-    <div class="flex items-center cursor-pointer" @click="dropdownOpen = !dropdownOpen">
+    <div class="flex cursor-pointer items-center" @click="dropdownOpen = !dropdownOpen">
       <img
         :src="getImageSrc(topLevelStore.selectedLanguage)"
         :alt="topLevelStore.selectedLanguage"
-        class="w-8 h-8 inline-block mr-2"
+        class="mr-2 inline-block h-8 w-8"
       />
       <i class="fa-solid fa-caret-down text-main-blue" />
     </div>
-    <ul v-if="dropdownOpen" class="absolute mt-1 bg-main-white/50 rounded-lg shadow-lg">
+    <ul v-if="dropdownOpen" class="absolute mt-1 rounded-lg bg-main-white/50 shadow-lg">
       <li
         v-for="option in options"
         :key="option.value"
-        class="flex items-center p-2 md:hover:bg-hover-blue cursor-pointer"
+        class="flex cursor-pointer items-center p-2 md:hover:bg-hover-blue"
         @click="selectOption(option.value)"
       >
         <img
           :src="getImageSrc(option.value)"
           :alt="option.value"
-          class="w-8 h-8 inline-block mr-2"
+          class="mr-2 inline-block h-8 w-8"
         />
         <p class="font-marmelad text-lg tracking-widest">{{ option.text }}</p>
       </li>

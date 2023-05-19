@@ -48,15 +48,15 @@ onUnmounted(() => {
 <template>
   <section
     id="contactsBannerSection"
-    class="contacts-banner--container w-full flex justify-center overflow-hidden h-[30vh] sm:h-[40vh] md:h-[50vh] space-x-4 sm:space-x-8 md:space-x-12 lg:space-x-16 xl:space-x-20"
+    class="contacts-banner--container flex h-[30vh] w-full justify-center space-x-4 overflow-hidden sm:h-[40vh] sm:space-x-8 md:h-[50vh] md:space-x-12 lg:space-x-16 xl:space-x-20"
   >
     <img
       src="@/assets/images/contactsBannerLeftNoBG.png"
-      class="contact-banner__image1 -translate-x-full opacity-0 w-1/2 h-full object-cover object-right"
+      class="contact-banner__image1 h-full w-1/2 -translate-x-full object-cover object-right opacity-0"
     />
     <img
       src="@/assets/images/contactsBannerRightNoBG.png"
-      class="contact-banner__image2 translate-x-full opacity-0 w-1/2 h-full object-cover object-left"
+      class="contact-banner__image2 h-full w-1/2 translate-x-full object-cover object-left opacity-0"
     />
   </section>
 </template>

@@ -29,22 +29,22 @@ onUnmounted(() => {
 <template>
   <section
     id="contactsLinks"
-    class="contacts-content__links--container border-[1px] border-main-blue/25 rounded-lg shadow-lg py-10 -translate-y-12 backdrop-blur-lg md:py-12 px-4 md:px-6"
+    class="contacts-content__links--container -translate-y-12 rounded-lg border-[1px] border-main-blue/25 px-4 py-10 shadow-lg backdrop-blur-lg md:px-6 md:py-12"
   >
     <div
-      class="contacts-content__links flex flex-col justify-center items-center space-y-8 sm:flex-row sm:space-y-0 flex-wrap"
+      class="contacts-content__links flex flex-col flex-wrap items-center justify-center space-y-8 sm:flex-row sm:space-y-0"
     >
       <a
         href="https://www.facebook.com/"
         target="_blank"
-        class="w-auto flex flex-col items-center text-main-blue group sm:p-8 md:hover:text-hover-blue transition duration-[1000ms] ease-out"
+        class="group flex w-auto flex-col items-center text-main-blue transition duration-[1000ms] ease-out sm:p-8 md:hover:text-hover-blue"
       >
         <i
-          class="fa-brands fa-square-facebook text-4xl mb-2 md:group-hover:scale-110 transition duration-[1000ms] ease-out"
+          class="fa-brands fa-square-facebook mb-2 text-4xl transition duration-[1000ms] ease-out md:group-hover:scale-110"
         ></i>
         <div class="w-48 overflow-hidden">
           <div
-            class="w-96 flex justify-center text-center font-marmelad uppercase md:group-hover:-translate-x-1/2 transition duration-[1000ms] ease-out"
+            class="flex w-96 justify-center text-center font-marmelad uppercase transition duration-[1000ms] ease-out md:group-hover:-translate-x-1/2"
           >
             <p class="w-1/2 whitespace-nowrap">Facebook</p>
             <p class="w-1/2 whitespace-nowrap">AK Beauty Room</p>
@@ -54,14 +54,14 @@ onUnmounted(() => {
       <a
         href="https://www.instagram.com/"
         target="_blank"
-        class="w-auto flex flex-col items-center text-main-blue group sm:p-8 md:hover:text-hover-blue transition duration-[1000ms] ease-out"
+        class="group flex w-auto flex-col items-center text-main-blue transition duration-[1000ms] ease-out sm:p-8 md:hover:text-hover-blue"
       >
         <i
-          class="fa-brands fa-instagram text-4xl mb-2 md:group-hover:scale-110 transition duration-[1000ms] ease-out"
+          class="fa-brands fa-instagram mb-2 text-4xl transition duration-[1000ms] ease-out md:group-hover:scale-110"
         ></i>
         <div class="w-48 overflow-hidden">
           <div
-            class="w-96 flex justify-center text-center font-marmelad uppercase md:group-hover:-translate-x-1/2 transition duration-[1000ms] ease-out"
+            class="flex w-96 justify-center text-center font-marmelad uppercase transition duration-[1000ms] ease-out md:group-hover:-translate-x-1/2"
           >
             <p class="w-1/2 whitespace-nowrap">instagram</p>
             <p class="w-1/2 whitespace-nowrap">@AKBeautyRoom</p>
@@ -71,14 +71,14 @@ onUnmounted(() => {
       <a
         :href="`https://wa.me/${topLevelStore.navbar.contactNumber}`"
         target="_blank"
-        class="w-auto flex flex-col items-center text-main-blue group sm:p-8 md:hover:text-hover-blue transition duration-[1000ms] ease-out"
+        class="group flex w-auto flex-col items-center text-main-blue transition duration-[1000ms] ease-out sm:p-8 md:hover:text-hover-blue"
       >
         <i
-          class="fa-brands fa-whatsapp text-4xl mb-2 md:group-hover:scale-110 transition duration-[1000ms] ease-out"
+          class="fa-brands fa-whatsapp mb-2 text-4xl transition duration-[1000ms] ease-out md:group-hover:scale-110"
         ></i>
         <div class="w-48 overflow-hidden">
           <div
-            class="w-96 flex justify-center text-center font-marmelad uppercase md:group-hover:-translate-x-1/2 transition duration-[1000ms] ease-out"
+            class="flex w-96 justify-center text-center font-marmelad uppercase transition duration-[1000ms] ease-out md:group-hover:-translate-x-1/2"
           >
             <p class="w-1/2 whitespace-nowrap">WhatsApp</p>
             <p class="w-1/2 whitespace-nowrap">{{ topLevelStore.navbar.contactNumber }}</p>
@@ -88,14 +88,14 @@ onUnmounted(() => {
       <a
         href="https://goo.gl/maps/JB8gddaaQ6dLzakP9"
         target="_blank"
-        class="w-auto flex flex-col items-center text-main-blue group sm:p-8 md:hover:text-hover-blue transition duration-[1000ms] ease-out"
+        class="group flex w-auto flex-col items-center text-main-blue transition duration-[1000ms] ease-out sm:p-8 md:hover:text-hover-blue"
       >
         <i
-          class="fa-solid fa-location-dot text-4xl mb-2 md:group-hover:scale-110 transition duration-[1000ms] ease-out"
+          class="fa-solid fa-location-dot mb-2 text-4xl transition duration-[1000ms] ease-out md:group-hover:scale-110"
         ></i>
         <div class="w-48 overflow-hidden">
           <div
-            class="w-96 flex justify-center text-center font-marmelad uppercase md:group-hover:-translate-x-1/2 transition duration-[1000ms] ease-out"
+            class="flex w-96 justify-center text-center font-marmelad uppercase transition duration-[1000ms] ease-out md:group-hover:-translate-x-1/2"
           >
             <p class="w-1/2 whitespace-nowrap">Google Maps</p>
             <p class="w-1/2 whitespace-nowrap">Maskavas 243, Riga</p>
@@ -105,14 +105,14 @@ onUnmounted(() => {
       <a
         :href="isMobile()"
         target="_blank"
-        class="w-auto flex flex-col items-center text-main-blue group sm:p-8 md:hover:text-hover-blue transition duration-[1000ms] ease-out"
+        class="group flex w-auto flex-col items-center text-main-blue transition duration-[1000ms] ease-out sm:p-8 md:hover:text-hover-blue"
       >
         <i
-          class="fa-solid fa-phone-volume text-4xl mb-2 md:group-hover:scale-110 transition duration-[1000ms] ease-out"
+          class="fa-solid fa-phone-volume mb-2 text-4xl transition duration-[1000ms] ease-out md:group-hover:scale-110"
         ></i>
         <div class="w-48 overflow-hidden">
           <div
-            class="w-96 flex justify-center text-center font-marmelad uppercase md:group-hover:-translate-x-1/2 transition duration-[1000ms] ease-out"
+            class="flex w-96 justify-center text-center font-marmelad uppercase transition duration-[1000ms] ease-out md:group-hover:-translate-x-1/2"
           >
             <p class="w-1/2 whitespace-nowrap">{{ topLevelStore.navbar.contactNumber }}</p>
             <p class="w-1/2 whitespace-nowrap">{{ topLevelStore.navbar.contactNumber }}</p>
