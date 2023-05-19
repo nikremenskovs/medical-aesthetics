@@ -1,15 +1,15 @@
-import { defineStore } from "pinia";
-import { getTopLevel } from "@/services/squidexService.js";
+import { defineStore } from 'pinia'
+import { getTopLevel } from '@/services/squidexService.js'
 
-export const useTopLevelStore = defineStore("TopLevelStore", {
+export const useTopLevelStore = defineStore('TopLevelStore', {
   state: () => ({
     selectedLanguage: localStorage.getItem('selectedLanguage') ?? 'lv',
-    favicon: "",
+    favicon: '',
     floatingButton: {},
     modal: {},
-    navbar: "",
+    navbar: '',
     footer: {},
-    notFound : {}
+    notFound: {}
   }),
   getters: {
     getNavbar: (state) => state.navbar
@@ -19,7 +19,7 @@ export const useTopLevelStore = defineStore("TopLevelStore", {
       this.selectedLanguage = language
     },
     async getTopLevelData(urlPreview, selectedLanguage) {
-      const response = await getTopLevel(urlPreview, selectedLanguage);
+      const response = await getTopLevel(urlPreview, selectedLanguage)
 
       const faviconUrl = response.data.data.favicon.iv[0]
       const floatingButtonData = response.data.data.floatingButton[`${selectedLanguage}`]
@@ -36,8 +36,8 @@ export const useTopLevelStore = defineStore("TopLevelStore", {
       this.notFound = notFoundData
 
       return {
-        faviconUrl: this.favicon,
-      };
-    },
-  },
-});
+        faviconUrl: this.favicon
+      }
+    }
+  }
+})

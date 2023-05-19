@@ -1,3 +1,3 @@
 <template>
-    <div>Dummyview</div>
+  <div>Dummyview</div>
 </template>

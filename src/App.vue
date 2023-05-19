@@ -6,16 +6,15 @@ import GetInTouchButton from '@/components/getInTouch/GetInTouchButton.vue'
 import GetInTouchModal from '@/components/getInTouch/GetInTouchModal.vue'
 import { ref, onMounted, onUnmounted } from 'vue'
 import { debounce } from 'lodash'
-import { useRoute, useRouter } from "vue-router";
+import { useRoute, useRouter } from 'vue-router'
 import { RouterView } from 'vue-router'
-import { useTopLevelStore } from "@/stores/TopLevelStore.js";
+import { useTopLevelStore } from '@/stores/TopLevelStore.js'
 import { useFavicon } from '@vueuse/core'
 
-const topLevelStore = useTopLevelStore();
+const topLevelStore = useTopLevelStore()
 
-
-const route = useRoute();
-const router = useRouter();
+const route = useRoute()
+const router = useRouter()
 
 const showNavbar = ref(true)
 const showGetInTouchButton = ref(false)
@@ -25,44 +24,47 @@ const showGetInTouchModal = ref(false)
 const lastScrollPosition = ref(0)
 
 const toTop = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" })
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
 const updateScroll = debounce(() => {
   const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
-  if (currentScrollPosition < 0 || Math.abs(currentScrollPosition - lastScrollPosition.value) < 100) return
+  if (currentScrollPosition < 0 || Math.abs(currentScrollPosition - lastScrollPosition.value) < 100)
+    return
 
   switch (true) {
     case currentScrollPosition > lastScrollPosition.value + 100:
-      showNavbar.value = false;
+      showNavbar.value = false
       showGetInTouchButton.value = true
-      break;
+      break
     case currentScrollPosition < lastScrollPosition.value - 100:
-      showNavbar.value = true;
+      showNavbar.value = true
       showGetInTouchButton.value = false
-      break;
+      break
   }
 
   lastScrollPosition.value = currentScrollPosition
 
-
   switch (true) {
     case currentScrollPosition < 500:
       showScrollToTopButton.value = false
-      break;
+      break
     case currentScrollPosition > 500:
       showScrollToTopButton.value = true
-      break;
+      break
   }
 }, 180)
 
 onMounted(async () => {
-  let topLevelData = null;
+  let topLevelData = null
   try {
-    topLevelData = await topLevelStore.getTopLevelData(route.query.preview, topLevelStore.selectedLanguage);
+    topLevelData = await topLevelStore.getTopLevelData(
+      route.query.preview,
+      topLevelStore.selectedLanguage
+    )
     useFavicon(topLevelData.faviconUrl, { rel: 'icon' })
   } catch {
-    router.push("/badCall");
+    router.push('/badCall')
   }
   window.addEventListener('scroll', updateScroll)
 })
@@ -74,41 +76,57 @@ onUnmounted(() => {
 
 <template>
   <div class="bg-main-white">
-    <transition enter-active-class="transition ease-out duration-500 transform"
-      leave-active-class="transition ease-out duration-1000 transform" enter-from-class="translate-x-full"
-      leave-to-class="translate-x-full" enter-to-class="translate-x-0">
-      <GetInTouchButton v-show="showGetInTouchButton" @click="showGetInTouchModal = !showGetInTouchModal" />
+    <transition
+      enter-active-class="transition ease-out duration-500 transform"
+      leave-active-class="transition ease-out duration-1000 transform"
+      enter-from-class="translate-x-full"
+      leave-to-class="translate-x-full"
+      enter-to-class="translate-x-0"
+    >
+      <GetInTouchButton
+        v-show="showGetInTouchButton"
+        @click="showGetInTouchModal = !showGetInTouchModal"
+      />
     </transition>
 
-
-    <transition enter-active-class="transition ease-out duration-500 transform"
-      leave-active-class="transition ease-out duration-1000 transform" enter-from-class="opacity-0"
-      leave-to-class="opacity-0" enter-to-class="opacity-1">
-      <GetInTouchModal v-if="showGetInTouchModal" @click.self="showGetInTouchModal = false"
-        @closeGetInTouchModal="showGetInTouchModal = false" />
+    <transition
+      enter-active-class="transition ease-out duration-500 transform"
+      leave-active-class="transition ease-out duration-1000 transform"
+      enter-from-class="opacity-0"
+      leave-to-class="opacity-0"
+      enter-to-class="opacity-1"
+    >
+      <GetInTouchModal
+        v-if="showGetInTouchModal"
+        @click.self="showGetInTouchModal = false"
+        @closeGetInTouchModal="showGetInTouchModal = false"
+      />
     </transition>
 
-
-    <transition enter-active-class="transition ease-out duration-500 transform"
-      leave-active-class="transition ease-out duration-500 transform" enter-from-class="-translate-y-full"
-      leave-to-class="-translate-y-full" enter-to-class="translate-y-0">
+    <transition
+      enter-active-class="transition ease-out duration-500 transform"
+      leave-active-class="transition ease-out duration-500 transform"
+      enter-from-class="-translate-y-full"
+      leave-to-class="-translate-y-full"
+      enter-to-class="translate-y-0"
+    >
       <TheNavbar v-show="showNavbar" />
     </transition>
-
 
     <Suspense>
       <RouterView />
     </Suspense>
 
-
     <TheFooter />
 
-    <transition enter-active-class="transition ease-out duration-500 transform"
-      leave-active-class="transition ease-out duration-1000 transform" enter-from-class="opacity-0"
-      leave-to-class="opacity-0" enter-to-class="opacity-1">
+    <transition
+      enter-active-class="transition ease-out duration-500 transform"
+      leave-active-class="transition ease-out duration-1000 transform"
+      enter-from-class="opacity-0"
+      leave-to-class="opacity-0"
+      enter-to-class="opacity-1"
+    >
       <TheScrollToTopButton v-show="showScrollToTopButton" @click="toTop" />
     </transition>
-
   </div>
 </template>
-

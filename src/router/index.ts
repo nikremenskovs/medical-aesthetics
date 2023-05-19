@@ -29,29 +29,27 @@ const router = createRouter({
       name: 'dummy',
       component: () => import('../views/DummyView.vue')
     },
-    { 
+    {
       path: '/:notFound(.*)',
       name: 'notFound',
       component: () => import('../views/NotFound.vue')
     },
-    { 
+    {
       path: '/bad-call',
       name: 'badCall',
       component: () => import('../views/NotFound.vue')
     }
   ],
   scrollBehavior(to, from) {
-    switch(true) {
-      case (to === from ):
-        window.scrollTo({ top: 0, behavior: "smooth" })
-        break;
-        default:
-        window.scrollTo({ top: 0, behavior: "auto" });
-        break;
+    switch (true) {
+      case to === from:
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        break
+      default:
+        window.scrollTo({ top: 0, behavior: 'auto' })
+        break
     }
   }
-  
-
 })
 
 export default router
