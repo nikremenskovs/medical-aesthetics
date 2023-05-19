@@ -12,8 +12,6 @@ const props = defineProps({
 
 const isMobile = computed(() => (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)));
 
-console.log(isMobile)
-
 </script>
 
 <template>
