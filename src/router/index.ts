@@ -45,8 +45,12 @@ const router = createRouter({
       case (to === from ):
         window.scrollTo({ top: 0, behavior: "smooth" })
         break;
+        default:
+        window.scrollTo({ top: 0, behavior: "auto" });
+        break;
     }
   }
+  
 
 })
 
