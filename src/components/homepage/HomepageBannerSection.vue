@@ -11,8 +11,8 @@ const props = defineProps({
 });
 
 
-const bannerScrollAnimation = () => {
-    const bannerScrollAnimationTimeline = gsap.timeline({
+const homepageBannerScrollAnimation = () => {
+    const homepageBannerScrollAnimationTimeline = gsap.timeline({
         scrollTrigger: {
             trigger: "#homepageBannerSection",
             start: "top top",
@@ -20,7 +20,7 @@ const bannerScrollAnimation = () => {
             scrub: 0.2
         }
     });
-    bannerScrollAnimationTimeline
+    homepageBannerScrollAnimationTimeline
         .fromTo(".banner__image", { x: 0 }, { x: "-100%" }, 0)
         .to(".banner__text", { opacity: 0 }, 0)
         .to(".banner__description", { opacity: 0 }, 0)
@@ -28,9 +28,9 @@ const bannerScrollAnimation = () => {
 
 
 onMounted(() => {
-    gsap.fromTo(".banner__image", { x: "-100%" }, { x: 0, duration: 1 },)
-    gsap.fromTo(".banner__text", { opacity: 0, y: "20%" }, { opacity: 1, y: 0, duration: 1 })
-    bannerScrollAnimation();
+    gsap.fromTo(".banner__image", { x: "-100%", opacity: 0 }, { x: 0, opacity: 1, duration: 1, delay: 0.25 },)
+    gsap.fromTo(".banner__text", { opacity: 0, y: "20%" }, { opacity: 1, y: 0, duration: 1, delay: 0.25 })
+    homepageBannerScrollAnimation();
 });
 onUnmounted(() => {
     ScrollTrigger.killAll();

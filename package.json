@@ -12,6 +12,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.15.1",
     "@vueuse/core": "^10.1.2",
     "axios": "^1.4.0",
     "gsap": "^3.11.5",
