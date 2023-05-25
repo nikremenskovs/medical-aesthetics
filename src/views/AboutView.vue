@@ -1,5 +1,10 @@
+<script setup>
+import AboutStickyBanner from '@/components/about/AboutStickyBanner.vue'
+import AboutContent from '../components/about/AboutContent.vue'
+</script>
+
 <template>
-  <div class="h-[300vh]">
-    <h1>This is an about page</h1>
-  </div>
+  <AboutStickyBanner>
+    <AboutContent />
+  </AboutStickyBanner>
 </template>

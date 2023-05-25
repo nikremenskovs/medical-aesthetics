@@ -16,7 +16,7 @@ import ResponsiveImage from './components/shared/ResponsiveImage.vue'
   app.use(router)
   const topLevelStore = useTopLevelStore()
   await topLevelStore.getTopLevelData(false, topLevelStore.selectedLanguage)
-  app.mount('#app')
   app.component('CallToActionButton', CallToActionButton)
   app.component('ResponsiveImage', ResponsiveImage)
+  app.mount('#app')
 })()
