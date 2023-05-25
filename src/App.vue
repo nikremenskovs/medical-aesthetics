@@ -75,58 +75,56 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="bg-main-white">
-    <transition
-      enter-active-class="transition ease-out duration-500 transform"
-      leave-active-class="transition ease-out duration-1000 transform"
-      enter-from-class="translate-x-full"
-      leave-to-class="translate-x-full"
-      enter-to-class="translate-x-0"
-    >
-      <GetInTouchButton
-        v-show="showGetInTouchButton"
-        @click="showGetInTouchModal = !showGetInTouchModal"
-      />
-    </transition>
+  <transition
+    enter-active-class="transition ease-out duration-500 transform"
+    leave-active-class="transition ease-out duration-1000 transform"
+    enter-from-class="translate-x-full"
+    leave-to-class="translate-x-full"
+    enter-to-class="translate-x-0"
+  >
+    <GetInTouchButton
+      v-show="showGetInTouchButton"
+      @click="showGetInTouchModal = !showGetInTouchModal"
+    />
+  </transition>
 
-    <transition
-      enter-active-class="transition ease-out duration-500 transform"
-      leave-active-class="transition ease-out duration-1000 transform"
-      enter-from-class="opacity-0"
-      leave-to-class="opacity-0"
-      enter-to-class="opacity-1"
-    >
-      <GetInTouchModal
-        v-if="showGetInTouchModal"
-        @click.self="showGetInTouchModal = false"
-        @closeGetInTouchModal="showGetInTouchModal = false"
-      />
-    </transition>
+  <transition
+    enter-active-class="transition ease-out duration-500 transform"
+    leave-active-class="transition ease-out duration-1000 transform"
+    enter-from-class="opacity-0"
+    leave-to-class="opacity-0"
+    enter-to-class="opacity-1"
+  >
+    <GetInTouchModal
+      v-if="showGetInTouchModal"
+      @click.self="showGetInTouchModal = false"
+      @closeGetInTouchModal="showGetInTouchModal = false"
+    />
+  </transition>
 
-    <transition
-      enter-active-class="transition ease-out duration-500 transform"
-      leave-active-class="transition ease-out duration-500 transform"
-      enter-from-class="-translate-y-full"
-      leave-to-class="-translate-y-full"
-      enter-to-class="translate-y-0"
-    >
-      <TheNavbar v-show="showNavbar" />
-    </transition>
+  <transition
+    enter-active-class="transition ease-out duration-500 transform"
+    leave-active-class="transition ease-out duration-500 transform"
+    enter-from-class="-translate-y-full"
+    leave-to-class="-translate-y-full"
+    enter-to-class="translate-y-0"
+  >
+    <TheNavbar v-show="showNavbar" />
+  </transition>
 
-    <Suspense>
-      <RouterView />
-    </Suspense>
+  <Suspense>
+    <RouterView />
+  </Suspense>
 
-    <TheFooter />
+  <TheFooter />
 
-    <transition
-      enter-active-class="transition ease-out duration-500 transform"
-      leave-active-class="transition ease-out duration-1000 transform"
-      enter-from-class="opacity-0"
-      leave-to-class="opacity-0"
-      enter-to-class="opacity-1"
-    >
-      <TheScrollToTopButton v-show="showScrollToTopButton" @click="toTop" />
-    </transition>
-  </div>
+  <transition
+    enter-active-class="transition ease-out duration-500 transform"
+    leave-active-class="transition ease-out duration-1000 transform"
+    enter-from-class="opacity-0"
+    leave-to-class="opacity-0"
+    enter-to-class="opacity-1"
+  >
+    <TheScrollToTopButton v-show="showScrollToTopButton" @click="toTop" />
+  </transition>
 </template>
