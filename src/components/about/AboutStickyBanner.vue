@@ -23,12 +23,18 @@ const aboutBannerScrollAnimation = () => {
 const aboutBannerLoad = () => {
   if (route.hash === '') {
     const aboutBannerLoadTimeline = gsap.timeline()
-    aboutBannerLoadTimeline.fromTo(
-      '.about-sticky__text',
-      { y: '20%', opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.5, delay: 1 },
-      0
-    )
+    aboutBannerLoadTimeline
+      .fromTo(
+        '.about-sticky__text',
+        { y: '20%', opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, delay: 1 },
+        0
+      )
+      .fromTo(
+        '.about-sticky__button',
+        { y: '20%', opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5 }
+      )
   }
 }
 
@@ -60,7 +66,7 @@ onUnmounted(() => {
       </p>
     </div>
     <div
-      class="about-content__section1 sticky bottom-0 mx-auto flex h-auto w-full max-w-sm items-center justify-center border-b-[1px] border-main-blue/25 bg-main-white/75 py-8 lg:max-w-2xl"
+      class="about-sticky__button sticky bottom-0 mx-auto flex h-auto w-full max-w-sm items-center justify-center border-b-[1px] border-main-blue/25 bg-main-white/75 py-8 lg:max-w-2xl"
     >
       <router-link to="/about#about-content__section1">
         <i
