@@ -44,7 +44,7 @@ onUnmounted(() => {
       alt="Background Image"
     />
     <div
-      class="about-sticky__text fixed left-1/2 top-1/2 h-auto w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-main-blue/50 px-2 py-4 text-center text-main-white"
+      class="about-sticky__text fixed left-1/2 top-1/2 h-auto w-3/4 max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-lg bg-main-blue/50 px-2 py-4 text-center text-main-white lg:max-w-2xl"
     >
       <h1 class="mb-2 font-yeseva-one text-4xl uppercase">AK Beauty Room</h1>
       <span class="mx-auto mb-4 block h-1 w-1/4 bg-main-white"></span>
@@ -54,7 +54,7 @@ onUnmounted(() => {
       </p>
     </div>
     <div
-      class="about-content__section1 sticky bottom-0 flex h-auto w-full items-center justify-center border-b-[1px] border-main-blue/25 bg-main-white/75 py-8"
+      class="about-content__section1 sticky bottom-0 mx-auto flex h-auto w-full max-w-sm items-center justify-center border-b-[1px] border-main-blue/25 bg-main-white/75 py-8 lg:max-w-2xl"
     >
       <CallToActionButton to="/about#about-content__section2" class="animate-pulse"
         >BEGIN</CallToActionButton
