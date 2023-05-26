@@ -6,8 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 
-console.log(route)
-
 gsap.registerPlugin(ScrollTrigger)
 
 const aboutBannerScrollAnimation = () => {
@@ -23,7 +21,7 @@ const aboutBannerScrollAnimation = () => {
 }
 
 const aboutBannerLoad = () => {
-  if (route.path.value === '/about') {
+  if (route.hash === '') {
     const aboutBannerLoadTimeline = gsap.timeline()
     aboutBannerLoadTimeline.fromTo(
       '.about-sticky__text',
@@ -35,8 +33,8 @@ const aboutBannerLoad = () => {
 }
 
 onMounted(() => {
-  aboutBannerLoad()
   aboutBannerScrollAnimation()
+  aboutBannerLoad()
 })
 onUnmounted(() => {
   ScrollTrigger.killAll()
