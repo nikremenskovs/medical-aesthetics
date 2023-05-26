@@ -3,6 +3,9 @@ import { onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
+import { useRoute } from 'vue-router'
+const route = useRoute()
+
 gsap.registerPlugin(ScrollTrigger)
 
 const aboutBannerScrollAnimation = () => {
@@ -16,14 +19,23 @@ const aboutBannerScrollAnimation = () => {
   })
   aboutBannerScrollAnimationTimeline.fromTo('.about-sticky__text', { opacity: 1 }, { opacity: 0 })
 }
+
 const aboutBannerLoad = () => {
-  const aboutBannerLoadTimeline = gsap.timeline()
-  aboutBannerLoadTimeline.fromTo(
-    '.about-sticky__text',
-    { y: '20%', opacity: 0 },
-    { y: 0, opacity: 1, duration: 0.5, delay: 0.5 },
-    0
-  )
+  if (route.hash === '') {
+    const aboutBannerLoadTimeline = gsap.timeline()
+    aboutBannerLoadTimeline
+      .fromTo(
+        '.about-sticky__text',
+        { y: '20%', opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, delay: 1 },
+        0
+      )
+      .fromTo(
+        '.about-sticky__button',
+        { y: '20%', opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5 }
+      )
+  }
 }
 
 onMounted(() => {
@@ -54,11 +66,13 @@ onUnmounted(() => {
       </p>
     </div>
     <div
-      class="about-content__section1 sticky bottom-0 mx-auto flex h-auto w-full max-w-sm items-center justify-center border-b-[1px] border-main-blue/25 bg-main-white/75 py-8 lg:max-w-2xl"
+      class="about-sticky__button sticky bottom-0 mx-auto flex h-auto w-full max-w-sm items-center justify-center border-b-[1px] border-main-blue/25 bg-main-white/75 py-8 lg:max-w-2xl"
     >
-      <CallToActionButton to="/about#about-content__section2" class="animate-pulse"
-        >BEGIN</CallToActionButton
-      >
+      <router-link to="/about#about-content__section1">
+        <i
+          class="fas fa-chevron-right flex h-10 w-10 rotate-90 animate-pulse cursor-pointer items-center justify-center rounded-[50%] bg-hover-blue text-main-white md:hover:animate-hoverPulse"
+        ></i>
+      </router-link>
     </div>
     <slot></slot>
   </div>
