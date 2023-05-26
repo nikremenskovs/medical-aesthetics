@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+
+gsap.registerPlugin(ScrollToPlugin)
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -42,8 +46,13 @@ const router = createRouter({
   ],
   scrollBehavior(to, from) {
     switch (true) {
-      case to === from:
-        window.scrollTo({ top: 0, behavior: 'smooth' })
+      case Boolean(to.hash):
+        gsap.to(window, {
+          duration: 1,
+          delay: 0.5,
+          scrollTo: to.hash,
+          ease: 'power1'
+        })
         break
       default:
         window.scrollTo({ top: 0, behavior: 'auto' })
