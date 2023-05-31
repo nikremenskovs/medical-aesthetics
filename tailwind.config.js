@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'about-background': "url('./src/assets/images/aboutBackground.jpg')"
+        'about-background': "url('./src/assets/images/aboutBackground.jpg')",
+        promoBanner: "url('./src/assets/images/promoBanner.jpg')"
       },
       animation: {
         hoverPulse: 'hoverPulse 2s'
