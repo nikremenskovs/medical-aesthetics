@@ -86,7 +86,7 @@ onUnmounted(() => {
         index % 2 ? 'md:left-0 md:border-r-4' : 'md:right-0 md:border-l-4'
       }`"
     >
-      <h1 class="mb-4 font-yeseva-one text-4xl uppercase text-main-blue">
+      <h1 class="my-4 font-yeseva-one text-4xl uppercase text-main-blue">
         {{ card.promoCardTitle }}
       </h1>
       <h2 class="mb-4 font-marmelad text-2xl text-main-blue">

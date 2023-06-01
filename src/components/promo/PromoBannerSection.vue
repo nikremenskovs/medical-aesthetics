@@ -9,6 +9,24 @@ const promoPageStore = usePromoPageStore()
 
 let matchMedia = gsap.matchMedia()
 
+const promoBannerLoad = () => {
+  const promoBannerLoadTimeline = gsap.timeline()
+  promoBannerLoadTimeline
+    .fromTo(
+      '.promo-banner-content__text',
+      { y: '20%', opacity: 0 },
+      { y: 0, opacity: 1, duration: 1 },
+      0
+    )
+    .fromTo(
+      '.promo-banner-content__image',
+      { y: '20%', opacity: 0 },
+      { y: 0, opacity: 1, duration: 1 },
+      0
+    )
+    .fromTo('.promo-banner__button', { opacity: 0 }, { opacity: 1 })
+}
+
 const promoBannerScrollAnimation = () => {
   matchMedia.add('(min-width: 768px)', () => {
     const promoBannerScrollAnimationTimeline = gsap.timeline({
@@ -28,6 +46,7 @@ const promoBannerScrollAnimation = () => {
 }
 
 onMounted(() => {
+  promoBannerLoad()
   promoBannerScrollAnimation()
 })
 onUnmounted(() => {
@@ -40,7 +59,7 @@ onUnmounted(() => {
     <img
       :src="promoPageStore.banner['promo-banner-background'].image"
       :alt="promoPageStore.banner['promo-banner-background']['image-alt']"
-      class="promo-banner__image absolute h-screen w-full object-cover"
+      class="promo-banner__background absolute h-screen w-full object-cover"
     />
     <div class="promo-banner__overlay absolute h-screen w-full bg-main-white/80" />
     <div
@@ -58,11 +77,14 @@ onUnmounted(() => {
         <img
           :src="promoPageStore.banner['promo-banner-image'].image"
           :alt="promoPageStore.banner['promo-banner-image']['image-alt']"
-          class="mx-auto h-48 w-48 rounded-full object-cover object-center md:h-56 md:w-56 lg:h-80 lg:w-80"
+          class="promo-banner-content__image mx-auto h-48 w-48 rounded-full object-cover object-center md:h-56 md:w-56 lg:h-80 lg:w-80"
         />
       </div>
     </div>
-    <router-link class="absolute bottom-[10vh] left-1/2 -translate-x-1/2" to="/promo#promo-card0">
+    <router-link
+      class="promo-banner__button absolute bottom-[10vh] left-1/2 -translate-x-1/2"
+      to="/promo#promo-card0"
+    >
       <i
         class="fas fa-chevron-right flex h-10 w-10 rotate-90 animate-pulse cursor-pointer items-center justify-center rounded-[50%] bg-hover-blue text-main-white md:hover:animate-hoverPulse"
       ></i>
