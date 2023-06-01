@@ -18,7 +18,7 @@ const isMobile = computed(() =>
     <Carousel
       :navigation="!isMobile"
       :pagination="true"
-      :startAutoPlay="false"
+      :startAutoPlay="true"
       :timeout="10000"
       :slideCount="props.promotionsData.slides.length"
       class="relative h-[70vh] w-full lg:h-[60vh]"
