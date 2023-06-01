@@ -75,8 +75,8 @@ const promoCardScrollAnimation = (index) => {
 onMounted(() => {
   promoPageStore.cards.forEach((card, index) => {
     promoCardLoadAnimationMobile(index)
-    promoCardScrollAnimation(index)
     promoCardLoadAnimationDesktop(index)
+    promoCardScrollAnimation(index)
   })
 })
 onUnmounted(() => {
@@ -87,7 +87,7 @@ onUnmounted(() => {
   <section
     v-for="(card, index) in promoPageStore.cards"
     :key="index"
-    class="h-auto overflow-hidden drop-shadow-2xl md:relative"
+    class="h-screen overflow-hidden drop-shadow-2xl md:relative"
     :id="`promo-card${index}`"
     ref="promoCard"
   >
@@ -115,11 +115,11 @@ onUnmounted(() => {
       </p>
       <router-link
         v-if="index !== promoPageStore.cards.length - 1"
-        class="absolute bottom-[10vh] left-1/2 hidden -translate-x-1/2 md:block"
+        class="absolute bottom-[10vh] left-1/2 -translate-x-1/2 md:block"
         :to="`/promo#promo-card${index + 1}`"
       >
         <i
-          class="fas fa-chevron-right flex h-10 w-10 rotate-90 animate-pulse cursor-pointer items-center justify-center rounded-[50%] bg-hover-blue text-main-white md:hover:animate-hoverPulse"
+          class="fas fa-chevron-right flex h-10 w-10 rotate-90 cursor-pointer items-center justify-center rounded-[50%] bg-hover-blue text-main-white md:hover:animate-hoverPulse"
         ></i>
       </router-link>
     </div>

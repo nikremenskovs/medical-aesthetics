@@ -18,7 +18,7 @@
       </p>
       <router-link to="/about#about-content__section2">
         <i
-          class="fas fa-chevron-right flex h-10 w-10 rotate-90 animate-pulse cursor-pointer items-center justify-center rounded-[50%] bg-hover-blue text-main-white md:hover:animate-hoverPulse"
+          class="fas fa-chevron-right flex h-10 w-10 rotate-90 cursor-pointer items-center justify-center rounded-[50%] bg-hover-blue text-main-white md:hover:animate-hoverPulse"
         ></i>
       </router-link>
     </section>
@@ -44,7 +44,7 @@
       </ul>
       <router-link to="/about#about-content__section3">
         <i
-          class="fas fa-chevron-right flex h-10 w-10 rotate-90 animate-pulse cursor-pointer items-center justify-center rounded-[50%] bg-hover-blue text-main-white md:hover:animate-hoverPulse"
+          class="fas fa-chevron-right flex h-10 w-10 rotate-90 cursor-pointer items-center justify-center rounded-[50%] bg-hover-blue text-main-white md:hover:animate-hoverPulse"
         ></i>
       </router-link>
     </section>
