@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger)
 const promoPageStore = usePromoPageStore()
 
 let matchMedia = gsap.matchMedia()
-console.log(promoPageStore.banner)
+
 const promoBannerScrollAnimation = () => {
   matchMedia.add('(min-width: 768px)', () => {
     const promoBannerScrollAnimationTimeline = gsap.timeline({
@@ -62,10 +62,7 @@ onUnmounted(() => {
         />
       </div>
     </div>
-    <router-link
-      class="absolute bottom-[10vh] left-1/2 -translate-x-1/2"
-      to="/about#about-content__section1"
-    >
+    <router-link class="absolute bottom-[10vh] left-1/2 -translate-x-1/2" to="/promo#promo-card0">
       <i
         class="fas fa-chevron-right flex h-10 w-10 rotate-90 animate-pulse cursor-pointer items-center justify-center rounded-[50%] bg-hover-blue text-main-white md:hover:animate-hoverPulse"
       ></i>

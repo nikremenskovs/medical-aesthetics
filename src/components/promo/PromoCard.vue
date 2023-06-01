@@ -8,13 +8,40 @@ gsap.registerPlugin(ScrollTrigger)
 let matchMedia = gsap.matchMedia()
 
 const promoPageStore = usePromoPageStore()
-console.log(promoPageStore.cards)
+
+const promoCardLoadAnimation = (index) => {
+  matchMedia.add('(min-width: 768px)', () => {
+    const promoCardLoadAnimationTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: `#promo-card${index}`,
+        start: 'top center',
+        toggleActions: 'play none none none'
+      }
+    })
+    switch (index % 2) {
+      case 0:
+        promoCardLoadAnimationTimeline.fromTo(
+          `.promo-card${index}__text`,
+          { x: '100%', opacity: 0 },
+          { x: 0, opacity: 1, duration: 1 }
+        )
+        break
+      case 1:
+        promoCardLoadAnimationTimeline.fromTo(
+          `.promo-card${index}__text`,
+          { x: '-100%', opacity: 0 },
+          { x: 0, opacity: 1, duration: 1 }
+        )
+        break
+    }
+  })
+}
 
 const promoCardScrollAnimation = (index) => {
   matchMedia.add('(min-width: 768px)', () => {
     const promoCardScrollAnimationTimeline = gsap.timeline({
       scrollTrigger: {
-        trigger: `.promo-card${index}`,
+        trigger: `#promo-card${index}`,
         start: 'top top',
         end: 'bottom top',
         scrub: true
@@ -31,6 +58,7 @@ const promoCardScrollAnimation = (index) => {
 onMounted(() => {
   promoPageStore.cards.forEach((card, index) => {
     promoCardScrollAnimation(index)
+    promoCardLoadAnimation(index)
   })
 })
 onUnmounted(() => {
@@ -41,8 +69,8 @@ onUnmounted(() => {
   <section
     v-for="(card, index) in promoPageStore.cards"
     :key="index"
-    class="h-auto overflow-hidden md:relative"
-    :class="`promo-card${index}`"
+    class="h-auto overflow-hidden drop-shadow-2xl md:relative"
+    :id="`promo-card${index}`"
     ref="promoCard"
   >
     <div :class="`promo-card${index}__image`">
@@ -53,7 +81,7 @@ onUnmounted(() => {
       />
     </div>
     <div
-      class="flex h-auto flex-col justify-between border-t-4 border-main-blue px-4 py-10 text-center md:absolute md:top-0 md:h-screen md:w-[40vw] md:justify-center md:border-t-0 md:bg-main-white/50"
+      class="flex h-auto flex-col justify-between border-t-4 border-main-blue px-4 py-10 text-center md:absolute md:top-0 md:h-screen md:w-[40vw] md:justify-center md:border-t-0 md:bg-main-white/80"
       :class="`promo-card${index}__text ${
         index % 2 ? 'md:left-0 md:border-r-4' : 'md:right-0 md:border-l-4'
       }`"
@@ -68,8 +96,9 @@ onUnmounted(() => {
         {{ card.promoCardText }}
       </p>
       <router-link
+        v-if="index !== promoPageStore.cards.length - 1"
         class="absolute bottom-[10vh] left-1/2 hidden -translate-x-1/2 md:block"
-        to="/about#about-content__section1"
+        :to="`/promo#promo-card${index + 1}`"
       >
         <i
           class="fas fa-chevron-right flex h-10 w-10 rotate-90 animate-pulse cursor-pointer items-center justify-center rounded-[50%] bg-hover-blue text-main-white md:hover:animate-hoverPulse"
