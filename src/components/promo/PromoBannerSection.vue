@@ -38,7 +38,7 @@ const promoBannerScrollAnimation = () => {
       }
     })
     promoBannerScrollAnimationTimeline.fromTo(
-      '.promo-banner__image',
+      '.promo-banner__background',
       { y: 0 },
       { y: () => `${window.innerHeight * (1 - window.innerHeight / (window.innerHeight * 2))}px` }
     )

@@ -4,6 +4,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import { useRoute } from 'vue-router'
+
 const route = useRoute()
 
 gsap.registerPlugin(ScrollTrigger)
@@ -27,7 +28,7 @@ const aboutBannerLoad = () => {
       .fromTo(
         '.about-sticky__text',
         { y: '20%', opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5, delay: 1 },
+        { y: 0, opacity: 1, duration: 0.5 },
         0
       )
       .fromTo(

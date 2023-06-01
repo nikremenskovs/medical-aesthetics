@@ -9,9 +9,26 @@ let matchMedia = gsap.matchMedia()
 
 const promoPageStore = usePromoPageStore()
 
-const promoCardLoadAnimation = (index) => {
+const promoCardLoadAnimationMobile = (index) => {
+  matchMedia.add('(max-width: 767px)', () => {
+    const promoCardLoadAnimationMobileTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: `#promo-card${index}`,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      }
+    })
+    promoCardLoadAnimationMobileTimeline.fromTo(
+      `#promo-card${index}`,
+      { y: 50, opacity: 0 },
+      { opacity: 1, y: 0, duration: 1 }
+    )
+  })
+}
+
+const promoCardLoadAnimationDesktop = (index) => {
   matchMedia.add('(min-width: 768px)', () => {
-    const promoCardLoadAnimationTimeline = gsap.timeline({
+    const promoCardLoadAnimationDesktopTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: `#promo-card${index}`,
         start: 'top center',
@@ -20,14 +37,14 @@ const promoCardLoadAnimation = (index) => {
     })
     switch (index % 2) {
       case 0:
-        promoCardLoadAnimationTimeline.fromTo(
+        promoCardLoadAnimationDesktopTimeline.fromTo(
           `.promo-card${index}__text`,
           { x: '100%', opacity: 0 },
           { x: 0, opacity: 1, duration: 1 }
         )
         break
       case 1:
-        promoCardLoadAnimationTimeline.fromTo(
+        promoCardLoadAnimationDesktopTimeline.fromTo(
           `.promo-card${index}__text`,
           { x: '-100%', opacity: 0 },
           { x: 0, opacity: 1, duration: 1 }
@@ -57,8 +74,9 @@ const promoCardScrollAnimation = (index) => {
 
 onMounted(() => {
   promoPageStore.cards.forEach((card, index) => {
+    promoCardLoadAnimationMobile(index)
     promoCardScrollAnimation(index)
-    promoCardLoadAnimation(index)
+    promoCardLoadAnimationDesktop(index)
   })
 })
 onUnmounted(() => {
