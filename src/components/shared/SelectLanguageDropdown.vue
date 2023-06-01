@@ -3,11 +3,13 @@ import { ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { useTopLevelStore } from '@/stores/TopLevelStore.js'
 import { useHomepageStore } from '@/stores/HomepageStore.js'
+import { usePromoPageStore } from '@/stores/PromoPageStore.js'
 import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
 const topLevelStore = useTopLevelStore()
 const homepageStore = useHomepageStore()
+const promoPageStore = usePromoPageStore()
 
 const dropdownElement = ref()
 const dropdownOpen = ref()
@@ -23,6 +25,7 @@ const selectOption = (language) => {
   try {
     homepageStore.getHomepageData(route.query.preview, language)
     topLevelStore.getTopLevelData(route.query.preview, language)
+    promoPageStore.getPromoPageData(route.query.preview, language)
   } catch {
     router.push('/badCall')
   }

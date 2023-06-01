@@ -2,11 +2,13 @@
 import { onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
+import { usePromoPageStore } from '@/stores/PromoPageStore.js'
 gsap.registerPlugin(ScrollTrigger)
 
-let matchMedia = gsap.matchMedia()
+const promoPageStore = usePromoPageStore()
 
+let matchMedia = gsap.matchMedia()
+console.log(promoPageStore.banner)
 const promoBannerScrollAnimation = () => {
   matchMedia.add('(min-width: 768px)', () => {
     const promoBannerScrollAnimationTimeline = gsap.timeline({
@@ -19,7 +21,7 @@ const promoBannerScrollAnimation = () => {
     })
     promoBannerScrollAnimationTimeline.fromTo(
       '.promo-banner__image',
-      { y: 1 },
+      { y: 0 },
       { y: () => `${window.innerHeight * (1 - window.innerHeight / (window.innerHeight * 2))}px` }
     )
   })
@@ -36,8 +38,8 @@ onUnmounted(() => {
 <template>
   <section class="promo-banner relative h-screen overflow-hidden">
     <img
-      src="../../assets/images/promoBanner.jpg"
-      alt=""
+      :src="promoPageStore.banner['promo-banner-background'].image"
+      :alt="promoPageStore.banner['promo-banner-background']['image-alt']"
       class="promo-banner__image absolute h-screen w-full object-cover"
     />
     <div class="promo-banner__overlay absolute h-screen w-full bg-main-white/80" />
@@ -46,22 +48,22 @@ onUnmounted(() => {
     >
       <div class="promo-banner-content__text mb-8 text-center md:w-1/3">
         <h1 class="mb-4 font-yeseva-one text-4xl uppercase text-main-blue">
-          Check out our current promotions!
+          {{ promoPageStore.banner.promoBannerTitle }}
         </h1>
         <p class="font-marmelad text-lg text-main-blue">
-          We are always pleased to amaze you with our special offers. See if you can find anything
-          that suits you!
+          {{ promoPageStore.banner.promoBannerSubtitle }}
         </p>
       </div>
       <div class="md:w-1/3">
         <img
-          src="../../assets/images/promo-content.jpg"
-          class="mx-auto h-48 w-48 rounded-full object-cover object-left md:h-56 md:w-56 lg:h-80 lg:w-80"
+          :src="promoPageStore.banner['promo-banner-image'].image"
+          :alt="promoPageStore.banner['promo-banner-image']['image-alt']"
+          class="mx-auto h-48 w-48 rounded-full object-cover object-center md:h-56 md:w-56 lg:h-80 lg:w-80"
         />
       </div>
     </div>
     <router-link
-      class="absolute bottom-0 left-1/2 -translate-x-1/2 pb-8"
+      class="absolute bottom-[10vh] left-1/2 -translate-x-1/2"
       to="/about#about-content__section1"
     >
       <i
