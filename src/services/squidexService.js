@@ -80,3 +80,14 @@ export async function getPromoPage(urlPreview, selectedLanguage) {
     headers: { 'X-Languages': `${selectedLanguage}` }
   })
 }
+
+export async function getContactsPage(urlPreview, selectedLanguage) {
+  if (urlPreview) {
+    return api.get('contacts-page/9355f01c-10a6-4009-9e81-bf2b22bf32d9', {
+      headers: { 'X-Unpublished': 1 }
+    })
+  }
+  return api.get('contacts-page/9355f01c-10a6-4009-9e81-bf2b22bf32d9', {
+    headers: { 'X-Languages': `${selectedLanguage}` }
+  })
+}

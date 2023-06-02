@@ -115,7 +115,7 @@ onUnmounted(() => {
       </p>
       <router-link
         v-if="index !== promoPageStore.cards.length - 1"
-        class="absolute bottom-[10vh] left-1/2 -translate-x-1/2 md:block"
+        class="absolute bottom-[10vh] left-1/2 hidden -translate-x-1/2 md:block"
         :to="`/promo#promo-card${index + 1}`"
       >
         <i

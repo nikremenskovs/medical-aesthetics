@@ -2,8 +2,11 @@
 import { onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useContactsPageStore } from '@/stores/ContactsPageStore.js'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const contactsPageStore = useContactsPageStore()
 
 const contactsBannerScrollAnimation = () => {
   const contactsBannerScrollAnimationTimeline = gsap.timeline({
@@ -51,11 +54,13 @@ onUnmounted(() => {
     class="contacts-banner--container flex h-[30vh] w-full justify-center space-x-4 overflow-hidden sm:h-[40vh] sm:space-x-8 md:h-[50vh] md:space-x-12 lg:space-x-16 xl:space-x-20"
   >
     <img
-      src="@/assets/images/contactsBannerLeftNoBG.png"
+      :src="contactsPageStore.banner.leftImage.image[0]"
+      :alt="contactsPageStore.banner.leftImage['image-alt']"
       class="contact-banner__image1 h-full w-1/2 -translate-x-full object-cover object-right opacity-0"
     />
     <img
-      src="@/assets/images/contactsBannerRightNoBG.png"
+      :src="contactsPageStore.banner.rightImage.image[0]"
+      :alt="contactsPageStore.banner.rightImage['image-alt']"
       class="contact-banner__image2 h-full w-1/2 translate-x-full object-cover object-left opacity-0"
     />
   </section>
