@@ -70,6 +70,17 @@ export async function getTopLevel(urlPreview, selectedLanguage) {
   })
 }
 
+export async function getAboutPage(urlPreview, selectedLanguage) {
+  if (urlPreview) {
+    return api.get('about-page/acc34fe1-0259-430c-9698-438c8e4d3526', {
+      headers: { 'X-Unpublished': 1 }
+    })
+  }
+  return api.get('about-page/acc34fe1-0259-430c-9698-438c8e4d3526', {
+    headers: { 'X-Languages': `${selectedLanguage}` }
+  })
+}
+
 export async function getPromoPage(urlPreview, selectedLanguage) {
   if (urlPreview) {
     return api.get('promo-page/fcf0019f-9785-4317-953b-9e31b2219ab4', {

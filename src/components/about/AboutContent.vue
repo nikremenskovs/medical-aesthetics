@@ -1,3 +1,8 @@
+<script setup>
+import { useAboutPageStore } from '@/stores/AboutPageStore.js'
+const aboutPageStore = useAboutPageStore()
+</script>
+
 <template>
   <div
     id="aboutContent"
@@ -7,14 +12,17 @@
       id="about-content__section1"
       class="about-content__section2 flex h-auto min-h-screen flex-col items-center justify-center border-b-[1px] border-main-blue/25 px-8 py-12 text-center text-main-blue"
     >
-      <img src="../../assets/images/about1.jpg" alt="" class="mb-8 max-h-96 rounded-lg" />
-      <h1 class="mb-6 font-yeseva-one text-4xl uppercase">who am i</h1>
+      <img
+        :src="aboutPageStore.sectionOne.aboutSectionOneImage.image"
+        :alt="aboutPageStore.sectionOne.aboutSectionOneImage['image-alt']"
+        class="mb-8 max-h-96 rounded-lg"
+      />
+      <h1 class="mb-6 font-yeseva-one text-4xl uppercase">
+        {{ aboutPageStore.sectionOne.aboutSectionOneTitle }}
+      </h1>
       <span class="mx-auto mb-6 block h-1 w-1/4 bg-main-blue/25"></span>
       <p class="mb-6 font-marmelad text-lg">
-        Aliquam ante ac id. Adipiscing interdum lorem praesent fusce pellentesque arcu feugiat.
-        Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo
-        aliquet integer vulputate phasellus lorem ipsum dolor lorem magna consequat sed etiam
-        adipiscing interdum.
+        {{ aboutPageStore.sectionOne.aboutSectionOneText }}
       </p>
       <router-link to="/about#about-content__section2">
         <i
@@ -26,20 +34,26 @@
       id="about-content__section2"
       class="about-content__section2 flex h-auto min-h-screen flex-col items-center justify-center border-b-[1px] border-main-blue/25 px-8 py-12 text-center text-main-blue"
     >
-      <img src="../../assets/images/about2.jpg" alt="" class="mb-8 max-h-96 rounded-lg" />
-      <h1 class="mb-6 font-yeseva-one text-4xl uppercase">my diplomas</h1>
+      <img
+        :src="aboutPageStore.sectionTwo.aboutSectionTwoImage.image"
+        :alt="aboutPageStore.sectionTwo.aboutSectionTwoImage['image-alt']"
+        class="mb-8 max-h-96 rounded-lg"
+      />
+      <h1 class="mb-6 font-yeseva-one text-4xl uppercase">
+        {{ aboutPageStore.sectionTwo.aboutSectionTwoTitle }}
+      </h1>
       <span class="mx-auto mb-6 block h-1 w-1/4 bg-main-blue/25"></span>
       <p class="mb-6 font-marmelad text-lg">
-        I am an individual that treats their trade as an ever-changing journey that provides an
-        opportunity to master existing skills and obtain new knowledge
+        {{ aboutPageStore.sectionTwo.aboutSectionTwoText }}
       </p>
       <ul class="mb-6 flex w-full flex-col">
         <li
-          v-for="n in 6"
+          v-for="(item, index) in aboutPageStore.sectionTwo.aboutSectionTwoListItems"
+          :key="index"
           class="flex h-24 w-full items-center justify-center border-b-[1px] border-main-blue/25 font-marmelad uppercase"
         >
           <i class="fa-solid fa-check mr-4 text-2xl"></i>
-          <p>Lorem ipsum dolor sit amet.</p>
+          <p>{{ item.aboutSectionTwoListItem }}</p>
         </li>
       </ul>
       <router-link to="/about#about-content__section3">
@@ -52,14 +66,17 @@
       id="about-content__section3"
       class="about-content__section2 flex h-auto min-h-screen flex-col items-center justify-center border-b-[1px] border-main-blue/25 px-8 py-12 text-center text-main-blue"
     >
-      <img src="../../assets/images/about3.jpg" alt="" class="mb-8 max-h-96 rounded-lg" />
-      <h1 class="mb-6 font-yeseva-one text-4xl uppercase">one more thing</h1>
+      <img
+        :src="aboutPageStore.sectionThree.aboutSectionThreeImage.image"
+        :alt="aboutPageStore.sectionThree.aboutSectionThreeImage['image-alt']"
+        class="mb-8 max-h-96 rounded-lg"
+      />
+      <h1 class="mb-6 font-yeseva-one text-4xl uppercase">
+        {{ aboutPageStore.sectionThree.aboutSectionThreeTitle }}
+      </h1>
       <span class="mx-auto mb-6 block h-1 w-1/4 bg-main-blue/25"></span>
       <p class="mb-6 font-marmelad text-lg">
-        It is very important to find the right cosmetologists but it is equally important to find
-        the right service. Whether you prefer to do your own research or consult with a specialists
-        - please do take your time and use all sources available to yourself to make the right
-        choice
+        {{ aboutPageStore.sectionThree.aboutSectionThreeText }}
       </p>
     </section>
   </div>
