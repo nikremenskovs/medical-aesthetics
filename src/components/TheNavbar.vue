@@ -15,21 +15,21 @@ const isMobile = () =>
 
 <template>
   <nav
-    class="nav fixed z-50 w-full"
+    class="nav fixed z-50 flex w-full flex-col transition-[height] duration-[1000ms] ease-out"
     :class="
       mobileNav
         ? 'h-screen bg-gradient-to-b from-main-white/75 to-transparent'
-        : 'border-b-[1px] border-main-blue bg-main-white/75'
+        : 'h-28 justify-center border-b-[1px] border-main-blue bg-main-white/75'
     "
   >
-    <div class="nav--container flex flex-wrap justify-between p-4 md:justify-center">
+    <div class="nav--container flex flex-wrap justify-between px-4 md:justify-center">
       <router-link
         :to="{ name: 'home' }"
         class="nav__logo transition duration-[1000ms] ease-out md:order-2 md:mx-4 md:w-1/12 md:hover:scale-110 lg:m-0 lg:w-2/12"
         @click="mobileNav = false"
       >
         <img
-          class="mx-auto h-16 lg:h-20 xl:h-24"
+          class="mx-auto h-16 max-h-20 xl:h-24"
           :src="topLevelStore.navbar.navbarLogo.image[0]"
           :alt="topLevelStore.navbar.navbarLogo['image-alt']"
         />
