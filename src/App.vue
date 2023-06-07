@@ -116,7 +116,7 @@ onUnmounted(() => {
     <RouterView />
   </Suspense>
 
-  <TheFooter />
+  <TheFooter v-if="route.path !== '/prices'" />
 
   <transition
     enter-active-class="transition ease-out duration-500 transform"
