@@ -46,7 +46,7 @@ const updateScroll = debounce(() => {
   lastScrollPosition.value = currentScrollPosition
 
   switch (true) {
-    case currentScrollPosition < 500:
+    case currentScrollPosition < 500 || route.path === '/prices':
       showScrollToTopButton.value = false
       break
     case currentScrollPosition > 500:
