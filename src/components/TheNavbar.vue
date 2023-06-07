@@ -15,10 +15,10 @@ const isMobile = () =>
 
 <template>
   <nav
-    class="nav fixed z-50 flex w-full flex-col transition-[height] duration-[1000ms] ease-out"
+    class="nav fixed z-50 flex w-full flex-col"
     :class="
       mobileNav
-        ? 'h-screen bg-gradient-to-b from-main-white/75 to-transparent'
+        ? 'h-screen bg-gradient-to-b from-main-white/75 to-transparent pt-6 transition-[height] duration-[1000ms] ease-out'
         : 'h-28 justify-center border-b-[1px] border-main-blue bg-main-white/75'
     "
   >
