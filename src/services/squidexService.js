@@ -81,6 +81,17 @@ export async function getAboutPage(urlPreview, selectedLanguage) {
   })
 }
 
+export async function getPricesPage(urlPreview, selectedLanguage) {
+  if (urlPreview) {
+    return api.get('prices-page/2bff9fdb-ab2a-4f0c-b329-a2caa18fb9ac', {
+      headers: { 'X-Unpublished': 1 }
+    })
+  }
+  return api.get('prices-page/2bff9fdb-ab2a-4f0c-b329-a2caa18fb9ac', {
+    headers: { 'X-Languages': `${selectedLanguage}` }
+  })
+}
+
 export async function getPromoPage(urlPreview, selectedLanguage) {
   if (urlPreview) {
     return api.get('promo-page/fcf0019f-9785-4317-953b-9e31b2219ab4', {

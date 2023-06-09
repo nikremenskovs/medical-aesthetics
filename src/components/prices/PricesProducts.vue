@@ -1,45 +1,50 @@
+<script setup>
+import { usePricesPageStore } from '@/stores/PricesPageStore.js'
+const pricesPageStore = usePricesPageStore()
+</script>
+
 <template>
   <div class="prices-products--container h-auto w-full px-4 pt-80">
     <section
-      v-for="n in 4"
+      v-for="(section, sectionIndex) in pricesPageStore.products.pricesProductsSections"
+      :key="sectionIndex"
+      :class="`prices-products-section${sectionIndex}`"
       class="mb-12 w-full text-main-blue"
-      :class="`prices-products-section${n}`"
     >
       <h1
+        :class="`prices-products-section${sectionIndex}__heading`"
         class="mb-4 font-marmelad text-2xl uppercase"
-        :class="`prices-products-section${n}__heading`"
       >
-        Section Name: {{ n }}
+        {{ section.pricesProductsSectionTitle }}
       </h1>
-      <ul class="prices-products-section__list w-full">
+      <ul :class="`prices-products-section${sectionIndex}__list`" class="w-full">
         <li
-          v-for="k in 5"
-          class="prices-products-section__list-item group mt-8 flex w-full justify-around border-b-2 border-main-blue/25 lg:hover:border-main-blue/75"
+          v-for="(item, itemIndex) in section.sectionItems"
+          :key="itemIndex"
+          :class="`prices-products-section${sectionIndex}__list-item${itemIndex}`"
+          class="group mt-8 flex w-full justify-around border-b-2 border-main-blue/25 lg:hover:border-main-blue/75"
         >
           <input
             type="checkbox"
             name="checkbox"
-            :id="`checkbox${k}${n}`"
+            :id="`section${sectionIndex}__input${itemIndex}`"
             class="peer h-8 w-8 appearance-none rounded-full border-2 border-main-blue/25 checked:bg-main-blue focus:outline-none lg:cursor-pointer lg:group-hover:border-main-blue/75"
           />
 
           <label
-            :for="`checkbox${k}${n}`"
+            :for="`section${sectionIndex}__input${itemIndex}`"
             class="flex w-4/5 flex-col peer-checked:font-bold lg:cursor-pointer"
           >
             <div class="mb-4 flex justify-between">
               <div class="w-4/5">
-                <h2 class="font-marmelad text-xl font-bold">super lip treatment {{ n }} {{ k }}</h2>
-                <p class="font-marmelad">1hr</p>
+                <h2 class="font-marmelad text-xl font-bold">
+                  {{ item.itemTitle }}
+                </h2>
+                <p class="font-marmelad">{{ item.itemDuration }}</p>
               </div>
-              <p class="font-marmelad text-xl">£150</p>
+              <p class="font-marmelad text-xl">{{ item.itemPrice }}</p>
             </div>
-            <p class="mb-8 font-marmelad">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus expedita officiis
-              porro quam veritatis iure excepturi necessitatibus ipsam at quidem!Lorem ipsum dolor
-              sit, amet consectetur adipisicing elit. Ducimus expedita officiis porro quam veritatis
-              iure excepturi necessitatibus ipsam at quidem!
-            </p>
+            <p class="mb-8 font-marmelad">{{ item.itemDescription }}</p>
           </label>
         </li>
       </ul>
