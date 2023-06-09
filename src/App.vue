@@ -4,7 +4,7 @@ import TheFooter from '@/components/TheFooter.vue'
 import TheScrollToTopButton from '@/components/TheScrollToTopButton.vue'
 import GetInTouchButton from '@/components/getInTouch/GetInTouchButton.vue'
 import GetInTouchModal from '@/components/getInTouch/GetInTouchModal.vue'
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, provide } from 'vue'
 import { debounce } from 'lodash'
 import { useRoute, useRouter } from 'vue-router'
 import { RouterView } from 'vue-router'
@@ -17,6 +17,8 @@ const route = useRoute()
 const router = useRouter()
 
 const showNavbar = ref(true)
+provide('showNavbar', showNavbar)
+
 const showGetInTouchButton = ref(false)
 const showScrollToTopButton = ref(false)
 const showGetInTouchModal = ref(false)

@@ -1,17 +1,38 @@
+<script setup>
+import { inject } from 'vue'
+
+const showNavbar = inject('showNavbar')
+</script>
+
 <template>
-  <section class="prices-banner fixed w-full">
+  <section class="prices-banner fixed w-full" :class="showNavbar ? 'h-72' : 'h-36'">
     <img
       src="../../assets/images/pricesBanner2.jpg"
       alt="prices banner"
-      class="h-56 w-full object-cover"
+      class="prices-banner__image h-56 w-full transform object-cover transition duration-500"
+      :class="showNavbar ? '' : '-translate-y-56'"
     />
-    <div class="p-2">
-      <div
-        class="prices-banner-nav flex h-36 w-full -translate-y-20 flex-col justify-between rounded-lg border-[1px] border-main-blue/25 py-4 shadow-lg backdrop-blur-lg"
+
+    <div
+      class="prices-banner-nav flex h-36 w-full transform flex-col justify-between rounded-lg border-[1px] border-main-blue/25 py-4 shadow-lg backdrop-blur-lg transition duration-500"
+      :class="showNavbar ? '-translate-y-20' : '-translate-y-56'"
+    >
+      <h1
+        class="prices-banner-nav__title mx-auto font-yeseva-one text-3xl uppercase text-main-blue"
       >
-        <h1 class="mx-auto font-yeseva-one text-3xl uppercase text-main-blue">Select Services</h1>
-        <div class="h-12 rounded-lg border-[1px] border-main-blue/25"></div>
-      </div>
+        Select Services
+      </h1>
+      <ul
+        class="prices-banner-nav__button--container flex h-auto min-w-full flex-nowrap space-x-2 p-4"
+      >
+        <li v-for="n in 4">
+          <router-link
+            to="/prices"
+            class="prices-banner-nav__button h-auto whitespace-nowrap rounded-full bg-transparent px-4 py-2 font-marmelad text-sm font-bold uppercase tracking-wider text-main-blue transition duration-[500ms] ease-out md:text-lg md:tracking-widest md:hover:bg-hover-blue md:hover:text-main-white"
+            >Section 1 adsdasdsad</router-link
+          >
+        </li>
+      </ul>
     </div>
   </section>
 </template>
