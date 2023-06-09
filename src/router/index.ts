@@ -52,12 +52,21 @@ const router = createRouter({
   scrollBehavior(to, from) {
     switch (true) {
       case Boolean(to.hash):
-        gsap.to(window, {
-          duration: 1,
-          delay: 0.5,
-          scrollTo: to.hash,
-          ease: 'power1'
-        })
+        if (to.hash.includes('#prices-products-section')) {
+          gsap.to(window, {
+            duration: 1,
+            delay: 0.5,
+            scrollTo: { y: to.hash, offsetY: 300 },
+            ease: 'power1'
+          })
+        } else {
+          gsap.to(window, {
+            duration: 1,
+            delay: 0.5,
+            scrollTo: to.hash,
+            ease: 'power1'
+          })
+        }
         break
       default:
         window.scrollTo({ top: 0, behavior: 'auto' })

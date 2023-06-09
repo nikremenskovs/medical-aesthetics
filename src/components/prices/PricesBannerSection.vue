@@ -26,15 +26,16 @@ const pricesPageStore = usePricesPageStore()
         {{ pricesPageStore.banner.pricesBannerTitle }}
       </h1>
       <ul
-        class="prices-banner-nav__button--container flex h-auto min-w-full flex-nowrap space-x-2 p-4"
+        class="prices-banner-nav__list--container flex h-auto min-w-full flex-nowrap space-x-2 p-4"
       >
         <li
           v-for="(section, index) in pricesPageStore.products.pricesProductsSections"
           :key="index"
         >
           <router-link
-            to="/prices"
-            class="prices-banner-nav__button h-auto whitespace-nowrap rounded-full bg-transparent px-4 py-2 font-marmelad text-sm font-bold uppercase tracking-wider text-main-blue transition duration-[500ms] ease-out md:text-lg md:tracking-widest md:hover:bg-hover-blue md:hover:text-main-white"
+            :to="`/prices#prices-products-section${index}`"
+            :class="`prices-banner-nav__list-item${index}`"
+            class="h-auto whitespace-nowrap rounded-full bg-transparent px-4 py-2 font-marmelad text-sm font-bold uppercase tracking-wider text-main-blue transition duration-[500ms] ease-out md:text-lg md:tracking-widest md:hover:bg-hover-blue md:hover:text-main-white"
             >{{ section.pricesProductsSectionTitle }}</router-link
           >
         </li>

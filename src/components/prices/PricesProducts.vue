@@ -9,6 +9,7 @@ const pricesPageStore = usePricesPageStore()
       v-for="(section, sectionIndex) in pricesPageStore.products.pricesProductsSections"
       :key="sectionIndex"
       :class="`prices-products-section${sectionIndex}`"
+      :id="`prices-products-section${sectionIndex}`"
       class="mb-12 w-full text-main-blue"
     >
       <h1
@@ -42,7 +43,7 @@ const pricesPageStore = usePricesPageStore()
                 </h2>
                 <p class="font-marmelad">{{ item.itemDuration }}</p>
               </div>
-              <p class="font-marmelad text-xl">{{ item.itemPrice }}</p>
+              <p class="font-marmelad text-xl">€{{ item.itemPrice }}</p>
             </div>
             <p class="mb-8 font-marmelad">{{ item.itemDescription }}</p>
           </label>
