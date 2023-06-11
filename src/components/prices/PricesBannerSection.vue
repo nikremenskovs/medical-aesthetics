@@ -1,10 +1,68 @@
 <script setup>
 import { inject } from 'vue'
 import { usePricesPageStore } from '@/stores/PricesPageStore.js'
+import { onMounted, onUnmounted, ref } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useWindowSize } from '@vueuse/core'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const showNavbar = inject('showNavbar')
-
 const pricesPageStore = usePricesPageStore()
+
+const pricesListItem = ref(null)
+
+const pricesBannerNavScrollAnimation = (index) => {
+  const pricesBannerNavScrollAnimationTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: `.prices-products-section${index}`,
+      start: 'top center',
+      toggleActions: 'play none none reverse',
+      markers: true
+    }
+  })
+
+  let x = 0
+  for (let i = 0; i < index; i++) {
+    x -= pricesListItem.value[i].clientWidth
+  }
+
+  pricesBannerNavScrollAnimationTimeline.to('.prices-banner-nav__list--container', {
+    x,
+    onStart: () => {
+      document.querySelector(`.prices-banner-nav__list-item${index}`).style.backgroundColor =
+        '#457B9D'
+
+      document.querySelector(`.prices-banner-nav__list-item${index}`).style.color = '#F1FAEE'
+      if (index === 0) {
+        return
+      }
+      document.querySelector(`.prices-banner-nav__list-item${index - 1}`).style.backgroundColor = ''
+      document.querySelector(`.prices-banner-nav__list-item${index - 1}`).style.color = ''
+    },
+    onReverseComplete: () => {
+      document.querySelector(`.prices-banner-nav__list-item${index}`).style.backgroundColor = ''
+      document.querySelector(`.prices-banner-nav__list-item${index}`).style.color = ''
+      if (index === 0) {
+        return
+      }
+      document.querySelector(`.prices-banner-nav__list-item${index - 1}`).style.backgroundColor =
+        '#457B9D'
+      document.querySelector(`.prices-banner-nav__list-item${index - 1}`).style.color = '#F1FAEE'
+    }
+  })
+}
+
+onMounted(() => {
+  pricesPageStore.products.pricesProductsSections.forEach((section, index) => {
+    pricesBannerNavScrollAnimation(index)
+  })
+})
+
+onUnmounted(() => {
+  ScrollTrigger.killAll()
+})
 </script>
 
 <template>
@@ -26,11 +84,12 @@ const pricesPageStore = usePricesPageStore()
         {{ pricesPageStore.banner.pricesBannerTitle }}
       </h1>
       <ul
-        class="prices-banner-nav__list--container flex h-auto min-w-full flex-nowrap space-x-2 p-4"
+        class="prices-banner-nav__list--container flex h-auto min-w-full flex-nowrap justify-start p-4"
       >
         <li
           v-for="(section, index) in pricesPageStore.products.pricesProductsSections"
           :key="index"
+          ref="pricesListItem"
         >
           <router-link
             :to="`/prices#prices-products-section${index}`"
