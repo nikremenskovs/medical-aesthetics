@@ -4,7 +4,6 @@ import { usePricesPageStore } from '@/stores/PricesPageStore.js'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useWindowSize } from '@vueuse/core'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -13,50 +12,71 @@ const pricesPageStore = usePricesPageStore()
 
 const pricesListItem = ref(null)
 
-const pricesBannerNavScrollAnimation = (index) => {
+const pricesBannerNavScrollAnimation = (index, widthsTotal) => {
   const pricesBannerNavScrollAnimationTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: `.prices-products-section${index}`,
       start: 'top center',
-      toggleActions: 'play none none reverse',
-      markers: true
+      toggleActions: 'play none none reverse'
     }
   })
 
-  let x = 0
-  for (let i = 0; i < index; i++) {
-    x -= pricesListItem.value[i].clientWidth
-  }
+  pricesBannerNavScrollAnimationTimeline.to(
+    '.prices-banner-nav__list--container',
+    {
+      onStart: () => {
+        let x = 0
+        for (let i = 0; i < index; i++) {
+          x -= pricesListItem.value[i].clientWidth
+        }
+        let animate = ref(true)
 
-  pricesBannerNavScrollAnimationTimeline.to('.prices-banner-nav__list--container', {
-    x,
-    onStart: () => {
-      document.querySelector(`.prices-banner-nav__list-item${index}`).style.backgroundColor =
-        '#457B9D'
+        animate = widthsTotal + x > window.innerWidth - 200
 
-      document.querySelector(`.prices-banner-nav__list-item${index}`).style.color = '#F1FAEE'
-      if (index === 0) {
-        return
+        if (animate) {
+          pricesBannerNavScrollAnimationTimeline.to(
+            '.prices-banner-nav__list--container',
+            {
+              x
+            },
+            0
+          )
+        }
+        document.querySelector(`.prices-banner-nav__list-item${index}`).style.backgroundColor =
+          '#457B9D'
+
+        document.querySelector(`.prices-banner-nav__list-item${index}`).style.color = '#F1FAEE'
+        if (index === 0) {
+          return
+        }
+        document.querySelector(`.prices-banner-nav__list-item${index - 1}`).style.backgroundColor =
+          ''
+        document.querySelector(`.prices-banner-nav__list-item${index - 1}`).style.color = ''
+      },
+      onReverseComplete: () => {
+        document.querySelector(`.prices-banner-nav__list-item${index}`).style.backgroundColor = ''
+        document.querySelector(`.prices-banner-nav__list-item${index}`).style.color = ''
+        if (index === 0) {
+          return
+        }
+        document.querySelector(`.prices-banner-nav__list-item${index - 1}`).style.backgroundColor =
+          '#457B9D'
+        document.querySelector(`.prices-banner-nav__list-item${index - 1}`).style.color = '#F1FAEE'
       }
-      document.querySelector(`.prices-banner-nav__list-item${index - 1}`).style.backgroundColor = ''
-      document.querySelector(`.prices-banner-nav__list-item${index - 1}`).style.color = ''
     },
-    onReverseComplete: () => {
-      document.querySelector(`.prices-banner-nav__list-item${index}`).style.backgroundColor = ''
-      document.querySelector(`.prices-banner-nav__list-item${index}`).style.color = ''
-      if (index === 0) {
-        return
-      }
-      document.querySelector(`.prices-banner-nav__list-item${index - 1}`).style.backgroundColor =
-        '#457B9D'
-      document.querySelector(`.prices-banner-nav__list-item${index - 1}`).style.color = '#F1FAEE'
-    }
-  })
+    0
+  )
 }
 
 onMounted(() => {
+  const itemWidths = pricesListItem.value.map((item) => item.clientWidth)
+  const widthsTotal = itemWidths.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  )
+
   pricesPageStore.products.pricesProductsSections.forEach((section, index) => {
-    pricesBannerNavScrollAnimation(index)
+    pricesBannerNavScrollAnimation(index, widthsTotal)
   })
 })
 
@@ -90,6 +110,7 @@ onUnmounted(() => {
           v-for="(section, index) in pricesPageStore.products.pricesProductsSections"
           :key="index"
           ref="pricesListItem"
+          class="max-w-[200px]"
         >
           <router-link
             :to="`/prices#prices-products-section${index}`"
