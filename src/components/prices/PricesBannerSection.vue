@@ -83,17 +83,20 @@ onMounted(() => {
     pricesBannerNavScrollAnimation(index, widthsTotal)
   })
 
-  useEventListener(window, 'resize', (e) => {
-    console.log(e)
-    gsap.to('.prices-banner-nav__list--container', { x: 0 })
-    ScrollTrigger.killAll()
-    windowWidth = e.currentTarget.innerWidth
-    pricesPageStore.products.pricesProductsSections.forEach((section, index) => {
-      pricesBannerNavScrollAnimation(index, widthsTotal)
-      document.querySelector(`.prices-banner-nav__list-item${index}`).style.backgroundColor = ''
-      document.querySelector(`.prices-banner-nav__list-item${index}`).style.color = ''
-    })
-  })
+  useEventListener(
+    window,
+    'resize',
+    debounce((e) => {
+      gsap.to('.prices-banner-nav__list--container', { x: 0 })
+      ScrollTrigger.killAll()
+      windowWidth = e.currentTarget.innerWidth
+      pricesPageStore.products.pricesProductsSections.forEach((section, index) => {
+        pricesBannerNavScrollAnimation(index, widthsTotal)
+        document.querySelector(`.prices-banner-nav__list-item${index}`).style.backgroundColor = ''
+        document.querySelector(`.prices-banner-nav__list-item${index}`).style.color = ''
+      })
+    }, 180)
+  )
 })
 
 onUnmounted(() => {
