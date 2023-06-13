@@ -5,6 +5,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useWindowSize, useEventListener } from '@vueuse/core'
+import { debounce } from 'lodash'
 gsap.registerPlugin(ScrollTrigger)
 
 const { width } = useWindowSize()
@@ -14,7 +15,7 @@ let windowWidth = ref(width)
 const showNavbar = inject('showNavbar')
 const pricesPageStore = usePricesPageStore()
 
-const pricesListItem = ref(null)
+const pricesListItem = ref([])
 
 const pricesBannerNavScrollAnimation = (index, widthsTotal) => {
   const pricesBannerNavScrollAnimationTimeline = gsap.timeline({
@@ -27,7 +28,7 @@ const pricesBannerNavScrollAnimation = (index, widthsTotal) => {
   })
   let x = 0
   for (let i = 0; i < index; i++) {
-    x -= pricesListItem.value[i].clientWidth
+    x -= pricesListItem.value[index].clientWidth
   }
   let animate = ref(true)
 
@@ -124,7 +125,7 @@ onUnmounted(() => {
         <li
           v-for="(section, index) in pricesPageStore.products.pricesProductsSections"
           :key="index"
-          ref="pricesListItem"
+          :ref="(el) => (pricesListItem[index] = el)"
           class="max-w-[200px]"
         >
           <router-link
