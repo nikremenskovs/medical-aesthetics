@@ -4,6 +4,11 @@ import { usePricesPageStore } from '@/stores/PricesPageStore.js'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useWindowSize, useEventListener } from '@vueuse/core'
+
+const { width } = useWindowSize()
+
+let windowWidth = ref(width)
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -17,22 +22,21 @@ const pricesBannerNavScrollAnimation = (index, widthsTotal) => {
     scrollTrigger: {
       trigger: `.prices-products-section${index}`,
       start: 'top center',
-      toggleActions: 'play none none reverse'
+      toggleActions: 'play none none reverse',
+      markers: true
     }
   })
+  let x = 0
+  for (let i = 0; i < index; i++) {
+    x -= pricesListItem.value[i].clientWidth
+  }
+  let animate = ref(true)
 
+  animate = widthsTotal + x > width.value - 150
   pricesBannerNavScrollAnimationTimeline.to(
     '.prices-banner-nav__list--container',
     {
       onStart: () => {
-        let x = 0
-        for (let i = 0; i < index; i++) {
-          x -= pricesListItem.value[i].clientWidth
-        }
-        let animate = ref(true)
-
-        animate = widthsTotal + x > window.innerWidth - 200
-
         if (animate) {
           pricesBannerNavScrollAnimationTimeline.to(
             '.prices-banner-nav__list--container',
@@ -78,6 +82,18 @@ onMounted(() => {
   pricesPageStore.products.pricesProductsSections.forEach((section, index) => {
     pricesBannerNavScrollAnimation(index, widthsTotal)
   })
+
+  useEventListener(window, 'resize', (e) => {
+    console.log(e)
+    gsap.to('.prices-banner-nav__list--container', { x: 0 })
+    ScrollTrigger.killAll()
+    windowWidth = e.currentTarget.innerWidth
+    pricesPageStore.products.pricesProductsSections.forEach((section, index) => {
+      pricesBannerNavScrollAnimation(index, widthsTotal)
+      document.querySelector(`.prices-banner-nav__list-item${index}`).style.backgroundColor = ''
+      document.querySelector(`.prices-banner-nav__list-item${index}`).style.color = ''
+    })
+  })
 })
 
 onUnmounted(() => {
@@ -104,7 +120,7 @@ onUnmounted(() => {
         {{ pricesPageStore.banner.pricesBannerTitle }}
       </h1>
       <ul
-        class="prices-banner-nav__list--container flex h-auto min-w-full flex-nowrap justify-start p-4"
+        class="prices-banner-nav__list--container flex h-auto min-w-full flex-nowrap justify-between p-4"
       >
         <li
           v-for="(section, index) in pricesPageStore.products.pricesProductsSections"
