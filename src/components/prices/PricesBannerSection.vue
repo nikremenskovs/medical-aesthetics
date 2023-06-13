@@ -5,12 +5,11 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useWindowSize, useEventListener } from '@vueuse/core'
+gsap.registerPlugin(ScrollTrigger)
 
 const { width } = useWindowSize()
 
 let windowWidth = ref(width)
-
-gsap.registerPlugin(ScrollTrigger)
 
 const showNavbar = inject('showNavbar')
 const pricesPageStore = usePricesPageStore()

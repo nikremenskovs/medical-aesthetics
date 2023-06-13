@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 let matchMedia = gsap.matchMedia()
