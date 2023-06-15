@@ -4,48 +4,58 @@ import { usePricesPageStore } from '@/stores/PricesPageStore.js'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useWindowSize, useEventListener } from '@vueuse/core'
+import { useEventListener } from '@vueuse/core'
 import { debounce } from 'lodash'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 gsap.registerPlugin(ScrollTrigger)
-
-const { width } = useWindowSize()
-
-let windowWidth = ref(width)
-
-const showNavbar = inject('showNavbar')
 const pricesPageStore = usePricesPageStore()
+const showNavbar = inject('showNavbar')
 
-const pricesListItem = ref([])
+const pricesNavItems = ref([])
+const pricesNavItemsContainer = ref(null)
 
-const pricesBannerNavScrollAnimation = (index, widthsTotal) => {
+let animatePricesNav = ref(true)
+
+const initiatePricesNavAnimations = () => {
+  const itemWidths = pricesNavItems.value.map((item) => item.clientWidth)
+  const widthsTotal = itemWidths.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  )
+
+  pricesPageStore.products.pricesProductsSections.forEach((section, index) => {
+    document.querySelector(`.prices-banner-nav__list-item${index}`).style.backgroundColor = ''
+    document.querySelector(`.prices-banner-nav__list-item${index}`).style.color = ''
+    pricesBannerNavScrollAnimation(index, itemWidths, widthsTotal)
+  })
+}
+
+const pricesBannerNavScrollAnimation = (index, itemWidths, widthsTotal) => {
   const pricesBannerNavScrollAnimationTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: `.prices-products-section${index}`,
       start: 'top center',
-      toggleActions: 'play none none reverse',
-      markers: true
+      toggleActions: 'play none none reverse'
     }
   })
-  let x = 0
-  for (let i = 0; i < index; i++) {
-    x -= pricesListItem.value[index].clientWidth
-  }
-  let animate = ref(true)
+  const xValue = itemWidths[index - 1]
+  animatePricesNav = widthsTotal > pricesNavItemsContainer.value.clientWidth
+  if (animatePricesNav) {
+    pricesBannerNavScrollAnimationTimeline.to(
+      '.prices-banner-nav__list--container',
+      {
+        x: () => `-= ${xValue}`
+      },
 
-  animate = widthsTotal + x > width.value - 150
+      0
+    )
+  }
+
   pricesBannerNavScrollAnimationTimeline.to(
     '.prices-banner-nav__list--container',
     {
       onStart: () => {
-        if (animate) {
-          pricesBannerNavScrollAnimationTimeline.to(
-            '.prices-banner-nav__list--container',
-            {
-              x
-            },
-            0
-          )
-        }
         document.querySelector(`.prices-banner-nav__list-item${index}`).style.backgroundColor =
           '#457B9D'
 
@@ -73,28 +83,26 @@ const pricesBannerNavScrollAnimation = (index, widthsTotal) => {
 }
 
 onMounted(() => {
-  const itemWidths = pricesListItem.value.map((item) => item.clientWidth)
+  initiatePricesNavAnimations()
+  const itemWidths = pricesNavItems.value.map((item) => item.clientWidth)
   const widthsTotal = itemWidths.reduce(
     (accumulator, currentValue) => accumulator + currentValue,
     0
   )
-
-  pricesPageStore.products.pricesProductsSections.forEach((section, index) => {
-    pricesBannerNavScrollAnimation(index, widthsTotal)
-  })
-
   useEventListener(
     window,
     'resize',
     debounce((e) => {
-      gsap.to('.prices-banner-nav__list--container', { x: 0 })
-      ScrollTrigger.killAll()
-      windowWidth = e.currentTarget.innerWidth
-      pricesPageStore.products.pricesProductsSections.forEach((section, index) => {
-        pricesBannerNavScrollAnimation(index, widthsTotal)
-        document.querySelector(`.prices-banner-nav__list-item${index}`).style.backgroundColor = ''
-        document.querySelector(`.prices-banner-nav__list-item${index}`).style.color = ''
-      })
+      if (widthsTotal < e.currentTarget.innerWidth) {
+        ScrollTrigger.killAll()
+        gsap.set('.prices-banner-nav__list--container', { x: 0 })
+        initiatePricesNavAnimations()
+      } else {
+        ScrollTrigger.killAll()
+        router.push({ path: '/prices' })
+        gsap.set('.prices-banner-nav__list--container', { x: 0 })
+        initiatePricesNavAnimations()
+      }
     }, 180)
   )
 })
@@ -118,23 +126,23 @@ onUnmounted(() => {
       :class="showNavbar ? '-translate-y-20' : '-translate-y-56'"
     >
       <h1
-        class="prices-banner-nav__title mx-auto text-center font-yeseva-one text-3xl uppercase text-main-blue"
+        class="prices-banner-nav__title px-4 text-start font-yeseva-one text-3xl uppercase text-main-blue"
       >
         {{ pricesPageStore.banner.pricesBannerTitle }}
       </h1>
       <ul
-        class="prices-banner-nav__list--container flex h-auto min-w-full flex-nowrap justify-between p-4"
+        class="prices-banner-nav__list--container flex h-auto min-w-full translate-x-0 flex-nowrap justify-between p-4"
+        ref="pricesNavItemsContainer"
       >
         <li
           v-for="(section, index) in pricesPageStore.products.pricesProductsSections"
           :key="index"
-          :ref="(el) => (pricesListItem[index] = el)"
-          class="max-w-[200px]"
+          :ref="(el) => (pricesNavItems[index] = el)"
         >
           <router-link
             :to="`/prices#prices-products-section${index}`"
             :class="`prices-banner-nav__list-item${index}`"
-            class="h-auto whitespace-nowrap rounded-full bg-transparent px-4 py-2 font-marmelad text-sm font-bold uppercase tracking-wider text-main-blue transition duration-[500ms] ease-out md:text-lg md:tracking-widest md:hover:bg-hover-blue md:hover:text-main-white"
+            class="h-auto whitespace-nowrap rounded-full bg-transparent px-4 py-2 font-marmelad text-sm font-bold uppercase tracking-wider text-main-blue transition duration-[500ms] ease-out md:hover:bg-hover-blue md:hover:text-main-white"
             >{{ section.pricesProductsSectionTitle }}</router-link
           >
         </li>
