@@ -22,18 +22,15 @@ let animatePricesNav = ref(true)
 
 let currentX = ref(-1)
 
-const initiatePricesNavAnimations = () => {
+const calculateWidths = () => {
   const itemWidths = pricesNavItems.value.map((item) => item.clientWidth)
   const widthsTotal = itemWidths.reduce(
     (accumulator, currentValue) => accumulator + currentValue,
     0
   )
+  const lastItemWidth = itemWidths.slice(-1)
 
-  pricesPageStore.products.pricesProductsSections.forEach((section, index) => {
-    document.querySelector(`.prices-banner-nav__list-item${index}`).style.backgroundColor = ''
-    document.querySelector(`.prices-banner-nav__list-item${index}`).style.color = ''
-    pricesBannerNavScrollAnimation(index, itemWidths, widthsTotal)
-  })
+  return { itemWidths, widthsTotal, lastItemWidth }
 }
 
 const pricesBannerNavScrollAnimation = (index, itemWidths, widthsTotal) => {
@@ -91,42 +88,52 @@ const pricesBannerNavScrollAnimation = (index, itemWidths, widthsTotal) => {
     0
   )
 }
-console.log(usePointerSwipe())
-const { distanceX, direction } = usePointerSwipe(pricesBannerNav, {
-  onSwipe() {
-    if (currentX >= 0 && direction.value === 'right') {
-      return
-    } else {
-      const newTranslateX = -distanceX.value + currentX
-      if (newTranslateX >= 0) {
+
+const initiatePricesNavAnimations = () => {
+  const { itemWidths, widthsTotal } = calculateWidths()
+  pricesPageStore.products.pricesProductsSections.forEach((section, index) => {
+    document.querySelector(`.prices-banner-nav__list-item${index}`).style.backgroundColor = ''
+    document.querySelector(`.prices-banner-nav__list-item${index}`).style.color = ''
+    pricesBannerNavScrollAnimation(index, itemWidths, widthsTotal)
+  })
+}
+
+if (animatePricesNav) {
+  const { distanceX, direction } = usePointerSwipe(pricesBannerNav, {
+    onSwipe() {
+      const { widthsTotal, lastItemWidth } = calculateWidths()
+
+      if (currentX >= 0 && direction.value === 'right') {
         return
+      } else {
+        const newTranslateX = -distanceX.value + currentX
+        if (newTranslateX >= 0 || newTranslateX < -(widthsTotal - lastItemWidth)) {
+          return
+        }
+        document.querySelector(
+          '.prices-banner-nav__list--container'
+        ).style.transform = `translate(${-distanceX.value + currentX}px, 0)`
       }
-      document.querySelector('.prices-banner-nav__list--container').style.transform = `translate(${
-        -distanceX.value + currentX
-      }px, 0)`
-      console.log(newTranslateX)
-    }
-  },
-  onSwipeEnd() {
-    if (currentX >= 0 && direction.value === 'right') {
-      return
-    } else {
-      const newTranslateX = -distanceX.value + currentX
-      if (newTranslateX >= 0) {
+    },
+    onSwipeEnd() {
+      const { widthsTotal, lastItemWidth } = calculateWidths()
+      if (currentX >= 0 && direction.value === 'right') {
         return
+      } else {
+        const newTranslateX = -distanceX.value + currentX
+        if (newTranslateX >= 0 || newTranslateX < -(widthsTotal - lastItemWidth)) {
+          return
+        }
+        currentX = newTranslateX
       }
-      currentX = newTranslateX
     }
-  }
-})
+  })
+}
 
 onMounted(() => {
+  const { widthsTotal } = calculateWidths()
   initiatePricesNavAnimations()
-  const itemWidths = pricesNavItems.value.map((item) => item.clientWidth)
-  const widthsTotal = itemWidths.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    0
-  )
+
   useEventListener(
     window,
     'resize',
