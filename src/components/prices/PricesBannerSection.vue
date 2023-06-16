@@ -7,15 +7,20 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useEventListener } from '@vueuse/core'
 import { debounce } from 'lodash'
 import { useRouter } from 'vue-router'
+import { usePointerSwipe } from '@vueuse/core'
+
 const router = useRouter()
 gsap.registerPlugin(ScrollTrigger)
 const pricesPageStore = usePricesPageStore()
 const showNavbar = inject('showNavbar')
 
+const pricesBannerNav = ref()
 const pricesNavItems = ref([])
 const pricesNavItemsContainer = ref(null)
 
 let animatePricesNav = ref(true)
+
+let currentX = ref(-1)
 
 const initiatePricesNavAnimations = () => {
   const itemWidths = pricesNavItems.value.map((item) => item.clientWidth)
@@ -45,9 +50,14 @@ const pricesBannerNavScrollAnimation = (index, itemWidths, widthsTotal) => {
     pricesBannerNavScrollAnimationTimeline.to(
       '.prices-banner-nav__list--container',
       {
-        x: () => `-= ${xValue}`
+        x: () => `-= ${xValue}`,
+        onComplete: () => {
+          currentX = gsap.getProperty('.prices-banner-nav__list--container', 'x')
+        },
+        onReverseComplete: () => {
+          currentX = gsap.getProperty('.prices-banner-nav__list--container', 'x')
+        }
       },
-
       0
     )
   }
@@ -81,6 +91,34 @@ const pricesBannerNavScrollAnimation = (index, itemWidths, widthsTotal) => {
     0
   )
 }
+console.log(usePointerSwipe())
+const { distanceX, direction } = usePointerSwipe(pricesBannerNav, {
+  onSwipe() {
+    if (currentX >= 0 && direction.value === 'right') {
+      return
+    } else {
+      const newTranslateX = -distanceX.value + currentX
+      if (newTranslateX >= 0) {
+        return
+      }
+      document.querySelector('.prices-banner-nav__list--container').style.transform = `translate(${
+        -distanceX.value + currentX
+      }px, 0)`
+      console.log(newTranslateX)
+    }
+  },
+  onSwipeEnd() {
+    if (currentX >= 0 && direction.value === 'right') {
+      return
+    } else {
+      const newTranslateX = -distanceX.value + currentX
+      if (newTranslateX >= 0) {
+        return
+      }
+      currentX = newTranslateX
+    }
+  }
+})
 
 onMounted(() => {
   initiatePricesNavAnimations()
@@ -124,6 +162,7 @@ onUnmounted(() => {
     <div
       class="prices-banner-nav flex h-36 w-full transform flex-col justify-between rounded-lg border-[1px] border-main-blue/25 py-4 shadow-lg backdrop-blur-lg transition duration-500"
       :class="showNavbar ? '-translate-y-20' : '-translate-y-56'"
+      ref="pricesBannerNav"
     >
       <h1
         class="prices-banner-nav__title px-4 text-start font-yeseva-one text-3xl uppercase text-main-blue"
