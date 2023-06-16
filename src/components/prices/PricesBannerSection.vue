@@ -1,14 +1,17 @@
 <script setup>
 import { inject } from 'vue'
 import { usePricesPageStore } from '@/stores/PricesPageStore.js'
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref, computed } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useEventListener } from '@vueuse/core'
 import { debounce } from 'lodash'
 import { useRouter } from 'vue-router'
 import { usePointerSwipe } from '@vueuse/core'
-
+const isMobile = computed(() =>
+  /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+)
+console.log(isMobile)
 const router = useRouter()
 gsap.registerPlugin(ScrollTrigger)
 const pricesPageStore = usePricesPageStore()
@@ -21,6 +24,8 @@ const pricesNavItemsContainer = ref(null)
 let animatePricesNav = ref(true)
 
 let currentX = ref(-1)
+
+let swipeStop = null
 
 const calculateWidths = () => {
   const itemWidths = pricesNavItems.value.map((item) => item.clientWidth)
@@ -98,58 +103,64 @@ const initiatePricesNavAnimations = () => {
   })
 }
 
-if (animatePricesNav) {
-  const { distanceX, direction } = usePointerSwipe(pricesBannerNav, {
-    onSwipe() {
-      const { widthsTotal, lastItemWidth } = calculateWidths()
-
-      if (currentX >= 0 && direction.value === 'right') {
-        return
-      } else {
-        const newTranslateX = -distanceX.value + currentX
-        if (newTranslateX >= 0 || newTranslateX < -(widthsTotal - lastItemWidth)) {
+const initiatePricesNavDraggable = () => {
+  const { widthsTotal } = calculateWidths()
+  animatePricesNav = widthsTotal > pricesNavItemsContainer.value.clientWidth
+  if (animatePricesNav) {
+    const { distanceX, direction, stop } = usePointerSwipe(pricesBannerNav, {
+      onSwipe() {
+        const { widthsTotal, lastItemWidth } = calculateWidths()
+        if (currentX >= 0 && direction.value === 'right') {
           return
+        } else {
+          const newTranslateX = -distanceX.value + currentX
+          if (newTranslateX >= 0 || newTranslateX < -(widthsTotal - lastItemWidth)) {
+            return
+          }
+          document.querySelector(
+            '.prices-banner-nav__list--container'
+          ).style.transform = `translate(${-distanceX.value + currentX}px, 0)`
         }
-        document.querySelector(
-          '.prices-banner-nav__list--container'
-        ).style.transform = `translate(${-distanceX.value + currentX}px, 0)`
-      }
-    },
-    onSwipeEnd() {
-      const { widthsTotal, lastItemWidth } = calculateWidths()
-      if (currentX >= 0 && direction.value === 'right') {
-        return
-      } else {
-        const newTranslateX = -distanceX.value + currentX
-        if (newTranslateX >= 0 || newTranslateX < -(widthsTotal - lastItemWidth)) {
+      },
+      onSwipeEnd() {
+        const { widthsTotal, lastItemWidth } = calculateWidths()
+        if (currentX >= 0 && direction.value === 'right') {
           return
+        } else {
+          const newTranslateX = -distanceX.value + currentX
+          if (newTranslateX >= 0 || newTranslateX < -(widthsTotal - lastItemWidth)) {
+            return
+          }
+          currentX = newTranslateX
         }
-        currentX = newTranslateX
       }
-    }
-  })
+    })
+    swipeStop = stop
+  }
 }
 
 onMounted(() => {
-  const { widthsTotal } = calculateWidths()
   initiatePricesNavAnimations()
+  initiatePricesNavDraggable()
 
-  useEventListener(
-    window,
-    'resize',
-    debounce((e) => {
-      if (widthsTotal < e.currentTarget.innerWidth) {
+  if (!isMobile.value) {
+    useEventListener(
+      window,
+      'resize',
+      debounce((e) => {
+        const { widthsTotal } = calculateWidths()
         ScrollTrigger.killAll()
         gsap.set('.prices-banner-nav__list--container', { x: 0 })
+        if (widthsTotal > e.currentTarget.innerWidth) {
+          router.push({ path: '/prices' })
+          initiatePricesNavDraggable()
+        }
         initiatePricesNavAnimations()
-      } else {
-        ScrollTrigger.killAll()
-        router.push({ path: '/prices' })
-        gsap.set('.prices-banner-nav__list--container', { x: 0 })
-        initiatePricesNavAnimations()
-      }
-    }, 180)
-  )
+        swipeStop()
+        initiatePricesNavDraggable()
+      }, 180)
+    )
+  }
 })
 
 onUnmounted(() => {
