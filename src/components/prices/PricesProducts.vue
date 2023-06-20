@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue'
 import { usePricesPageStore } from '@/stores/PricesPageStore.js'
 const pricesPageStore = usePricesPageStore()
 </script>
@@ -30,6 +31,8 @@ const pricesPageStore = usePricesPageStore()
             name="checkbox"
             :id="`section${sectionIndex}__input${itemIndex}`"
             class="peer h-8 w-8 appearance-none rounded-full border-2 border-main-blue/25 checked:bg-main-blue focus:outline-none lg:cursor-pointer lg:group-hover:border-main-blue/75"
+            :value="item"
+            v-model="pricesPageStore.selectedProducts"
           />
 
           <label

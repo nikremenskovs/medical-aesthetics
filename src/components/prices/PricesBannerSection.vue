@@ -11,7 +11,7 @@ import { usePointerSwipe } from '@vueuse/core'
 const isMobile = computed(() =>
   /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 )
-console.log(isMobile)
+
 const router = useRouter()
 gsap.registerPlugin(ScrollTrigger)
 const pricesPageStore = usePricesPageStore()
@@ -187,23 +187,25 @@ onUnmounted(() => {
       >
         {{ pricesPageStore.banner.pricesBannerTitle }}
       </h1>
-      <ul
-        class="prices-banner-nav__list--container flex h-auto min-w-full translate-x-0 flex-nowrap justify-between p-4"
-        ref="pricesNavItemsContainer"
-      >
-        <li
-          v-for="(section, index) in pricesPageStore.products.pricesProductsSections"
-          :key="index"
-          :ref="(el) => (pricesNavItems[index] = el)"
+      <div class="prices-banner-nav--container">
+        <ul
+          class="prices-banner-nav__list--container flex h-auto min-w-full translate-x-0 flex-nowrap justify-between p-4"
+          ref="pricesNavItemsContainer"
         >
-          <router-link
-            :to="`/prices#prices-products-section${index}`"
-            :class="`prices-banner-nav__list-item${index}`"
-            class="h-auto whitespace-nowrap rounded-full bg-transparent px-4 py-2 font-marmelad text-sm font-bold uppercase tracking-wider text-main-blue transition duration-[500ms] ease-out md:hover:bg-hover-blue md:hover:text-main-white"
-            >{{ section.pricesProductsSectionTitle }}</router-link
+          <li
+            v-for="(section, index) in pricesPageStore.products.pricesProductsSections"
+            :key="index"
+            :ref="(el) => (pricesNavItems[index] = el)"
           >
-        </li>
-      </ul>
+            <router-link
+              :to="`/prices#prices-products-section${index}`"
+              :class="`prices-banner-nav__list-item${index}`"
+              class="h-auto whitespace-nowrap rounded-full bg-transparent px-4 py-2 font-marmelad text-sm font-bold uppercase tracking-wider text-main-blue transition duration-[500ms] ease-out md:hover:bg-hover-blue md:hover:text-main-white"
+              >{{ section.pricesProductsSectionTitle }}</router-link
+            >
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 </template>

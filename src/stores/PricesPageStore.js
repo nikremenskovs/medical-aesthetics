@@ -4,7 +4,9 @@ import { getPricesPage } from '@/services/squidexService.js'
 export const usePricesPageStore = defineStore('PricesPageStore', {
   state: () => ({
     banner: {},
-    products: {}
+    products: {},
+    selectedProducts: [],
+    maximiseSummary: false
   }),
   actions: {
     async getPricesPageData(urlPreview, selectedLanguage) {

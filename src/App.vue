@@ -9,9 +9,11 @@ import { debounce } from 'lodash'
 import { useRoute, useRouter } from 'vue-router'
 import { RouterView } from 'vue-router'
 import { useTopLevelStore } from '@/stores/TopLevelStore.js'
+import { usePricesPageStore } from '@/stores/PricesPageStore.js'
 import { useFavicon } from '@vueuse/core'
 
 const topLevelStore = useTopLevelStore()
+const pricesPageStore = usePricesPageStore()
 
 const route = useRoute()
 const router = useRouter()
@@ -85,7 +87,7 @@ onUnmounted(() => {
     enter-to-class="translate-x-0"
   >
     <GetInTouchButton
-      v-show="showGetInTouchButton"
+      v-show="showGetInTouchButton && !pricesPageStore.maximiseSummary"
       @click="showGetInTouchModal = !showGetInTouchModal"
     />
   </transition>
