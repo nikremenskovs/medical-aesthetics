@@ -1,12 +1,15 @@
 <script setup>
 import { usePricesPageStore } from '@/stores/PricesPageStore.js'
+import {inject} from 'vue'
 const pricesPageStore = usePricesPageStore()
+const showNavbar = inject('showNavbar')
+
 </script>
 
 <template>
   <section
-    :class="pricesPageStore.maximiseSummary ? 'h-[70vh]' : 'h-[110px] lg:h-[70vh]', pricesPageStore.selectedProducts.length > 0 ? 'block' : 'hidden lg:block'"
-    class="prices-summary fixed bottom-0 z-30 w-full rounded-lg border-[1px] border-main-blue/25 px-4 py-4 shadow-lg backdrop-blur-lg transition-[height] duration-500 lg:right-[5%] lg:top-44 lg:max-w-[300px] xl:right-[10%] 2xl:right-[20%]"
+    :class="pricesPageStore.maximiseSummary ? 'h-[70vh]' : 'h-[110px] lg:h-[70vh]', pricesPageStore.selectedProducts.length > 0 ? 'block' : 'hidden lg:block', showNavbar ? 'lg:top-44' : 'lg:top-16'"
+    class="prices-summary transition-all fixed bottom-0 z-30 w-full rounded-lg border-[1px] border-main-blue/25 px-4 py-4 shadow-lg backdrop-blur-lg  duration-500 lg:right-[5%]  lg:max-w-[300px] xl:right-[10%] 2xl:right-[20%]"
   >
     <div
       class="prices-summary-header flex justify-between"

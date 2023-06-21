@@ -12,7 +12,7 @@ const showNavbar = inject('showNavbar')
       :src="pricesPageStore.banner.pricesBannerBackground.image"
       :alt="pricesPageStore.banner.pricesBannerBackground['image-alt']"
       class="prices-banner__image h-48 w-full transform object-cover transition duration-500"
-      :class="showNavbar ? '' : '-translate-y-48 lg:-translate-y-0'"
+      :class="showNavbar ? '' : '-translate-y-48 lg:-translate-y-28'"
     />
   </section>
 </template>
