@@ -16,7 +16,7 @@ const handleCloseGetInTouchModal = (event) => {
 
 <template>
   <div
-    class="get-in-touch-modal__overlay fixed left-0 top-0 z-30 flex h-screen w-full items-center justify-center bg-main-white/75"
+    class="get-in-touch-modal__overlay fixed left-0 top-0 z-40 flex h-screen w-full items-center justify-center bg-main-white/75"
   >
     <div
       class="get-in-touch-modal relative flex h-auto w-10/12 items-center rounded-3xl bg-main-blue px-6 py-8 text-main-white sm:h-5/6 xl:py-0"
