@@ -1,5 +1,28 @@
+<script setup>
+import PricesBannerSection from '@/components/prices/PricesBannerSection.vue'
+import PricesProducts from '@/components/prices/PricesProducts.vue'
+import PricesSummary from '@/components/prices/PricesSummary.vue'
+
+import { computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { usePricesPageStore } from '@/stores/PricesPageStore.js'
+import { useTopLevelStore } from '@/stores/TopLevelStore.js'
+
+const topLevelStore = useTopLevelStore()
+const selectedLanguage = computed(() => topLevelStore.selectedLanguage)
+const pricesPageStore = usePricesPageStore()
+const route = useRoute()
+const router = useRouter()
+try {
+  await pricesPageStore.getPricesPageData(route.query.preview, selectedLanguage.value)
+} catch {
+  router.push('/badCall')
+}
+</script>
+
 <template>
-  <div class="h-[300vh]">
-    <div class="nav fixed top-24 h-12 w-full bg-main-blue"></div>
-  </div>
+  <PricesBannerSection />
+  <PricesProducts />
+
+  <PricesSummary />
 </template>

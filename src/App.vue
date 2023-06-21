@@ -4,19 +4,23 @@ import TheFooter from '@/components/TheFooter.vue'
 import TheScrollToTopButton from '@/components/TheScrollToTopButton.vue'
 import GetInTouchButton from '@/components/getInTouch/GetInTouchButton.vue'
 import GetInTouchModal from '@/components/getInTouch/GetInTouchModal.vue'
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, provide } from 'vue'
 import { debounce } from 'lodash'
 import { useRoute, useRouter } from 'vue-router'
 import { RouterView } from 'vue-router'
 import { useTopLevelStore } from '@/stores/TopLevelStore.js'
+import { usePricesPageStore } from '@/stores/PricesPageStore.js'
 import { useFavicon } from '@vueuse/core'
 
 const topLevelStore = useTopLevelStore()
+const pricesPageStore = usePricesPageStore()
 
 const route = useRoute()
 const router = useRouter()
 
 const showNavbar = ref(true)
+provide('showNavbar', showNavbar)
+
 const showGetInTouchButton = ref(false)
 const showScrollToTopButton = ref(false)
 const showGetInTouchModal = ref(false)
@@ -46,7 +50,7 @@ const updateScroll = debounce(() => {
   lastScrollPosition.value = currentScrollPosition
 
   switch (true) {
-    case currentScrollPosition < 500:
+    case currentScrollPosition < 500 || route.path === '/prices':
       showScrollToTopButton.value = false
       break
     case currentScrollPosition > 500:
@@ -83,7 +87,7 @@ onUnmounted(() => {
     enter-to-class="translate-x-0"
   >
     <GetInTouchButton
-      v-show="showGetInTouchButton"
+      v-show="showGetInTouchButton && !pricesPageStore.maximiseSummary"
       @click="showGetInTouchModal = !showGetInTouchModal"
     />
   </transition>
@@ -116,7 +120,7 @@ onUnmounted(() => {
     <RouterView />
   </Suspense>
 
-  <TheFooter />
+  <TheFooter v-if="route.path !== '/prices'" />
 
   <transition
     enter-active-class="transition ease-out duration-500 transform"

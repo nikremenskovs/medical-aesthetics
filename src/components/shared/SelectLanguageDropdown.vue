@@ -3,9 +3,10 @@ import { ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { useTopLevelStore } from '@/stores/TopLevelStore.js'
 import { useHomepageStore } from '@/stores/HomepageStore.js'
+import { useAboutPageStore } from '@/stores/AboutPageStore.js'
+import { usePricesPageStore } from '@/stores/PricesPageStore.js'
 import { usePromoPageStore } from '@/stores/PromoPageStore.js'
 import { useContactsPageStore } from '@/stores/ContactsPageStore.js'
-import { useAboutPageStore } from '@/stores/AboutPageStore.js'
 import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
@@ -14,6 +15,7 @@ const homepageStore = useHomepageStore()
 const promoPageStore = usePromoPageStore()
 const contactsPageStore = useContactsPageStore()
 const aboutPageStore = useAboutPageStore()
+const pricesPageStore = usePricesPageStore()
 
 const dropdownElement = ref()
 const dropdownOpen = ref()
@@ -27,11 +29,12 @@ const selectOption = (language) => {
   topLevelStore.selectLanguageOption(language)
   localStorage.setItem('selectedLanguage', language)
   try {
-    homepageStore.getHomepageData(route.query.preview, language)
     topLevelStore.getTopLevelData(route.query.preview, language)
+    homepageStore.getHomepageData(route.query.preview, language)
     promoPageStore.getPromoPageData(route.query.preview, language)
     contactsPageStore.getContactsPageData(route.query.preview, language)
     aboutPageStore.getAboutPageData(route.query.preview, language)
+    pricesPageStore.getPricesPageData(route.query.preview, language)
   } catch {
     router.push('/badCall')
   }
