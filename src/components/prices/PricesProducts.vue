@@ -1,21 +1,25 @@
 <script setup>
-import { ref } from 'vue'
 import { usePricesPageStore } from '@/stores/PricesPageStore.js'
+import PricesProductsNav from './PricesProductsNav.vue'
+
 const pricesPageStore = usePricesPageStore()
 </script>
 
 <template>
-  <div class="prices-products--container h-auto w-full px-4 pt-80">
+  <div
+    class="prices-products--container h-auto lg:absolute lg:left-[5%] lg:max-w-[500px] xl:left-[10%] 2xl:left-[20%]"
+  >
+    <PricesProductsNav />
     <section
       v-for="(section, sectionIndex) in pricesPageStore.products.pricesProductsSections"
       :key="sectionIndex"
-      :class="`prices-products-section${sectionIndex}`"
+      :class="`prices-products-section${sectionIndex} ${sectionIndex === 0 ? 'pt-[340px]' : ''}`"
       :id="`prices-products-section${sectionIndex}`"
       class="mb-12 w-full text-main-blue"
     >
       <h1
         :class="`prices-products-section${sectionIndex}__heading`"
-        class="mb-4 font-marmelad text-2xl uppercase"
+        class="mb-4 px-4 font-marmelad text-2xl uppercase"
       >
         {{ section.pricesProductsSectionTitle }}
       </h1>

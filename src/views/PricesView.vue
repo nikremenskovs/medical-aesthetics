@@ -23,5 +23,6 @@ try {
 <template>
   <PricesBannerSection />
   <PricesProducts />
+
   <PricesSummary />
 </template>

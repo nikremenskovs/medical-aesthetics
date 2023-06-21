@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue'
 import { usePricesPageStore } from '@/stores/PricesPageStore.js'
 const pricesPageStore = usePricesPageStore()
 </script>
@@ -7,8 +6,8 @@ const pricesPageStore = usePricesPageStore()
 <template>
   <section
     v-if="pricesPageStore.selectedProducts.length > 0"
-    :class="pricesPageStore.maximiseSummary ? 'h-[70vh]' : 'h-24'"
-    class="prices-summary sticky bottom-0 w-full rounded-lg border-[1px] border-main-blue/25 px-4 py-4 shadow-lg backdrop-blur-lg transition-[height] duration-500"
+    :class="pricesPageStore.maximiseSummary ? 'h-[70vh] ' : 'h-28'"
+    class="prices-summary fixed bottom-0 z-30 w-full rounded-lg border-[1px] border-main-blue/25 px-4 py-4 shadow-lg backdrop-blur-lg transition-[height] duration-500 lg:right-[5%] lg:top-44 lg:max-w-[400px] xl:right-[10%] 2xl:right-[20%]"
   >
     <div
       class="prices-summary-header flex justify-between"
@@ -38,7 +37,7 @@ const pricesPageStore = usePricesPageStore()
     </div>
     <ul
       v-if="pricesPageStore.maximiseSummary"
-      class="prices-summary-list no-scrollbar z-30 h-[60vh] overflow-y-auto pt-4"
+      class="prices-summary-list no-scrollbar z-30 h-[55vh] overflow-y-auto pt-4"
     >
       <li
         v-for="(product, index) in pricesPageStore.selectedProducts"
