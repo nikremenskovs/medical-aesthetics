@@ -7,7 +7,7 @@ const pricesPageStore = usePricesPageStore()
 
 <template>
   <div
-    class="prices-products--container h-auto lg:absolute lg:left-[5%] lg:max-w-[500px] xl:left-[10%] 2xl:left-[20%]"
+    class="prices-products--container h-auto lg:absolute lg:left-[5%] lg:max-w-[600px] xl:left-[10%] 2xl:left-[20%]"
   >
     <PricesProductsNav />
     <section

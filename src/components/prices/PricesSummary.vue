@@ -5,15 +5,15 @@ const pricesPageStore = usePricesPageStore()
 
 <template>
   <section
-    v-if="pricesPageStore.selectedProducts.length > 0"
-    :class="pricesPageStore.maximiseSummary ? 'h-[70vh] ' : 'h-28'"
-    class="prices-summary fixed bottom-0 z-30 w-full rounded-lg border-[1px] border-main-blue/25 px-4 py-4 shadow-lg backdrop-blur-lg transition-[height] duration-500 lg:right-[5%] lg:top-44 lg:max-w-[400px] xl:right-[10%] 2xl:right-[20%]"
+    :class="pricesPageStore.maximiseSummary ? 'h-[70vh]' : 'h-[110px] lg:h-[70vh]', pricesPageStore.selectedProducts.length > 0 ? 'block' : 'hidden lg:block'"
+    class="prices-summary fixed bottom-0 z-30 w-full rounded-lg border-[1px] border-main-blue/25 px-4 py-4 shadow-lg backdrop-blur-lg transition-[height] duration-500 lg:right-[5%] lg:top-44 lg:max-w-[300px] xl:right-[10%] 2xl:right-[20%]"
   >
     <div
       class="prices-summary-header flex justify-between"
       :class="pricesPageStore.maximiseSummary ? ' border-b-2 border-main-blue/50' : ''"
     >
-      <div class="prices-summary-header__text">
+      <div v-if="pricesPageStore.selectedProducts.length > 0"   
+      class="prices-summary-header__text">
         <h1 class="mx-auto mb-2 font-yeseva-one text-xl uppercase text-main-blue">
           Products selected: {{ pricesPageStore.selectedProducts.length }}
         </h1>
@@ -25,8 +25,14 @@ const pricesPageStore = usePricesPageStore()
           }}
         </h2>
       </div>
+      
+      <div v-else>
+<h1 class="mx-auto mb-2 font-yeseva-one text-xl uppercase text-main-blue">
+          No services selected yet
+        </h1>
+      </div>
       <button
-        class="prices-summary-header__button flex items-start"
+        class="prices-summary-header__button flex items-start lg:hidden"
         @click="pricesPageStore.maximiseSummary = !pricesPageStore.maximiseSummary"
       >
         <i
@@ -35,8 +41,7 @@ const pricesPageStore = usePricesPageStore()
         ></i>
       </button>
     </div>
-    <ul
-      v-if="pricesPageStore.maximiseSummary"
+    <ul    
       class="prices-summary-list no-scrollbar z-30 h-[55vh] overflow-y-auto pt-4"
     >
       <li
