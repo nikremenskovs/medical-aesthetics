@@ -171,7 +171,7 @@ onUnmounted(() => {
 <template>
   <div
     class="prices-banner-nav fixed z-20 flex h-36 w-full transform flex-col justify-between overflow-hidden rounded-lg border-[1px] border-main-blue/25 py-4 shadow-lg backdrop-blur-lg transition duration-500 lg:max-w-[600px]"
-    :class="showNavbar ? 'translate-y-44' : 'lg:translate-y-44'"
+    :class="showNavbar ? 'translate-y-44' : 'lg:translate-y-16'"
     ref="pricesBannerNav"
   >
     <h1
