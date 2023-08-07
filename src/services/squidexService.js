@@ -42,7 +42,7 @@ export async function createSquidexService() {
     baseURL: `https://cloud.squidex.io/api/content/medical-aesthetics/`,
     headers: {
       Authorization: `Bearer ${tokenMedicalAesthetics}`,
-      ['X-Resolve-Urls']: '*'
+      ['X-ResolveUrls']: '*'
     }
   })
   return api
